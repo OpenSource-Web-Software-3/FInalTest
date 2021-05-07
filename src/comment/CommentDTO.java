@@ -1,5 +1,8 @@
 package comment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommentDTO {
 	private int writingID;
 	private int commentID;
@@ -8,7 +11,9 @@ public class CommentDTO {
 	private String nickName;
 	private String content;
 	private String commentDate;
-
+	
+	public ArrayList <CommentDTO> commentChildList = new ArrayList<CommentDTO>();
+	
 	public int getWritingID() {
 		return writingID;
 	}
