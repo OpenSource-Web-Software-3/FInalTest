@@ -70,7 +70,7 @@ public class UserDAO {
 	}
 
 	public UserDTO getUser(String userID) {
-		String SQL = "SELECT * FROM USER WHERE ID = ?";
+		String SQL = "SELECT * FROM user WHERE ID = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
