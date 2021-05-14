@@ -1,0 +1,128 @@
+@charset "EUC-KR";
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 공통 속성 적용 */
+.find,
+.register {
+    width: 425px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 회원가입 */
+.register .title {
+	font-size: 48px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.register .sub-title {
+	font-size: 36px;
+	margin-bottom: 75px;
+}
+
+.register .title,
+.register .sub-title {
+	text-align: center;
+	width: 100%;
+	height: fit-content;
+}
+
+.register .register-form {
+	width: 100%;
+	height: fit-content;
+}
+
+.register .register-form .first,
+.register .register-form .second {
+	width: 100%;
+	height: fit-content;
+    display: flex;
+    flex-direction: column;
+	margin-bottom: 50px;
+}
+
+.register .register-form input {
+	max-width: 100%;
+	height: fit-content;
+	padding: 15px 20px;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+.register .register-form .sendBtn {
+	width:100%;
+	height: fit-content;
+	padding: 15px;
+	font-size: 20px;
+}
+
+/* ID / 비밀번호 찾기 */
+.find .title {
+	font-size: 48px;
+	font-weight: bold;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.find .id,
+.find .password {
+	width: 100%;
+	height: fit-content;
+}
+
+.find .id .title,
+.find .password .title {
+	display: flex;
+	font-size: 36px;
+	margin-bottom: 30px;
+}
+
+.find form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: fit-content;
+}
+
+.find input.name,
+.find input.email,
+.find input.id {
+	max-width: 100%;
+	height: fit-content;
+	font-size: 20px;
+	padding: 15px;
+	margin-bottom: 20px;
+}
+
+.find button.sendBtn {
+	max-width: 100%;
+	height: fit-content;
+	font-size: 20px;
+	padding: 10px;
+}
+
+.find .id .sendBtn {
+	margin-bottom: 80px;
+}
+
+.find .password .sendBtn {
+	margin-bottom: 20px;
+}
+
+.find button.sendBtn:hover {
+	cursor: pointer;
+	background-color: var(--pastel-blue);
+}
+
+.find .login-page {
+	display: block;
+	width: fit-content;
+	height: fit-content;
+	font-size: 20px;
+	color: var(--current-special-font);
+}
