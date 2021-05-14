@@ -5,17 +5,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <meta charset="UTF-8">
+         <%@include file="./head-tags.jsp" %>
         <title>LINS에 오신 걸 환영합니다</title>
-        <!-- font awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-        <link rel="stylesheet" href="<%=url1%>/css/main-style.css" />
     </head>
     <body>
         <!-- 4가지 서비스를 보여주는 부분 -->
         <section class="main">
             <!-- LINS 환영 멘트 -->
-            <div class="web-title">LINS</div>
            <p class="comment">LINS에 오신 걸을 환영합니다😊</br>
            원하시는 메뉴를 클릭하시면 </br>해당 서비스를 이용하실 수 있습니다.</br></br>
            스케줄러는 로그인 후, 이용하실 수 있습니다.</p>
