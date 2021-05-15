@@ -24,7 +24,6 @@ public class loginAction extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
 		request.setCharacterEncoding("UTF-8");
-		System.out.println("hi");
 		HttpSession session = request.getSession(true);
 
 		String userID = null;
