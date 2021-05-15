@@ -6,6 +6,15 @@ public class LicenseDTO {
 	private String licenseDate;
 	private String licenseTime;
 	private String licenseURL;
+	private int scrapCount;
+
+	public int getScrapCount() {
+		return scrapCount;
+	}
+
+	public void setScrapCount(int scrapCount) {
+		this.scrapCount = scrapCount;
+	}
 
 	public int getLicenseID() {
 		return licenseID;

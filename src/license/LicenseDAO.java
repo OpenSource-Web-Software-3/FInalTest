@@ -40,6 +40,7 @@ public class LicenseDAO {
 				licenseDto.setLicenseDate(rs.getString(3));
 				licenseDto.setLicenseTime(rs.getString(4));
 				licenseDto.setLicenseURL(rs.getString(5));
+				licenseDto.setScrapCount(rs.getInt(6));
 				return licenseDto;
 			}
 		} catch (Exception e) {
@@ -63,32 +64,6 @@ public class LicenseDAO {
 		}
 		return -1; // DB오류
 
-	}
-
-	// Image file upload
-	public int upload(int bbsID, String bbsType, String fileName, String fileRealName) {
-		String SQL = "INSERT INTO image VALUES(?,?,?,?)";
-		try {
-			pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, bbsID);
-			pstmt.setString(2, bbsType);
-			pstmt.setString(3, fileName);
-			pstmt.setString(4, fileRealName);
-			return pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return -1;
 	}
 
 }

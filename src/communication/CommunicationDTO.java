@@ -9,6 +9,15 @@ public class CommunicationDTO {
 	private String commuDate;
 	private String content;
 	private int scrapCount;
+	private int view;
+
+	public int getView() {
+		return view;
+	}
+
+	public void setView(int view) {
+		this.view = view;
+	}
 
 	public int getWritingID() {
 		return writingID;
