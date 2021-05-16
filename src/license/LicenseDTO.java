@@ -3,10 +3,19 @@ package license;
 public class LicenseDTO {
 	private int licenseID;
 	private String licenseName;
+	private String licenseType; // 필기 or 실기 etc
 	private String licenseDate;
 	private String licenseTime;
 	private String licenseURL;
 	private int scrapCount;
+
+	public String getLicenseType() {
+		return licenseType;
+	}
+
+	public void setLicenseType(String licenseType) {
+		this.licenseType = licenseType;
+	}
 
 	public int getScrapCount() {
 		return scrapCount;

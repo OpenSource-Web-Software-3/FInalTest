@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="license.LicenseDAO"%>
+<%@page import="java.util.ArrayList"%>
 <% String absolutePath_aside = request.getContextPath()+"/Web-source"; %>
+
+<%
+	LicenseDAO licenseDao = new LicenseDAO();
+	ArrayList<String> licencseNameList = licenseDao.getLicenseNameList();	
+%>
 <aside class="left-aside">
     
     <!-- 시험일정, 커뮤니티, 스케줄러, 문의사항을 하나의 tag로 묶음 -->
@@ -12,11 +19,13 @@
         <!-- 시험일정 -->
 	    <ul class="license">
 	        <li class="subtitle">시험일정</li>
-	        <!-- 저번 쇼핑몰처럼 license-list.jsp를 skin으로 사용
-	             (방법을 몰라요..ㅎㅎ) -->
-	        <li class="items"><a href="#">licenseName1</a></li>
-	        <li class="items"><a href="#">licenseName2</a></li>
-	        <li class="items"><a href="#">licenseName3</a></li>
+	        <%
+	        	for(int i = 0; i < licencseNameList.size(); i++){
+	        %>
+		        <li class="items"><a href="<%=absolutePath_aside%>/licenseListAction.do?licenseName=<%=licencseNameList.get(i) %>"><%=licencseNameList.get(i) %></a></li>
+			<%
+	        	}
+	        %>
 	    </ul>
 	    <!-- 커뮤니티 -->
 	    <ul class="community">

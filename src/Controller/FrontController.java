@@ -63,6 +63,9 @@ public class FrontController extends HttpServlet {
 		else if (com.contains("/findInfoAction.do")) { // ID or 비밀번호 찾기 버튼 클릭 시
 			viewPage = "../findInfoAction";
 		}
+		else if (com.contains("/licenseListAction.do")) {
+			viewPage = "../licenseListAction";
+		}
 //			else if (com.contains("/category_skinAction.do")) {
 //			viewPage = "../category_skinAction";
 //		} else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼

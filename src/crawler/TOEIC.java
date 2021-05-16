@@ -34,9 +34,18 @@ public class TOEIC {
 			}
 
 //			System.out.println(elements.toString());
-
+			System.out.println("===========================================");
+			System.out.println("===========================================");
+			System.out.println("===========================================");
+			System.out.println(elements.get(0).child(1).text().substring(0, 10));
+			System.out.println(elements.get(0).child(1).text().substring(18, 23));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		
+		
 	}
 }

@@ -18,7 +18,7 @@
            <!-- 서비스 선택 부분 -->
            <ul class="service-list">
                <li class="menu first">
-                   <a href="<%=url1%>/licenseList.jsp">
+                   <a href="<%=url1%>/licenseListAction.do?licenseName=기술사">
 	                   <i class="far fa-file-alt"></i>
 	                   <span>시험일정</span>
                    </a>
