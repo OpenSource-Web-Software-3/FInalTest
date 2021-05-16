@@ -1,0 +1,68 @@
+@charset "EUC-KR";
+
+.license-list {
+	width: 80%;
+	max-height: 100%;
+	padding: 150px 50px 50px 50px;
+}
+
+.license-list .license-name {
+	width: 100%;
+	height: fit-content;
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 60px;
+}
+
+.license-list .list {
+	width: 100%;
+	height: fit-content;
+}
+
+.license-list .list .items {
+	max-width: 100%;
+	height: fit-content;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;	
+	border-top: 1px solid var(--current-basic-font);
+}
+
+.license-list .list .items .url {
+	display: block;
+	width: fit-content;
+	height: fit-content;
+}
+
+.license-list .list .items .text-area {
+	width: fit-cotent;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+}
+
+.license-list .list .text-area .date {
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.license-list .list .text-area .time {
+	display: block;
+	font-size: 18px;
+}
+
+.license-list .list .scrapBtn {
+	width: fit-content;
+	height: fit-content;
+	font-size: 30px;
+	color: var(--current-special-font);
+	background-color: #ffffff00;
+}
+
+.license-list .list .scrapBtn:hover {
+	background-color: #ffffff00
+}
