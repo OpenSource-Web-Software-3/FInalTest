@@ -21,12 +21,14 @@
 		      <!-- 임시적으로 9개로 제한 (아마 9개로 갈 거 같습니다.) -->
 		      <% for(int i = 0; i < 9; i++) { %>
 	           <li class="items">
+	               <!-- 시험일정 정보  -->
 		           <a href="" class="url">	           
 		               <div class="text-area">
 		                   <span class="date">licenseDate</span>
 		                   <span class="time">licenseTime</span>
 		               </div>
 		           </a>
+		           <!-- 스크랩 버튼 -->
 	               <button class="scrapBtn">
 	                   <i class="fas fa-star"></i>
 	               </button>
