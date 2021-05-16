@@ -27,7 +27,7 @@
 	    </ul>
 	    <!-- 스케줄러 -->
 	    <ul class="subtitle" class="scheduler">
-	        <a href="#">스케줄러</a>
+	        <a href="<%=absolutePath_aside%>/scheduler.jsp">스케줄러</a>
 	    </ul>
 	    <!-- 문의사항 -->
 	    <ul class="subtitle" class="questions">
@@ -37,7 +37,7 @@
     <!-- my page -->
     <div class="my-page">
         <!-- my page로 이동 -->
-        <a href="">
+        <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">
             <i class="far fa-user-circle"></i>
             My page
         </a>
