@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="./js/scrap.js" defer></script>
+		
 		<%@include file="./head-tags.jsp" %>
 		<!-- css -->
 		<link rel="stylesheet" href="<%= absolutePath_license %>/css/license-list-style.css" />
@@ -37,8 +40,8 @@
 		               </div>
 		           </a>
 		           <!-- 스크랩 버튼 -->
-	               <button class="scrapBtn">
-	                   <i class="fas fa-star"></i>
+	               <button class="scrapBtn active" value="<%=licenseList.get(i).getLicenseID() %>" >
+	                   <i class="fas fa-star" ></i>
 	               </button>
 	           </li>
 	           <% } %>
