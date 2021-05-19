@@ -53,22 +53,16 @@ public class FrontController extends HttpServlet {
 		else if (com.contains("/loginAction.do")) {
 			viewPage = "../loginAction";
 		} 
-//		else if (com.contains("/Web-source/logoutAction.do")) {
-//			viewPage = "../logoutAction";
-//		} else if (com.contains("/findID.do")) {
-//			viewPage = "find/findID.jsp";
-//		} else if (com.contains("/findPassword.do")) {
-//			viewPage = "find/findPassword.jsp";
-//		} 
 		else if (com.contains("/findInfoAction.do")) { // ID or 비밀번호 찾기 버튼 클릭 시
 			viewPage = "../findInfoAction";
 		}
 		else if (com.contains("/licenseListAction.do")) {
 			viewPage = "../licenseListAction";
 		}
-//			else if (com.contains("/category_skinAction.do")) {
-//			viewPage = "../category_skinAction";
-//		} else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼
+		else if (com.contains("/scrapAction.do")) {
+			viewPage = "../scrapAction";
+		} 
+//		else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼
 //			viewPage = "../purchaseAction";
 //		} else if (com.contains("/purchaseListAction.do")) { // 구매내역 목록 이동 시
 //			viewPage = "../purchaseListAction";

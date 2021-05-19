@@ -40,7 +40,7 @@
 		               </div>
 		           </a>
 		           <!-- 스크랩 버튼 -->
-	               <button class="scrapBtn active" value="<%=licenseList.get(i).getLicenseID() %>" >
+	               <button class="scrapBtn" value="<%=licenseList.get(i).getLicenseID() %>" >
 	                   <i class="fas fa-star"></i>
 	               </button>
 	           </li>

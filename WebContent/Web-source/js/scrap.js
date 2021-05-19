@@ -16,45 +16,32 @@ $(document).ready(function() {
 		}
 		
 		$.ajax({
-			url: "addScrapAction.do",
+			url: "scrapAction.do",
 			type: "POST",
 			data: {
 				licenseID : licenseID,
 				active : active
 			},
-			success: function(data) {
-
-
-				if (data == "") {
-					$('#category-item-list').empty();
-					$('#shopCart-item').empty();
-					$('#purchase-item-list').empty();
-
-					return; //상품이 한개도 없는경우
-				}
-
-				var parsed = JSON.parse(data);
-				var result = parsed.result;
-				var flag = parsed.flag;
-				var date = parsed.date;
-
-				if (flag == "category-skin") {
-					$('#category-item-list').empty();
-					for (var i = 0; i < result.length; i++) {
-						getItemList_to_SubCate1(result[i][0].value, result[i][1].value, result[i][2].value, result[i][3].value, result[i][4].value, result[i][5].value, result[i][6].value, result[i][7].value);
+			success: function(result) {
+				if(result == 1){
+					// 아마 return 하고 그냥 지워도 될 듯
+					if(active){
+						//scrap 추가된 상태 (색 칠해주시면 될 것 같습니다!)
+					}
+					
+					else{
+						//scrap 삭제 상태 (색 빼주시면 될 것 같습니다!)
 					}
 				}
-				else if (flag == "Shop Cart") {
-					$('#shopCart-item').empty();
-					for (var i = 0; i < result.length; i++) {
-						getItemList_to_SubCate2(result[i][0].value, result[i][1].value, result[i][2].value, result[i][3].value, result[i][4].value, result[i][5].value, result[i][6].value, result[i][7].value, result[i][8].value, result[i][9].value, result[i][10].value);
-					}
+				else if (result == 0) {
+					alert('잘못된 접근입니다.');
 				}
-				else if (flag == "Purchase List") {
-					$('#purchase-item-list').empty();
-					getItemList_to_SubCate3(result, date);
+				else if (result == -1){
+					alert('로그인을 해주세요');
 				}
-				else alert('Ajax Error!');
+				else{ // -1
+					alert('DB오류');
+				}
 			}
 		});
 	});
