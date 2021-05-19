@@ -30,7 +30,7 @@
 	    <!-- 커뮤니티 -->
 	    <ul class="community">
 	        <li class="subtitle">커뮤니티</li>
-	        <li class="items"><a href="#">licenseName1</a></li>
+	        <li class="items"><a href="<%=absolutePath_aside%>/community/commuList.jsp">licenseName1</a></li>
 	        <li class="items"><a href="#">licenseName2</a></li>
 	        <li class="items"><a href="#">licenseName3</a></li>
 	    </ul>
@@ -40,7 +40,7 @@
 	    </ul>
 	    <!-- 문의사항 -->
 	    <ul class="subtitle" class="questions">
-	        <a href="#">문의사항</a>
+	        <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">문의사항</a>
 	    </ul>
     </div>
     <!-- my page -->
