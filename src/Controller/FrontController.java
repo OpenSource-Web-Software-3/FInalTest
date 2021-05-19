@@ -59,6 +59,9 @@ public class FrontController extends HttpServlet {
 		else if (com.contains("/licenseListAction.do")) {
 			viewPage = "../licenseListAction";
 		}
+		else if (com.contains("/commuListAction.do")) {
+			viewPage = "../commuListAction";
+		}
 		else if (com.contains("/scrapAction.do")) {
 			viewPage = "../scrapAction";
 		} 

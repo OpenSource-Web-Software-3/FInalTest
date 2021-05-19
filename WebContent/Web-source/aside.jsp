@@ -30,9 +30,13 @@
 	    <!-- 커뮤니티 -->
 	    <ul class="community">
 	        <li class="subtitle">커뮤니티</li>
-	        <li class="items"><a href="<%=absolutePath_aside%>/community/commuList.jsp">licenseName1</a></li>
-	        <li class="items"><a href="#">licenseName2</a></li>
-	        <li class="items"><a href="#">licenseName3</a></li>
+	        <%
+	        	for(int i = 0; i < licencseNameList.size(); i++){
+	        %>
+		        <li class="items"><a href="<%=absolutePath_aside%>/commuListAction.do?category=<%=licencseNameList.get(i) %>"><%=licencseNameList.get(i) %></a></li>
+			<%
+	        	}
+	        %>
 	    </ul>
 	    <!-- 스케줄러 -->
 	    <ul class="subtitle" class="scheduler">

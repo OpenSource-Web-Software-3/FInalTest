@@ -1,0 +1,166 @@
+package communication;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import util.DBUser;
+
+public class CommunicationDAO {
+	private Connection conn;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+
+	public CommunicationDAO() {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			DBUser DBuser = new DBUser();
+
+			conn = DriverManager.getConnection(DBuser.dbURL, DBuser.dbID, DBuser.dbPassword);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getNext() {
+		String SQL = "SELECT writingID FROM communication ORDER BY writingID DESC";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1; // 첫번째 게시물인 경우
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+
+	}
+	
+	public int getWritingID(int writingID) {
+		String SQL = "SELECT writingID FROM communication WHERE writingID = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			
+			return 0; //없는 경우
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+		
+	}
+	
+	//글의 개수를 세는 함수
+	public int getCount() {
+		String SQL = "SELECT COUNT(*) FROM communication";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
+	
+	public CommunicationDTO getCommunication(int writingID) {
+		String SQL = "SELECT * FROM communication WHERE writingID = ?";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				CommunicationDTO communicationDTO = new CommunicationDTO();
+				communicationDTO.setWritingID(rs.getInt(1));
+				communicationDTO.setCategory(rs.getString(2));
+				communicationDTO.setTitle(rs.getString(3));
+				communicationDTO.setID(rs.getString(4));
+				communicationDTO.setNickName(rs.getString(5));
+				communicationDTO.setCommuDate(rs.getString(6));
+				communicationDTO.setContent(rs.getString(7));
+				communicationDTO.setScrapCount(rs.getInt(8));
+				communicationDTO.setView(rs.getInt(9));
+				return communicationDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public CommunicationDTO getCommunication(int writingID, int limit) {
+		String SQL = "SELECT * FROM communication WHERE writingID = ? limit ?";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				CommunicationDTO communicationDTO = new CommunicationDTO();
+				communicationDTO.setWritingID(rs.getInt(1));
+				communicationDTO.setCategory(rs.getString(2));
+				communicationDTO.setTitle(rs.getString(3));
+				communicationDTO.setID(rs.getString(4));
+				communicationDTO.setNickName(rs.getString(5));
+				communicationDTO.setCommuDate(rs.getString(6));
+				communicationDTO.setContent(rs.getString(7));
+				communicationDTO.setScrapCount(rs.getInt(8));
+				communicationDTO.setView(rs.getInt(9));
+				return communicationDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	// Communication 에 해당하는 모든 데이터 가져오기
+	public ArrayList<CommunicationDTO> getCommunicationList(String category) {
+		ArrayList<CommunicationDTO> list = new ArrayList<CommunicationDTO>();
+
+		String SQL = "SELECT * FROM communication WHERE category = ? ORDER BY writingID DESC";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				CommunicationDTO communicationDTO = new CommunicationDTO();
+				communicationDTO.setWritingID(rs.getInt(1));
+				communicationDTO.setCategory(rs.getString(2));
+				communicationDTO.setTitle(rs.getString(3));
+				communicationDTO.setID(rs.getString(4));
+				communicationDTO.setNickName(rs.getString(5));
+				communicationDTO.setCommuDate(rs.getString(6));
+				communicationDTO.setContent(rs.getString(7));
+				communicationDTO.setScrapCount(rs.getInt(8));
+				communicationDTO.setView(rs.getInt(9));
+				list.add(communicationDTO);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null; // 데이터가 없는 경우 or DB오류
+	}
+	
+}

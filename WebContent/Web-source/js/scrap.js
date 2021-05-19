@@ -1,4 +1,4 @@
-/*AJAX jquery version*/
+/*AJAX scrap*/
 var request = new XMLHttpRequest();
 $(document).ready(function() {
 
