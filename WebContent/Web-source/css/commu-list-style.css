@@ -1,0 +1,124 @@
+@charset "EUC-KR";
+
+.commu-list .license-name {
+    width: 100%;
+    height: fit-content;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.commu-list .input-wrap {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.commu-list .input-wrap .text {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    margin-left: 20px;
+}
+
+.commu-list .input-wrap .text li {
+    margin-right: 10px;
+}
+
+.commu-list #sort-standard {
+    width: 150px;
+    height: 32px;
+    border: 1px solid var(--current-basic-font);
+    background-color: #ffffff00;
+    padding: 5px 10px;
+    color: var(--current-basic-font);
+}
+
+.commu-list #sort-standard:focus {
+    outline: none;
+}
+
+.commu-list #search {
+    width: 150px;
+    height: 30px;
+    padding: 0px;
+    padding-left: 10px;
+    border: 1px solid var(--current-basic-font);
+}
+
+.commu-list .writeBtn {
+    padding:5px 10px;
+    margin-right: 10px; 
+}
+
+.commu-list .list {
+    width: 100%;
+    height: fit-content;
+}
+
+.commu-list .list .items {
+    max-width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 20px; 
+    border-top: 1px solid var(--current-basic-font);
+}
+
+.commu-list .list .items .url {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+}
+
+.commu-list .list .items .writing {
+    width: fit-cotent;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.commu-list .list .writing .title {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.commu-list .list .writing .writer-info {
+    display: block;
+    font-size: 13px;
+}
+
+.commu-list .items .writing-info {
+    display: flex;
+    flex-directIon: row;
+}
+
+.commu-list .items .writing-info div{
+    display: flex;
+    flex-directon: row;
+    margin-right: 50px;
+    align-items: center;
+}
+
+.commu-list .items .writing-info div span {
+    display: block;
+    width: fit-content;
+    margin-left: 10px
+}
+
+.commu-list .items .writing-info div i {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.commu-list .items .writing-info .count{
+    font-weight: 100;
+}

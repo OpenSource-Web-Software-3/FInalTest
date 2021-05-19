@@ -35,7 +35,7 @@ html, body {
 	background-color: var(--current-background);
 	display: flex;
 	flex-direction: row;
-	font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	color: var(--current-basic-font);
 }
 
@@ -76,6 +76,12 @@ button {
 button:hover {
 	cursor: pointer;
 	background-color: var(--current-btn-hover);
+}
+
+.set-margin {
+    width: 80%;
+    max-height: 100%;
+    padding: 100px 100px 50px 100px;
 }
 
 /* Main - .main*/
