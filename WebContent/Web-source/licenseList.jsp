@@ -22,7 +22,7 @@
 		
 	   <!-- aside-->
 	   <%@include file= "./aside.jsp" %>
-	   <section class="license-list">
+	   <section class="set-margin license-list">
 		   <!-- 해당 자격증의 시험일정을 보여주는 부분 -->
 		   <div class="license-name"><%=licencseName %></div>
 		   <ul class="list">
