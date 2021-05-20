@@ -1,3 +1,4 @@
+<%@page import="commuscrap.CommuscrapDAO"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="communication.CommunicationDTO"%>
 <%@page import="communication.CommunicationDAO"%>
@@ -18,6 +19,11 @@
 	</head>
 	<body>
 		<%
+			String userID = null;
+			if (session.getAttribute("userID") != null) {
+				userID = (String) session.getAttribute("userID");
+			}
+		
 			int writingID = 0;
 			if(request.getParameter("writingID")!=null){
 				writingID = Integer.parseInt(request.getParameter("writingID"));
@@ -42,8 +48,27 @@
 			}
 			
 			
+			//로그인한 아이디 스크랩 체크 
+			CommuscrapDAO commuscrapDao = new CommuscrapDAO();
 			
+			boolean checkScrap;
+			if(userID != null)
+				checkScrap = commuscrapDao.checkCommuScrap(userID, writingID);
+			else  
+				checkScrap = false; //로그인 되어 있지 않다면 false
 		%>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			var checkScrap = '<%=checkScrap%>';
+			alert(checkScrap);
+			if(checkScrap === 'true'){
+				$(".scrap").addClass('active');
+			}else{
+				$(".scrap").removeClass('active');
+			}
+		});
+		</script>
+		
 	   <!-- aside -->
 	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글 내용 영역 -->
@@ -77,7 +102,7 @@
 	                       <button>
 	                           <i class="fas fa-star"></i> 
 	                       </button>
-	                       <span class="count"><%=commu.getScrapCount() %></span>
+	                       <span class="count" id="scrapCount"><%=commu.getScrapCount() %></span>
 	                   </li>
 	               </ul>
 	               <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->

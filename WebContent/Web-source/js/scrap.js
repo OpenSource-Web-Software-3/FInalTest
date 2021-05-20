@@ -46,7 +46,6 @@ $(document).ready(function() {
 		});
 	});
 	
-	
 	$(".scrap").click(function() {
 		var writingID = $(this).val();
 		var active;
@@ -59,6 +58,7 @@ $(document).ready(function() {
 			active = true;		
 		}
 		
+		alert(active);
 		$.ajax({
 			url: "commuScrapAction.do",
 			type: "POST",

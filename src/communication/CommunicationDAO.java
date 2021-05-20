@@ -133,7 +133,6 @@ public class CommunicationDAO {
 
 	
 	
-	
 	public CommunicationDTO getCommunication(int writingID) {
 		String SQL = "SELECT * FROM communication WHERE writingID = ? AND available = 1";
 
@@ -230,4 +229,34 @@ public class CommunicationDAO {
 		}
 		return -1; // DB오류
 	}
+	
+	//스크랩 수 증가 
+	public int increaseScrap(int writingID) {
+		String SQL = "UPDATE communication SET scrapCount = scrapCount+1 WHERE writingID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
+	//스크랩 수 감소 
+	public int decreaseScrap(int writingID) {
+		String SQL = "UPDATE communication SET scrapCount = scrapCount-1 WHERE writingID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
+	
 }

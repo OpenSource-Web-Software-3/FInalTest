@@ -45,8 +45,12 @@ public class commuScrapAction extends HttpServlet {
 				int result;
 				if (active) {
 					result = commuscrapDAO.addScrap(userID, writingID);
+					CommunicationDAO communicationDAO = new CommunicationDAO();
+					communicationDAO.increaseScrap(writingID);
 				} else {
 					result = commuscrapDAO.deleteScrap(userID, writingID);
+					CommunicationDAO communicationDAO = new CommunicationDAO();
+					communicationDAO.decreaseScrap(writingID);
 				}
 				response.getWriter().write(Integer.valueOf(result).toString());
 			}

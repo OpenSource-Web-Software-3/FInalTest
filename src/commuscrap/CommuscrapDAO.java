@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import communication.CommunicationDTO;
 import licensescrap.LicensescrapDTO;
 import util.DBUser;
 
@@ -137,5 +138,22 @@ public class CommuscrapDAO {
 		}
 		return -1; // DB오류
 	}
+	
+	//스크랩했는지 체크
+	public boolean checkCommuScrap(String ID, int writingID) {
+		String SQL = "SELECT * FROM commuscrap WHERE ID = ? AND writingID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, ID);
+				pstmt.setInt(2, writingID);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					return true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false; 
+		}
 
 }
