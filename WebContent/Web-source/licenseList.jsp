@@ -1,3 +1,4 @@
+<%@page import="licensescrap.LicensescrapDAO"%>
 <%@page import="license.LicenseDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,10 +19,37 @@
 	</head>
 	<body>
 		<%
+			String userID = null;
+			if (session.getAttribute("userID") != null) {
+				userID = (String) session.getAttribute("userID");
+			}
+		
 			String licenseName = null;
 			String licencseName = (String) request.getAttribute("licenseName");
 			ArrayList<LicenseDTO> licenseList = (ArrayList<LicenseDTO>) request.getAttribute("licenseList");
+			
+			//로그인한 아이디 스크랩 체크 
+			LicensescrapDAO licensescrapDAO = new LicensescrapDAO();
+			
+			boolean checkScrap;
+			if(userID != null)
+				checkScrap = licensescrapDAO.checkLicenseScrap(userID, licenseList);
+			else  
+			checkScrap = false; //로그인 되어 있지 않다면 false
+			
 		%>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			var checkScrap = '<%=checkScrap%>';
+			alert(checkScrap);
+			if(checkScrap === 'true'){
+				$(".scrap").addClass('active');
+			}else{
+				$(".scrap").removeClass('active');
+			}
+		});
+		</script>
+		
 		
 	   <!-- aside-->
 	   <%@include file= "./aside.jsp" %>

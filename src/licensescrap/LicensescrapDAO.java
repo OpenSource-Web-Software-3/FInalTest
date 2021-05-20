@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Iterator;
 
+import license.LicenseDTO;
 import util.DBUser;
 
 public class LicensescrapDAO {
@@ -120,5 +120,22 @@ public class LicensescrapDAO {
 		}
 		return -1; // DB오류
 	}
+
+	//스크랩했는지 체크
+	public boolean checkLicenseScrap(String ID, ArrayList<LicenseDTO> licenseList) {
+		String SQL = "SELECT * FROM licensescrap WHERE ID = ? AND licenseID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, ID);
+//			pstmt.setInt(2, writingID);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					return true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false; 
+		}
 
 }

@@ -23,6 +23,7 @@ public class licenseScrapAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession(true);
+		System.out.println("여기으년??");
 
 		Boolean active = Boolean.parseBoolean(request.getParameter("active"));
 		int licenseID = Integer.parseInt(request.getParameter("licenseID"));
@@ -32,6 +33,7 @@ public class licenseScrapAction extends HttpServlet {
 			userID = (String) session.getAttribute("userID");
 		}
 		if (userID == null) {
+			System.out.println("여기 들어오나?");
 			response.getWriter().write("-1"); //로그인안되어 있음
 			return;
 		} else {
