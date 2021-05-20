@@ -10,6 +10,16 @@ public class CommunicationDTO {
 	private String content;
 	private int scrapCount;
 	private int view;
+	private int available;
+	
+
+	public int getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(int available) {
+		this.available = available;
+	}
 
 	public int getView() {
 		return view;

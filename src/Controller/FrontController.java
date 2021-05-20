@@ -39,11 +39,6 @@ public class FrontController extends HttpServlet {
 		if (com.contains("/index.do")) {
 			viewPage = "index.jsp";
 		} 
-//		else if (com.contains("/register1.do")) {
-//			viewPage = "register1.jsp";
-//		} else if (com.contains("/register2.do")) {
-//			viewPage = "register2.jsp";
-//		} 
 		else if (com.contains("/registerAction.do")) {
 			viewPage = "../registerAction";
 		} 
@@ -67,6 +62,9 @@ public class FrontController extends HttpServlet {
 		} 
 		else if (com.contains("/writeAction.do")) {
 			viewPage = "../writeAction";
+		} 
+		else if (com.contains("/deleteAction.do")) {
+			viewPage = "../deleteAction";
 		} 
 //		else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼
 //			viewPage = "../purchaseAction";

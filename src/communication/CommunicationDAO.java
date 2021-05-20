@@ -81,9 +81,9 @@ public class CommunicationDAO {
 
 
 
-	//write
+	//글 쓰기
 	public int write(String category, String title, String userID, String nickname, String content) {
-		String SQL = "INSERT INTO communication VALUES (?,?,?,?,?,now(),?,0,0)";
+		String SQL = "INSERT INTO communication VALUES (?,?,?,?,?,now(),?,0,0,1)";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -101,8 +101,41 @@ public class CommunicationDAO {
 		return -1; // DB오류
 	}
 	
+	//글 수정
+	public int update(int writingID, String title, String content) {
+		String SQL = "UPDATE communication SET title = ?, content = ? WHERE writingID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, writingID);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+
+	//글 삭제
+	public int delete(int writingID) {
+		String SQL = "UPDATE communication SET available = 0 WHERE writingID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+
+	
+	
+	
 	public CommunicationDTO getCommunication(int writingID) {
-		String SQL = "SELECT * FROM communication WHERE writingID = ?";
+		String SQL = "SELECT * FROM communication WHERE writingID = ? AND available = 1";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -128,7 +161,7 @@ public class CommunicationDAO {
 	}
 
 	public CommunicationDTO getCommunication(int writingID, int limit) {
-		String SQL = "SELECT * FROM communication WHERE writingID = ? limit ?";
+		String SQL = "SELECT * FROM communication WHERE writingID = ? AND available = 1 LIMIT ?";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -158,7 +191,7 @@ public class CommunicationDAO {
 	public ArrayList<CommunicationDTO> getCommunicationList(String category) {
 		ArrayList<CommunicationDTO> list = new ArrayList<CommunicationDTO>();
 
-		String SQL = "SELECT * FROM communication WHERE category = ? ORDER BY writingID DESC";
+		String SQL = "SELECT * FROM communication WHERE category = ? AND available = 1 ORDER BY writingID DESC";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

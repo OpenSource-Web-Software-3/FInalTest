@@ -54,7 +54,7 @@
               <% for(int i = 0; i < commuList.size(); i++) { %>
                <li class="items">
                    <!-- 시험일정 정보  -->
-                   <a href="<%=absolutePath_commu %>/community/read.jsp?writingID=<%=commuList.get(i).getWritingID() %>" class="url">             
+                   <a href="<%=absolutePath_commu %>/community/read.jsp?category=<%=category%>&writingID=<%=commuList.get(i).getWritingID() %>" class="url">             
                        <div class="writing">
                            <span class="title"><%=commuList.get(i).getTitle() %></span>
                            <span class="writer-info"><%=commuList.get(i).getNickName() %> | <%=commuList.get(i).getCommuDate() %></span>

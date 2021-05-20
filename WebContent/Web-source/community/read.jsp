@@ -19,16 +19,22 @@
 			if(request.getParameter("writingID")!=null){
 				writingID = Integer.parseInt(request.getParameter("writingID"));
 			}
-			CommunicationDAO communicationDAO = new CommunicationDAO();
-			CommunicationDTO commu = communicationDAO.getCommunication(writingID);
 			
-			if(writingID <= 0){
+			String category = null;
+			if(request.getParameter("category") != null) category = request.getParameter("category");
+			
+			
+			if(writingID <= 0 || category == null || category.equals("")){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('잘못된 접근입니다')");
 				script.println("history.back()");
 				script.println("</script>");
 			}
+			
+			CommunicationDAO communicationDAO = new CommunicationDAO();
+			CommunicationDTO commu = communicationDAO.getCommunication(writingID);
+			
 		%>
 	   <!-- aside -->
 	   <%@include file="../aside.jsp" %>
@@ -69,7 +75,7 @@
 	               <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
 	               <div class="btn-wrap">
 	                   <button class="modifyBtn">수정</button>
-	                   <button class="deleteBtn">삭제</button>
+	                   <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
 	               </div>
 	           </div>
 	       </div>
@@ -77,6 +83,8 @@
 	       <div class="content">
 	          <%=commu.getContent() %>
 	       </div>
+	       
+	       
 	       <!-- 작성된 댓글이 보여지는 부분 -->
 	       <div class="comment-area">
 	           <!-- comment sample -->
