@@ -7,6 +7,9 @@
 <% String absolutePath_read = request.getContextPath()+"/Web-source";%>
 <html>
 	<head>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="<%=absolutePath_read %>/js/scrap.js" defer></script>
+	
 		<%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_read %>/css/read-style.css" />
@@ -70,7 +73,7 @@
 	                       <span class="count">commentCount</span>
 	                   </li>
 	                   <!-- 스크랩한 사용자 수 -->
-	                   <li class="scrap">
+	                   <li class="scrap" value=<%=commu.getWritingID() %>>
 	                       <button>
 	                           <i class="fas fa-star"></i> 
 	                       </button>
