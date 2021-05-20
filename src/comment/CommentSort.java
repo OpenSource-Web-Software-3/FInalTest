@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
-public class commentSort {
+public class CommentSort {
 	
 	//RECURSION version O(nlogn) 최종
 	public static void recursivePreorder(CommentDTO comment, ArrayList<CommentDTO> sorted_List) throws Exception {

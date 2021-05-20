@@ -2,6 +2,9 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="communication.CommunicationDTO"%>
 <%@page import="communication.CommunicationDAO"%>
+<%@page import="comment.CommentDTO"%>
+<%@page import="comment.CommentDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,6 +59,14 @@
 				checkScrap = commuscrapDao.checkCommuScrap(userID, writingID);
 			else  
 				checkScrap = false; //로그인 되어 있지 않다면 false
+				
+				
+			/* 댓글 */
+			CommentDAO commentDao = new CommentDAO();
+			ArrayList<CommentDTO> commentList = new ArrayList<CommentDTO>();
+			
+			commentList = commentDao.getCommentList(writingID);
+			System.out.println(commentList.size());
 		%>
 		<script type="text/javascript">
 		$(document).ready(function() {
@@ -120,19 +131,20 @@
 	       <!-- 작성된 댓글이 보여지는 부분 -->
 	       <div class="comment-area">
 	           <!-- comment sample -->
-	           <% for(int i = 0; i < 9; i++) { %>
+	           <%
+	           if(commentList.size() != 0){
+	           for(int i = 0; i < commentList.size(); i++) { %>
 	           <div class="comment">
 	               <div class="user-info">
-	                   <span class="nickname">사용자닉네임 <%=i+1 %></span>
-	                   <span class="date">2021.05.23</span>
+	                   <span class="nickname"><%=commentList.get(i).getNickName() %></span>
+	                   <span class="date"><%=commentList.get(i).getCommentDate() %></span>
 	               </div>
-	               <pre class="content">안녕하세요! 작성하신 글 정말 잘 봤습니다😊
-정말 잘 정리해놓으신 거 같아요 :)</pre>
+	               <pre class="content"><%=commentList.get(i).getContent()%></pre>
 	           </div>
-	           <% } %>
+	           <% }} %>
 	       </div>
 	       <!-- 댓글 작성 -->
-	       <form class="type-comment">
+	       <form class="type-comment" method="POST" action="<%=absolutePath_read %>/commentWriteAction.do?category=<%=category%>&writingID=<%=writingID %>" >
 	           <!-- 나중에 수정할 부분이 있음 / 입력한 값이 없으면 알아서 경고 띄움(추가적인 조건 삽입 필요 X) -->
 	           <textarea type="text" id="content" name="content" placeholder="댓글을 작성해주세요." required="required">
 	           </textarea>
