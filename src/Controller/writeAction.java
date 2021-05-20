@@ -89,7 +89,7 @@ public class writeAction extends HttpServlet {
 					script.println("</script>");
 					deleteFileFunction(multipartRequest, fileDirectory);
 				} else {
-					
+					int nextID = communicationDAO.getNext() - 1;
 					// 글쓰기 성공시 파일도 저장하기
 					Enumeration fileNames = multipartRequest.getFileNames(); // type = file
 					while (fileNames.hasMoreElements()) {
@@ -98,7 +98,6 @@ public class writeAction extends HttpServlet {
 //						String [] arr = multipartRequest.getParameterValues(parameter);
 						String fileName = multipartRequest.getOriginalFileName(parameter);
 						String fileRealName = multipartRequest.getFilesystemName(parameter);
-
 						if (fileName == null)
 							continue; // 파일을 다른곳에 넣었다면
 
@@ -115,12 +114,7 @@ public class writeAction extends HttpServlet {
 							script.println("</script>");
 
 						} else {
-							if (parameter.equals("file")) {
-								new ImageDAO().upload(communicationDAO.getNext() - 1, fileName, fileRealName);
-							}
-							else if (parameter.equals("document")) {
-								//document를 저장 해서 다운로드 받을 수 있게 DB 만들것 
-							}
+							new ImageDAO().upload(nextID, parameter, fileName, fileRealName);
 						}
 					}
 

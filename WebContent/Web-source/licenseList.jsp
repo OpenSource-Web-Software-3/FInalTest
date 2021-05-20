@@ -41,7 +41,6 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			var checkScrap = '<%=checkScrap%>';
-			alert(checkScrap);
 			if(checkScrap === 'true'){
 				$(".scrap").addClass('active');
 			}else{

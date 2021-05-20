@@ -28,12 +28,12 @@ public class ImageDAO {
 	}
 
 	//파일 업로드
-	public int upload(int bbsID, String fileName, String fileRealName) { 
+	public int upload(int bbsID, String fileType, String fileName, String fileRealName) { 
 		String SQL = "INSERT INTO image VALUES(?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
-			pstmt.setString(2, "0");
+			pstmt.setString(2, fileType);
 			pstmt.setString(3, fileName);
 			pstmt.setString(4, fileRealName);
 			return pstmt.executeUpdate();
