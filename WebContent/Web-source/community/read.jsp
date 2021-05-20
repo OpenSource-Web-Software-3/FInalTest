@@ -1,3 +1,6 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="communication.CommunicationDTO"%>
+<%@page import="communication.CommunicationDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +14,22 @@
 		<title>게시글 제목</title>
 	</head>
 	<body>
+		<%
+			int writingID = 0;
+			if(request.getParameter("writingID")!=null){
+				writingID = Integer.parseInt(request.getParameter("writingID"));
+			}
+			CommunicationDAO communicationDAO = new CommunicationDAO();
+			CommunicationDTO commu = communicationDAO.getCommunication(writingID);
+			
+			if(writingID <= 0){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('잘못된 접근입니다')");
+				script.println("history.back()");
+				script.println("</script>");
+			}
+		%>
 	   <!-- aside -->
 	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글 내용 영역 -->
@@ -20,19 +39,19 @@
 	           <!-- 게시글 작성 정보 -->
 	           <div class="writer-info">
 	               <!-- 작성자 닉네임 -->
-	               <span class="nickname">user's nickname</span>
+	               <span class="nickname"><%=commu.getNickName() %></span>
 	               <!-- 작성일자 -->
-	               <span class="date">writing date</span>
+	               <span class="date"><%=commu.getCommuDate() %></span>
 	           </div>
 	           <!-- 게시글 제목 -->
-	           <div class="title">게시글 title</div>
+	           <div class="title"><%=commu.getTitle() %></div>
 	           <div class="wrap">
 		           <!-- counting 정보 -->
 	               <ul>
 	                   <!-- 조회수 -->
 	                   <li class="view">
 	                       <i class="far fa-eye"></i>
-	                       <span class="count">viewCount</span>
+	                       <span class="count"><%=commu.getView() %></span>
 	                   </li>
 	                   <!-- 댓글 수  -->
 	                   <li class="comment">
@@ -44,7 +63,7 @@
 	                       <button>
 	                           <i class="fas fa-star"></i> 
 	                       </button>
-	                       <span class="count">scrapCount</span>
+	                       <span class="count"><%=commu.getScrapCount() %></span>
 	                   </li>
 	               </ul>
 	               <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
@@ -56,7 +75,7 @@
 	       </div>
 	       <!-- 게시글 내용 -->
 	       <div class="content">
-	           이 게시글의 내용이 보여지는 곳입니다.
+	          <%=commu.getContent() %>
 	       </div>
 	       <!-- 작성된 댓글이 보여지는 부분 -->
 	       <div class="comment-area">
