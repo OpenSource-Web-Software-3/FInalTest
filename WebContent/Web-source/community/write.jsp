@@ -46,12 +46,12 @@
 		           <label for="">사진 첨부하기</label>
 		           <!-- name에는 fileName를 적어야 하나요, 아님 fileRealName을 적어야 하나요 -->
 		           <!-- re. 동일하게 file적으면 될 것 같습니다!-->
-		           <input type="file" id="file" name="file" multiple="multiple" />
+		           <input type="file" id="file" name="file" />
 		       </div>
 		       <!-- 교수님 피드백 수용으로 `문서 첨부`을 생성함 -->
 		       <div class="document-area">
 	               <label for="">문서 첨부하기</label>
-	               <input type="file" id="document" name="document" multiple="multiple"/>
+	               <input type="file" id="document" name="document" />
 	           </div>
 	           <div class="btn-area">
 		           <button class="sendBtn">완료</button>

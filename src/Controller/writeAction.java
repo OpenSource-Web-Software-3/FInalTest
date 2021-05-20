@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -67,8 +68,6 @@ public class writeAction extends HttpServlet {
 			return;
 		} else {
 			if (title == null || content == null || title.equals("") || content.equals("")) {
-				System.out.println(title);
-				System.out.println(content);
 				
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -90,26 +89,23 @@ public class writeAction extends HttpServlet {
 					script.println("</script>");
 					deleteFileFunction(multipartRequest, fileDirectory);
 				} else {
+					
 					// 글쓰기 성공시 파일도 저장하기
 					Enumeration fileNames = multipartRequest.getFileNames(); // type = file
 					while (fileNames.hasMoreElements()) {
+						
 						String parameter = (String) fileNames.nextElement();
+//						String [] arr = multipartRequest.getParameterValues(parameter);
 						String fileName = multipartRequest.getOriginalFileName(parameter);
 						String fileRealName = multipartRequest.getFilesystemName(parameter);
-
-						// 단일 파일시
-						// String fileName = multipartRequest.getOriginalFileName("file"); //request요청
-						// 객체 file (from form)
-						// String fileRealName = multipartRequest.getFilesystemName("file"); //실제로 서버에
-						// 업로드가 된 파일 시스템 name 을 가져온다
 
 						if (fileName == null)
 							continue; // 파일을 다른곳에 넣었다면
 
-						// 시큐어 코딩
-						if (!fileName.endsWith(".PNG") && !fileName.endsWith(".jpg") && !fileName.endsWith(".png")
-								&& !fileName.endsWith(".JPEG") && !fileName.endsWith(".JPG")
-								&& !fileName.endsWith(".jpeg")) {
+						// 시큐어 코딩 (기존 코드)
+//						if (!fileName.endsWith(".PNG") && !fileName.endsWith(".jpg") && !fileName.endsWith(".png") && !fileName.endsWith(".JPEG") && !fileName.endsWith(".JPG") 	&& !fileName.endsWith(".jpeg")) {
+						if (fileName.endsWith("??")) {
+							
 							File file = new File(fileDirectory + fileRealName);
 							file.delete();
 							PrintWriter script = response.getWriter();
@@ -119,9 +115,12 @@ public class writeAction extends HttpServlet {
 							script.println("</script>");
 
 						} else {
-							new ImageDAO().upload(communicationDAO.getNext() - 1, fileName, fileRealName);
-							// out.write("파일명 : " + fileName + "<br>");
-							// out.write("실제파일명 : " + fileRealName + "<br>");
+							if (parameter.equals("file")) {
+								new ImageDAO().upload(communicationDAO.getNext() - 1, fileName, fileRealName);
+							}
+							else if (parameter.equals("document")) {
+								//document를 저장 해서 다운로드 받을 수 있게 DB 만들것 
+							}
 						}
 					}
 
