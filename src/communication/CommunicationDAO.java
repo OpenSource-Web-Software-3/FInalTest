@@ -78,7 +78,28 @@ public class CommunicationDAO {
 		}
 		return -1; // DB오류
 	}
-	
+
+
+
+	//write
+	public int write(String category, String title, String userID, String nickname, String content) {
+		String SQL = "INSERT INTO communication VALUES (?,?,?,?,?,now(),?,0,0)";
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, category);
+			pstmt.setString(3, title);
+			pstmt.setString(4, userID);
+			pstmt.setString(5, nickname);
+			pstmt.setString(6, content);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
 	
 	public CommunicationDTO getCommunication(int writingID) {
 		String SQL = "SELECT * FROM communication WHERE writingID = ?";

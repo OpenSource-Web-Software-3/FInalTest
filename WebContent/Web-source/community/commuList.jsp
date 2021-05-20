@@ -46,7 +46,7 @@
 	                   <input type="text" id="search" placeholder="검색어 입력"/>
 	               </li>
 	           </ul>
-	           <button class="writeBtn" onclick = "location.href = '<%= absolutePath_commu%>/community/write.jsp'">글쓰기</button>
+	           <button class="writeBtn" onclick = "location.href = '<%= absolutePath_commu%>/community/write.jsp?category=<%=category%>'">글쓰기</button>
 	       </div>
 	       <!-- 게시글 list -->
 	       <ul class="list">

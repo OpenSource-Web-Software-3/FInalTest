@@ -24,7 +24,7 @@
                    </a>
                </li>
                <li class="menu second">
-                   <a href="<%=url1%>/community/commuList.jsp">
+                   <a href="<%=url1%>/commuListAction.do?category=기술사">
 	                   <i class="fas fa-users"></i>
 	                   <span>커뮤니티</span>
                    </a>

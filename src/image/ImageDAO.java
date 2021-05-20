@@ -27,16 +27,39 @@ public class ImageDAO {
 	}
 
 	//파일 업로드
-	public int upload(int bbsID, String bbsType, String fileName, String fileRealName) { 
+	public int upload(int bbsID, String fileName, String fileRealName) { 
 		String SQL = "INSERT INTO image VALUES(?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
-			pstmt.setString(2, bbsType);
+			pstmt.setString(2, "0");
 			pstmt.setString(3, fileName);
 			pstmt.setString(4, fileRealName);
 			return pstmt.executeUpdate();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
+	//파일 delete
+	public int delete(int bbsID) { 
+		String SQL = "DELETE FROM image WHERE bbsID = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
