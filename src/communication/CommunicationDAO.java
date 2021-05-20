@@ -217,4 +217,17 @@ public class CommunicationDAO {
 		return null; // 데이터가 없는 경우 or DB오류
 	}
 	
+	//조회 수 증가 
+	public int increaseView(int writingID) {
+		String SQL = "UPDATE communication SET view = view+1 WHERE writingID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
 }

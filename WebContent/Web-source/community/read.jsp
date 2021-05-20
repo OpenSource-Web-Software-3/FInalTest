@@ -19,6 +19,9 @@
 			if(request.getParameter("writingID")!=null){
 				writingID = Integer.parseInt(request.getParameter("writingID"));
 			}
+		
+			CommunicationDAO communicationDAO = new CommunicationDAO();
+			CommunicationDTO commu = communicationDAO.getCommunication(writingID);
 			
 			String category = null;
 			if(request.getParameter("category") != null) category = request.getParameter("category");
@@ -31,9 +34,11 @@
 				script.println("history.back()");
 				script.println("</script>");
 			}
+			else{
+				communicationDAO.increaseView(writingID); //조회수 증가
+			}
 			
-			CommunicationDAO communicationDAO = new CommunicationDAO();
-			CommunicationDTO commu = communicationDAO.getCommunication(writingID);
+			
 			
 		%>
 	   <!-- aside -->
@@ -57,7 +62,7 @@
 	                   <!-- 조회수 -->
 	                   <li class="view">
 	                       <i class="far fa-eye"></i>
-	                       <span class="count"><%=commu.getView() %></span>
+	                       <span class="count"> <%=commu.getView()+1 %> </span>
 	                   </li>
 	                   <!-- 댓글 수  -->
 	                   <li class="comment">
