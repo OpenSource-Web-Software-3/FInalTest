@@ -4,7 +4,7 @@
     width: 100%;
     height: fit-content;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 40px;
 }
 
@@ -45,7 +45,7 @@
 .license-list .list .text-area .date {
     display: block;
     font-size: 17px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 

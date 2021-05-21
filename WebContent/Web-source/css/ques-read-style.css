@@ -29,7 +29,7 @@
 
 .question-read .title-part .title {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .question-read .title-part .wrap {
@@ -107,7 +107,7 @@
     width: fit-content;
     display: block;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 500;
     margin-right: 10px;
 }
 

@@ -36,6 +36,7 @@ html, body {
     display: flex;
     flex-direction: row;
     font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
     color: var(--current-basic-font);
 }
 
@@ -82,6 +83,7 @@ button:hover {
     width: 80%;
     max-height: 100%;
     padding: 100px 100px 50px 100px;
+    font-weight: 100;
 }
 
 /* Main - .main*/
@@ -95,7 +97,7 @@ button:hover {
 }
 
 .main .web-title {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 40px;
 }
 .main .comment {
@@ -154,7 +156,7 @@ button:hover {
 
 .login .title {
     font-size: 40px;
-    font-weight: bold;
+    font-weight: 500;
     text-align: center;
     margin-bottom: 100px;
 }
@@ -203,5 +205,5 @@ button:hover {
 
 .logout-form .comment {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 500;
 }

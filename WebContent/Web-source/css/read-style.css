@@ -29,7 +29,7 @@
 
 .read .title-part .title {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .read .title-part .wrap {
@@ -65,6 +65,10 @@
 .read .title-part .wrap .scrap button {
     color: var(--current-basic-font);
     background-color: #ffffff00;
+}
+
+.read .title-part .wrap .scrap.active button {
+	color: var(--pastel-yellow);
 }
 
 .read .title-part .wrap .btn-wrap {
@@ -112,7 +116,7 @@
     width: fit-content;
     display: block;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 500;
     margin-right: 10px;
 }
 
