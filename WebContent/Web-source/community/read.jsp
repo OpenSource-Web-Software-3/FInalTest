@@ -82,74 +82,76 @@
 	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글 내용 영역 -->
 	   <section class="set-margin read">
-	       <!-- 게시글 상단  -->
-	       <div class="title-part">
-	           <!-- 게시글 작성 정보 -->
-	           <div class="writer-info">
-	               <!-- 작성자 닉네임 -->
-	               <span class="nickname"><%=commu.getNickName() %></span>
-	               <!-- 작성일자 -->
-	               <span class="date"><%=commu.getCommuDate() %></span>
-	           </div>
-	           <!-- 게시글 제목 -->
-	           <div class="title"><%=commu.getTitle() %></div>
-	           <div class="wrap">
-		           <!-- counting 정보 -->
-	               <ul>
-	                   <!-- 조회수 -->
-	                   <li class="view">
-	                       <i class="far fa-eye"></i>
-	                       <span class="count"> <%=commu.getView()+1 %> </span>
-	                   </li>
-	                   <!-- 댓글 수  -->
-	                   <li class="comment">
-	                       <i class="far fa-comment-dots"></i>
-	                       <span class="count">commentCount</span>
-	                   </li>
-	                   <!-- 스크랩한 사용자 수 -->
-	                   <li class="scrap" value=<%=commu.getWritingID() %>>
-	                       <button>
-	                           <i class="fas fa-star"></i> 
-	                       </button>
-	                       <span class="count" id="scrapCount"><%=commu.getScrapCount() %></span>
-	                   </li>
-	               </ul>
-	               <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
-	               <div class="btn-wrap">
-	                   <button class="modifyBtn">수정</button>
-	                   <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
+	       <div class="test">
+		       <!-- 게시글 상단  -->
+	           <div class="title-part">
+	               <!-- 게시글 작성 정보 -->
+	               <div class="writer-info">
+	                   <!-- 작성자 닉네임 -->
+	                   <span class="nickname"><%=commu.getNickName() %></span>
+	                   <!-- 작성일자 -->
+	                   <span class="date"><%=commu.getCommuDate() %></span>
+	               </div>
+	               <!-- 게시글 제목 -->
+	               <div class="title"><%=commu.getTitle() %></div>
+	               <div class="wrap">
+	                   <!-- counting 정보 -->
+	                   <ul>
+	                       <!-- 조회수 -->
+	                       <li class="view">
+	                           <i class="far fa-eye"></i>
+	                           <span class="count"> <%=commu.getView()+1 %> </span>
+	                       </li>
+	                       <!-- 댓글 수  -->
+	                       <li class="comment">
+	                           <i class="far fa-comment-dots"></i>
+	                           <span class="count">commentCount</span>
+	                       </li>
+	                       <!-- 스크랩한 사용자 수 -->
+	                       <li class="scrap" value=<%=commu.getWritingID() %>>
+	                           <button>
+	                               <i class="fas fa-star"></i> 
+	                           </button>
+	                           <span class="count" id="scrapCount"><%=commu.getScrapCount() %></span>
+	                       </li>
+	                   </ul>
+	                   <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
+	                   <div class="btn-wrap">
+	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp'">수정</button>
+	                       <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
+	                   </div>
 	               </div>
 	           </div>
-	       </div>
-	       <!-- 게시글 내용 -->
-	       <div class="content">
-	          <%=commu.getContent() %>
-	       </div>
-	       
-	       
-	       <!-- 작성된 댓글이 보여지는 부분 -->
-	       <div class="comment-area">
-	           <!-- comment sample -->
-	           <%
-	           for(int i = 1; i < commentList.size(); i++) { %>
-	           <div class="comment">
-	               <div class="user-info">
-	                   <span class="nickname"><%=commentList.get(i).getNickName() %></span>
-	                   <span class="date"><%=commentList.get(i).getCommentDate() %></span>
-	               </div>
-	               <pre class="content"><%=commentList.get(i).getContent()%></pre>
+	           <!-- 게시글 내용 -->
+	           <div class="content">
+	              <%=commu.getContent() %>
 	           </div>
-	           <% } %>
-	       </div>
-	       <!-- 댓글 작성 -->
-	       <form class="type-comment" method="POST" action="<%=absolutePath_read %>/commentWriteAction.do?category=<%=category%>&writingID=<%=writingID %>" >
-	           <!-- 나중에 수정할 부분이 있음 / 입력한 값이 없으면 알아서 경고 띄움(추가적인 조건 삽입 필요 X) -->
-	           <textarea type="text" id="content" name="content" placeholder="댓글을 작성해주세요." required="required">
-	           </textarea>
-	           <button class="submit">
-	               <i class="far fa-paper-plane"></i>
-	           </button>
-	       </form>
+	           
+	           
+	           <!-- 작성된 댓글이 보여지는 부분 -->
+	           <div class="comment-area">
+	               <!-- comment sample -->
+	               <%
+	               for(int i = 1; i < commentList.size(); i++) { %>
+	               <div class="comment">
+	                   <div class="user-info">
+	                       <span class="nickname"><%=commentList.get(i).getNickName() %></span>
+	                       <span class="date"><%=commentList.get(i).getCommentDate() %></span>
+	                   </div>
+	                   <pre class="content"><%=commentList.get(i).getContent()%></pre>
+	               </div>
+	               <% } %>
+	           </div>
+           </div>
+           <!-- 댓글 작성 -->
+           <form class="type-comment" method="POST" action="<%=absolutePath_read %>/commentWriteAction.do?category=<%=category%>&writingID=<%=writingID %>" >
+               <!-- 나중에 수정할 부분이 있음 / 입력한 값이 없으면 알아서 경고 띄움(추가적인 조건 삽입 필요 X) -->
+               <textarea type="text" id="content" name="content" placeholder="댓글을 작성해주세요." required="required">
+               </textarea>
+               <button class="submit">
+                   <i class="far fa-paper-plane"></i>
+               </button>
+           </form>
 	   </section>
 	</body>
 </html>
