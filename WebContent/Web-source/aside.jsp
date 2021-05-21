@@ -44,7 +44,7 @@
 	    </ul>
 	    <!-- 문의사항 -->
 	    <ul class="subtitle" class="questions">
-	        <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">문의사항</a>
+	        <a href="<%=absolutePath_aside%>/questions/questionList.jsp">문의사항</a>
 	    </ul>
     </div>
     <!-- my page -->
