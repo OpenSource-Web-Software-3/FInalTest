@@ -57,6 +57,14 @@
     background-color: #ffffff00;
 }
 
+.license-list .list .scrapBtn.active {
+    width: fit-content;
+    height: fit-content;
+    font-size: 20px;
+    color: var(--pastel-yellow);
+    background-color: #ffffff00;
+}
+
 .license-list .list .scrapBtn:hover {
     background-color: #ffffff00
 }
