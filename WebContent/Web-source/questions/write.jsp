@@ -7,9 +7,9 @@
 	<head>
 		<%@include file="../head-tags.jsp" %>
         <!-- css -->
-        <link rel="stylesheet" href="<%= absolutePath_write %>/css/write-style.css" />
+        <link rel="stylesheet" href="<%= absolutePath_write %>/css/ques-write-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_write %>/css/aside-style.css" />
-		<title>글 작성하기</title>
+		<title>문의사항 작성하기</title>
 	</head>
 	<body>
 		<%
@@ -28,10 +28,10 @@
 		%>
 	   <!-- aside -->
 	   <%@include file="../aside.jsp" %>
-	   <!-- 게시글을 작성하는 영역 -->
-	   <section class="set-margin write">
+	   <!-- 문의사항을 작성하는 영역 -->
+	   <section class="set-margin ques-write">
 	       <!-- 해당 페이지 title -->
-	       <div class="title">게시글 작성</div>
+	       <div class="title">문의사항 작성</div>
 	       <!-- 실제로 글을 작성는 부분 -->
 	       <form class="writing-part" method="POST" action="<%= absolutePath_write %>/writeAction.do" enctype = "multipart/form-data">
 	 
