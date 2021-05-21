@@ -1,0 +1,84 @@
+@charset "EUC-KR";
+@charset "EUC-KR";
+
+.ques-modify .title {
+    width: 100%;
+    height: fit-content;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.ques-modify .writing-part {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.ques-modify .writing-part #title {
+    max-width: 100%;
+    height: fit-content;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 17px
+}
+
+.ques-modify .writing-part #content {
+    max-width: 100%;
+    height: 400px;
+    resize: none;
+    border: 1px solid var(--current-basic-font);
+    font-size: 15px;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: var(--current-basic-font);
+    padding: 10px 20px;
+    background-color: #ffffff00; 
+    margin-bottom: 20px;
+}
+
+.ques-modify .writing-part #content::-webkit-scrollbar {
+    display: none;
+}
+
+.ques-modify .writing-part #content::placeholder {
+    color: var(--current-basic-font);
+    opacity: 0.7;
+}
+
+.ques-modify .writing-part #content:focus {
+    outline: none;
+}
+
+.ques-modify .writing-part .file-area, 
+.ques-modify .writing-part .document-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;    
+}
+
+.ques-modify .writing-part label {
+}
+
+.ques-modify .writing-part #file,
+.ques-modify .writing-part #document {
+    width: fit-content;
+    margin-top: 10px;
+}
+
+.ques-modify .writing-part .btn-area {
+    width: 100%;
+    height: fit-content;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: row-reverse;
+    border-top: 1px solid var(--current-basic-font);
+}
+
+.ques-modify .writing-part .sendBtn {
+    width: fit-content;
+    height: fit-content;
+    padding: 8px 20px;
+    margin-right: 20px;
+}
