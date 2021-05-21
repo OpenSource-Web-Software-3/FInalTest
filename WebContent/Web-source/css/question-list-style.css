@@ -1,0 +1,137 @@
+@charset "EUC-KR";
+
+.question .title {
+    width: 100%;
+    height: fit-content;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.question .comment {
+    display: block;
+    width: 100%;
+    height: fit-content;
+    margin-left: 21px;
+    margin-bottom: 20px;
+}
+
+.question .input-wrap {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.question .input-wrap .text {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    margin-left: 20px;
+}
+
+.question .input-wrap .text li {
+    margin-right: 10px;
+}
+
+.question #sort-standard {
+    width: 150px;
+    height: 32px;
+    border: 1px solid var(--current-basic-font);
+    background-color: #ffffff00;
+    padding: 5px 10px;
+    color: var(--current-basic-font);
+}
+
+.question #sort-standard:focus {
+    outline: none;
+}
+
+.question #search {
+    width: 150px;
+    height: 30px;
+    padding: 0px;
+    padding-left: 10px;
+    border: 1px solid var(--current-basic-font);
+}
+
+.question .writeBtn {
+    padding:5px 10px;
+    margin-right: 10px; 
+}
+
+.question .list {
+    width: 100%;
+    height: 72%;
+    overflow-y: scroll;
+}
+
+.question .list::-webkit-scrollbar {
+    display: none;
+}
+
+.question .list .items {
+    max-width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 20px; 
+    border-top: 1px solid var(--current-basic-font);
+}
+
+.question .list .items .url {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+}
+
+.question .list .items .writing {
+    width: fit-cotent;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.question .list .writing .title {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.question .list .writing .writer-info {
+    display: block;
+    font-size: 13px;
+}
+
+.question .items .writing-info {
+    display: flex;
+    flex-directIon: row;
+}
+
+.question .items .writing-info div{
+    display: flex;
+    flex-directon: row;
+    margin-right: 50px;
+    align-items: center;
+}
+
+.question .items .writing-info div span {
+    display: block;
+    width: fit-content;
+    margin-left: 10px
+}
+
+.question .items .writing-info div i {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.question .items .writing-info .count{
+    font-weight: 100;
+}
