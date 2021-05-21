@@ -1,1 +1,135 @@
 @charset "EUC-KR";
+
+.my-page .title {
+    width: 100%;
+    height: fit-content;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.my-page .domain,
+.my-page .domain > li,
+.my-page .domain > li > ul {
+    max-width: 100%;
+    height: fit-content;
+}
+
+.my-page .domain .sub-title {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.my-page .domain li > ul > li:not(.sub-title) {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.my-page .domain > li {
+    border-top: 1px solid var(--current-basic-font);
+    padding: 20px 0px 20px 30px;
+}
+
+.my-page .domain .user-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.my-page .domain .user-info i {
+    font-size: 50px;
+    margin-right: 10px;
+}
+
+.my-page .domain .user-info .info-wrap {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+}
+
+.my-page .domain .user-info .info-wrap .nickname {
+    font-weight: 500;
+}
+
+.my-page .domain .personal-info li:not(.sub-title) {
+    cursor: pointer;
+}
+
+.my-page .domain .withdrawal .sub-title {
+    cursor: pointer;
+}
+
+.change {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    right: 0px;
+    padding: 0px 31px;
+    background-color: #332e2e90;
+}
+
+.change > div {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--current-aside);
+}
+
+.change span {
+    display: block;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+
+.change form {
+    width: 100%;
+    height: fit-content;
+}
+
+.change i {
+    display: absolute;
+    cursor: pointer;
+}
+
+.change .title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.change .comment {
+    margin-bottom: 30px;
+}
+
+.change input {
+    width: 93%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.change button {
+    width: 100%;
+    height: fit-content;
+    padding: 5px;
+}
+
+.change .password,
+.change .email {
+    display: none;
+}
+
+.change .withdrawal .alert {
+    font-size: 13px;
+    font-weight: 100;
+    margin-bottom: 18px;
+}
