@@ -13,8 +13,7 @@ public class CommentDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-	public class CommuscrapDAO {
-		public CommuscrapDAO() {
+	public CommentDAO() {
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -25,7 +24,6 @@ public class CommentDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
 	}
 
 	public String getDate() {
@@ -43,12 +41,13 @@ public class CommentDAO {
 		return "";
 
 	}
-	
-	public int getNext() {
-		String SQL = "SELECT commentID FROM comment WHERE ORDER BY commentID DESC";
+
+	public int getNext(int writingID) {
+		String SQL = "SELECT commentID FROM comment WHERE writingID = ? ORDER BY commentID DESC";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
@@ -60,17 +59,15 @@ public class CommentDAO {
 		return -1; // DB오류
 
 	}
-	
-	
-	public int commentWrite(int writingID, int parentCommentID, String ID, String nickName,
-			String content) {
+
+	public int commentWrite(int writingID, int parentCommentID, String ID, String nickName, String content) {
 		String SQL = "INSERT INTO comment VALUES (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, writingID);
-			pstmt.setInt(2, getNext());
+			pstmt.setInt(2, getNext(writingID));
 			pstmt.setInt(3, parentCommentID);
-			pstmt.setString(4, ID); 
+			pstmt.setString(4, ID);
 			pstmt.setString(5, nickName);
 			pstmt.setString(6, content);
 			pstmt.setString(7, getDate());
@@ -87,8 +84,12 @@ public class CommentDAO {
 		String SQL = "SELECT * FROM comment WHERE writingID = ? ORDER BY commentID ASC";
 		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
 		
-		System.out.println("list.size = ");
-
+		//root 댓글 저장 = 게시글 전체를 의미 (list의 index를 맞추고 확실한 tree 구조를 만들기 위해서)
+		CommentDTO comment_rootBbs = new CommentDTO();
+		comment_rootBbs.setCommentID(0);
+		comment_rootBbs.setParentCommentID(-1);
+		list.add(comment_rootBbs);
+		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, writingID);
@@ -105,12 +106,12 @@ public class CommentDAO {
 				list.add(comment);
 
 			}
-			System.out.println("list.size = "+list.size());
-//			if (!list.isEmpty()) {
-//				//정렬
-//				Sort_C sort = new Sort_C();
-//				sort.sortedCommentList(list);
-//			}
+			if (list.size() > 1) {
+				//정렬
+				Sort_C sort = new Sort_C();
+				ArrayList<CommentDTO> sorted_list = sort.sortedCommentList(list);
+				return sorted_list;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

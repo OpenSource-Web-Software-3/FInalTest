@@ -22,9 +22,7 @@ public class Sort_C {
 
 	// RECURSION version O(nlogn) 최종
 	public void recursivePreorder(CommentDTO comment) {
-
 		sorted_list.add(comment);
-
 		if (!comment.commentChildList.isEmpty()) {
 			for (int i = 0; i < comment.commentChildList.size(); i++)
 				recursivePreorder(comment.commentChildList.get(i));

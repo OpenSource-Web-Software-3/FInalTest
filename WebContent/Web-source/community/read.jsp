@@ -36,7 +36,7 @@
 			CommunicationDTO commu = communicationDAO.getCommunication(writingID);
 			
 			String category = null;
-			if(request.getParameter("category") != null) category = request.getParameter("category");
+			if(request.getParameter("category") != null) category = request.getParameter("category"); 
 			
 			
 			if(writingID <= 0 || category == null || category.equals("")){
@@ -66,7 +66,6 @@
 			ArrayList<CommentDTO> commentList = new ArrayList<CommentDTO>();
 			
 			commentList = commentDao.getCommentList(writingID);
-			System.out.println(commentList.size());
 		%>
 		<script type="text/javascript">
 		$(document).ready(function() {
@@ -132,8 +131,7 @@
 	       <div class="comment-area">
 	           <!-- comment sample -->
 	           <%
-	           if(commentList.size() != 0){
-	           for(int i = 0; i < commentList.size(); i++) { %>
+	           for(int i = 1; i < commentList.size(); i++) { %>
 	           <div class="comment">
 	               <div class="user-info">
 	                   <span class="nickname"><%=commentList.get(i).getNickName() %></span>
@@ -141,7 +139,7 @@
 	               </div>
 	               <pre class="content"><%=commentList.get(i).getContent()%></pre>
 	           </div>
-	           <% }} %>
+	           <% } %>
 	       </div>
 	       <!-- 댓글 작성 -->
 	       <form class="type-comment" method="POST" action="<%=absolutePath_read %>/commentWriteAction.do?category=<%=category%>&writingID=<%=writingID %>" >

@@ -76,7 +76,7 @@ public class commentWriteAction extends HttpServlet {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 //					script.println("location.href = document.referrer"); // 뒤로가기 후 새로고침
-					script.println("location.href = '../community/read.jsp?category="+category+"&writingID="+writingID+"'");
+					script.println("location.href = 'community/read.jsp?category="+category+"&writingID="+writingID+"'");
 					script.println("</script>");
 
 				}
