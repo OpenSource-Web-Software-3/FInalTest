@@ -10,7 +10,12 @@
 
 .license-list .list {
     width: 100%;
-    height: fit-content;
+    height: 91%;
+    overflow-y: scroll;
+}
+
+.license-list .list::-webkit-scrollbar {
+    display: none;
 }
 
 .license-list .list .items {

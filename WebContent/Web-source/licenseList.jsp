@@ -39,7 +39,7 @@
 		   <!-- 해당 자격증의 시험일정을 보여주는 부분 -->
 		   <div class="license-name"><%=licencseName %></div>
 		   <ul class="list">
-		      <!-- 임시적으로 9개로 제한 (아마 9개로 갈 거 같습니다.) -->
+		      <!-- 임시적으로 9개로 제한 -> scroll로 변환 -->
 		      <% for(int i = 0; i < licenseList.size(); i++) { %>
 	           <li class="items">
 	               <!-- 시험일정 정보  -->
