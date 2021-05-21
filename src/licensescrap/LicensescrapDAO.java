@@ -122,12 +122,14 @@ public class LicensescrapDAO {
 	}
 
 	//스크랩했는지 체크
-	public boolean checkLicenseScrap(String ID, ArrayList<LicenseDTO> licenseList) {
+	public boolean checkLicenseScrap(String ID, int licenseID) {
+		if (ID == null) return false; //로그인 되어 있지 않다면
+		
 		String SQL = "SELECT * FROM licensescrap WHERE ID = ? AND licenseID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, ID);
-//			pstmt.setInt(2, writingID);
+			pstmt.setInt(2, licenseID);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
 					return true;

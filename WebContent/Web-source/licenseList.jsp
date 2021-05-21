@@ -30,24 +30,7 @@
 			
 			//로그인한 아이디 스크랩 체크 
 			LicensescrapDAO licensescrapDAO = new LicensescrapDAO();
-			
-			boolean checkScrap;
-			if(userID != null)
-				checkScrap = licensescrapDAO.checkLicenseScrap(userID, licenseList);
-			else  
-			checkScrap = false; //로그인 되어 있지 않다면 false
-			
 		%>
-		<script type="text/javascript">
-		$(document).ready(function() {
-			var checkScrap = '<%=checkScrap%>';
-			if(checkScrap === 'true'){
-				$(".scrap").addClass('active');
-			}else{
-				$(".scrap").removeClass('active');
-			}
-		});
-		</script>
 		
 		
 	   <!-- aside-->
@@ -67,7 +50,11 @@
 		               </div>
 		           </a>
 		           <!-- 스크랩 버튼 -->
-	               <button class="scrapBtn" value="<%=licenseList.get(i).getLicenseID() %>" >
+		           <%if(licensescrapDAO.checkLicenseScrap(userID, licenseList.get(i).getLicenseID())){%>
+		               <button class="scrapBtn active" value="<%=licenseList.get(i).getLicenseID() %>" >
+		           <% }else{%>
+		               <button class="scrapBtn" value="<%=licenseList.get(i).getLicenseID() %>" >
+		           <%} %>
 	                   <i class="fas fa-star"></i>
 	               </button>
 	           </li>
