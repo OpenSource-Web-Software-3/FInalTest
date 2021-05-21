@@ -57,7 +57,12 @@
 
 .commu-list .list {
     width: 100%;
-    height: fit-content;
+    height: 82%;
+    overflow-y: scroll;
+}
+
+.commu-list .list::-webkit-scrollbar {
+    display: none;
 }
 
 .commu-list .list .items {
