@@ -58,7 +58,6 @@ $(document).ready(function() {
 			active = true;
 		}
 
-		alert(active);
 		$.ajax({
 			url: "commuScrapAction.do",
 			type: "POST",
@@ -68,13 +67,11 @@ $(document).ready(function() {
 			},
 			success: function(result) {
 				if (result == 1) {
-					// 아마 return 하고 그냥 지워도 될 듯
 					if (active) {
-						//scrap 추가된 상태 (색 칠해주시면 될 것 같습니다!)
+						$("#scrapCount").text(parseInt($("#scrapCount").text())+1);
 					}
-
 					else {
-						//scrap 삭제 상태 (색 빼주시면 될 것 같습니다!)
+						$("#scrapCount").text(parseInt($("#scrapCount").text())-1);
 					}
 				}
 				else if (result == 0) {
