@@ -79,6 +79,22 @@ public class CommentDAO {
 		return -1; // DB오류
 
 	}
+	
+	public int getAllComment(int writingID) {
+		String SQL = "SELECT COUNT(*) FROM comment WHERE writingID = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //DB오류
+	}
 
 	public ArrayList<CommentDTO> getCommentList(int writingID) {
 		String SQL = "SELECT * FROM comment WHERE writingID = ? ORDER BY commentID ASC";

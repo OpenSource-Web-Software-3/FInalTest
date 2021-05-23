@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="communication.CommunicationDTO" %>
+<%@ page import="comment.CommentDAO" %>
 <% String  absolutePath_commu = request.getContextPath()+"/Web-source";%>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,7 @@
 			
 			String category = null;
 			if(request.getParameter("category") != null) category = request.getParameter("category");
+			CommentDAO commentDao = new CommentDAO();
 			
 		%>
 		
@@ -67,7 +69,7 @@
                        </div>
                        <div class="comment">
 	                       <i class="far fa-comment-dots"></i>
-	                       <span class="count">나중에 commentDAO.getAllComment(ID)</span>
+	                       <span class="count"><%=commentDao.getAllComment(commuList.get(i).getWritingID()) %></span>
                        </div>
                    </div>
                </li>
