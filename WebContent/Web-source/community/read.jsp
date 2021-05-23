@@ -38,7 +38,6 @@
 			String category = null;
 			if(request.getParameter("category") != null) category = request.getParameter("category"); 
 			
-			
 			if(writingID <= 0 || category == null || category.equals("")){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -50,7 +49,6 @@
 				communicationDAO.increaseView(writingID); //조회수 증가
 			}
 			
-			
 			//로그인한 아이디 스크랩 체크 
 			CommuscrapDAO commuscrapDao = new CommuscrapDAO();
 			
@@ -59,7 +57,6 @@
 				checkScrap = commuscrapDao.checkCommuScrap(userID, writingID);
 			else  
 				checkScrap = false; //로그인 되어 있지 않다면 false
-				
 				
 			/* 댓글 */
 			CommentDAO commentDao = new CommentDAO();
@@ -117,14 +114,14 @@
 	                   </ul>
 	                   <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
 	                   <div class="btn-wrap">
-	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp'">수정</button>
+	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp?writingID=<%=writingID%>'">수정</button>
 	                       <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
 	                   </div>
 	               </div>
 	           </div>
 	           <!-- 게시글 내용 -->
 	           <div class="content">
-	              <%=commu.getContent() %>
+	              <%=commu.getContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
 	           </div>
 	           
 	           

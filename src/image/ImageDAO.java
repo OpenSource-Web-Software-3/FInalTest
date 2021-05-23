@@ -53,6 +53,33 @@ public class ImageDAO {
 		return -1;
 	}
 	
+	
+	//파일 업로드
+	public int update(int bbsID, String fileType, String fileName, String fileRealName) { 
+		String SQL = "UPDATE image SET fileName = ?, fileRealName = ? WHERE bbsID = ? AND bbsType = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, fileName);
+			pstmt.setString(2, fileRealName);
+			pstmt.setInt(3, bbsID);
+			pstmt.setString(4, fileType);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
 	//파일 delete
 	public int delete(int bbsID) { 
 		String SQL = "DELETE FROM image WHERE bbsID = ?";
@@ -75,13 +102,37 @@ public class ImageDAO {
 		}
 		return -1;
 	}
+	
+	//파일 delete
+	public int delete(int bbsID, String bbsType) { 
+		String SQL = "DELETE FROM image WHERE bbsID = ? AND bbsType = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			pstmt.setString(2, bbsType);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
 
 	public ImageDTO getFile(int bbsID, String bbsType) {
 		String SQL = "SELECT * FROM image WHERE bbsID = ? AND bbsType = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
-			pstmt.setString(1, bbsType);
+			pstmt.setString(2, bbsType);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
