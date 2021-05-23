@@ -122,7 +122,7 @@ public class deleteAction extends HttpServlet {
 			File prevfile = new File(directory + fileList.get(i).getFileRealName()); // 실제 파일도 같이 삭제
 			prevfile.delete();
 		}
-		new ImageDAO().delete(writingID); // 기존에 있던 사진을 먼저 삭제 한다
+		new ImageDAO().delete(writingID,1); // 기존에 있던 사진을 먼저 삭제 한다
 
 	}
 

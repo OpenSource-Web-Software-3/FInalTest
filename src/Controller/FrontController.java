@@ -78,6 +78,10 @@ public class FrontController extends HttpServlet {
 		else if (com.contains("/commentWriteAction.do")) { // 커뮤 댓글 달기 
 			viewPage = "../commentWriteAction";
 		} 
+		//QNA
+		else if (com.contains("/questionListAction.do")) { //QNA 글 보여주기
+			viewPage = "../questionListAction";
+		}
 		else if (com.contains("/QNAwriteAction.do")) { // QNA 글 쓰기
 			viewPage = "../QNAwriteAction";
 		} 

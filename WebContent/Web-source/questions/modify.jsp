@@ -27,12 +27,12 @@
                <!-- 사진 첨부 : 수정하려는 게시글의 파일도 불러올 수 있을까요?-->
                <div class="file-area">
                    <label for="">사진 첨부하기</label>
-                   <input type="file" id="file" name="file"/>
+                   <input type="file" id="file" name="QNAfile"/>
                </div>
                <!-- 교수님 피드백 수용으로 `문서 첨부`을 생성함 -->
                <div class="document-area">
                    <label for="">문서 첨부하기</label>
-                   <input type="file" id="document" name="document" />
+                   <input type="file" id="document" name="QNAdocument" />
                </div>
                <div class="btn-area">
                    <button class="sendBtn">수정하기</button>

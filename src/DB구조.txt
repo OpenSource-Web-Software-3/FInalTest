@@ -1,0 +1,10 @@
+까먹지 않기 
+
+image DB는 commu와 QnA 같이 공유하고 
+폴더만 따로 ( commu = /file/ ,  QnA = /qnaFile/)
+
+write 는 input name 의 parameter로
+delete 는 commuType을 줘서 해당 되는 내용만 지우기 
+
+commuType = 1 > 커뮤니티 관련 파일
+commuType = 2 > QnA 관련 파일 

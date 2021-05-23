@@ -80,9 +80,39 @@ public class ImageDAO {
 		return -1;
 	}
 	
-	//파일 delete
-	public int delete(int bbsID) { 
+	//안 쓰일 수도 있음
+	public int delete(int bbsID) {  
 		String SQL = "DELETE FROM image WHERE bbsID = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
+	//파일 delete : QNA랑 겹치므로 DB는 같이 쓰되 폴더만 따로 쓰기
+	// commuType = 1 commu파일 지우기 , commuType = 2 QNA파일 지우기 
+	public int delete(int bbsID, int commuType) {   
+		
+		String SQL = "";
+		
+		if (commuType == 1) SQL = "DELETE FROM image WHERE bbsID = ? AND (bbsType='document' OR bbsType='file')";
+		else if (commuType == 2) SQL = "DELETE FROM image WHERE bbsID = ? AND (bbsType='QNAdocument' OR bbsType='QNAfile')";
+		else return -2; //type오류  
+			
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
