@@ -36,47 +36,59 @@ public class FrontController extends HttpServlet {
 		System.out.println(URI);
 		System.out.println(contextPath);
 
-		if (com.contains("/index.do")) {
+		if (com.contains("/index.do")) { //index 페이지 이동 
 			viewPage = "index.jsp";
 		} 
-		else if (com.contains("/registerAction.do")) {
+		else if (com.contains("/registerAction.do")) { //회원가입 기능
 			viewPage = "../registerAction";
 		} 
-		else if (com.contains("/login.do")) {
+		else if (com.contains("/login.do")) { //로그인 페이지 이동 
 			viewPage = "login.jsp";
 		}
-		else if (com.contains("/loginAction.do")) {
+		else if (com.contains("/loginAction.do")) { // 로그인 기능 
 			viewPage = "../loginAction";
 		} 
-		else if (com.contains("/logoutAction.do")) {
+		else if (com.contains("/logoutAction.do")) { // 로그아웃 기능 
 			viewPage = "../logoutAction";
 		} 
 		else if (com.contains("/findInfoAction.do")) { // ID or 비밀번호 찾기 버튼 클릭 시
 			viewPage = "../findInfoAction";
 		}
-		else if (com.contains("/licenseListAction.do")) {
+		else if (com.contains("/licenseListAction.do")) { //자격증 리스트 보여주기
 			viewPage = "../licenseListAction";
 		}
-		else if (com.contains("/commuListAction.do")) {
+		else if (com.contains("/commuListAction.do")) { //커뮤니티 글 보여주기
 			viewPage = "../commuListAction";
 		}
-		else if (com.contains("/licenseScrapAction.do")) {
+		else if (com.contains("/licenseScrapAction.do")) { //자격증 스크랩 AJAX
 			viewPage = "../licenseScrapAction";
 		} 
-		else if (com.contains("/commuScrapAction.do")) {
+		else if (com.contains("/commuScrapAction.do")) { //커뮤니티 스크랩 AJAX
 			viewPage = "../../commuScrapAction";
 		} 
-		else if (com.contains("/writeAction.do")) {
+		else if (com.contains("/writeAction.do")) { // 커뮤 글 쓰기
 			viewPage = "../writeAction";
 		} 
-		else if (com.contains("/modifyAction.do")) {
+		else if (com.contains("/modifyAction.do")) { // 커뮤 글 수정하기 
 			viewPage = "../modifyAction";
 		} 
-		else if (com.contains("/deleteAction.do")) {
+		else if (com.contains("/deleteAction.do")) { // 커뮤 글 삭제
 			viewPage = "../deleteAction";
 		} 
-		else if (com.contains("/commentWriteAction.do")) {
+		else if (com.contains("/commentWriteAction.do")) { // 커뮤 댓글 달기 
 			viewPage = "../commentWriteAction";
+		} 
+		else if (com.contains("/QNAwriteAction.do")) { // QNA 글 쓰기
+			viewPage = "../QNAwriteAction";
+		} 
+		else if (com.contains("/QNAmodifyAction.do")) { // QNA 글 수정하기 
+			viewPage = "../QNAmodifyAction";
+		} 
+		else if (com.contains("/QNAdeleteAction.do")) { // QNA 글 삭제
+			viewPage = "../QNAdeleteAction";
+		} 
+		else if (com.contains("/QNAcommentWriteAction.do")) { // QNA 댓글 달기 
+			viewPage = "../QNAcommentWriteAction";
 		} 
 //		else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼
 //			viewPage = "../purchaseAction";

@@ -17,7 +17,7 @@
 			if (session.getAttribute("userID") != null) {
 				userID = (String) session.getAttribute("userID");
 			}
-			if (userID == null) { //이부분이 실행이 안된다 (로그인 안될시 )  크롬에서는 실행됨
+			if (userID == null) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('로그인을 하세요')");
@@ -44,8 +44,6 @@
 		       <!-- 사진 첨부 -->
 		       <div class="file-area">
 		           <label for="">사진 첨부하기</label>
-		           <!-- name에는 fileName를 적어야 하나요, 아님 fileRealName을 적어야 하나요 -->
-		           <!-- re. 동일하게 file적으면 될 것 같습니다!-->
 		           <input type="file" id="file" name="file" />
 		       </div>
 		       <!-- 교수님 피드백 수용으로 `문서 첨부`을 생성함 -->
@@ -54,7 +52,7 @@
 	               <input type="file" id="document" name="document" />
 	           </div>
 	           <div class="btn-area">
-		           <button class="sendBtn">완료</button>
+		           <button class="sendBtn" type="submit">완료</button>
 	           </div>
 	       </form>
 	   </section>

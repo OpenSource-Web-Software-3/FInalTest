@@ -33,9 +33,7 @@
 	       <!-- 해당 페이지 title -->
 	       <div class="title">문의사항 작성</div>
 	       <!-- 실제로 글을 작성는 부분 -->
-	       <form class="writing-part" method="POST" action="<%= absolutePath_write %>/writeAction.do" enctype = "multipart/form-data">
-	 
-			   <input type="hidden" name="category" value="<%=request.getParameter("category") %>"/>
+	       <form class="writing-part" method="POST" action="<%= absolutePath_write %>/QNAwriteAction.do" enctype = "multipart/form-data">
 	           <!-- 제목 입력 -->
 	           <input type="text" id="title" name="title" placeholder="제목"/>
 	           <!-- 내용 입력 -->
@@ -52,7 +50,7 @@
 	               <input type="file" id="document" name="document" />
 	           </div>
 	           <div class="btn-area">
-		           <button class="sendBtn">완료</button>
+		           <button class="sendBtn" type="submit">완료</button>
 	           </div>
 	       </form>
 	   </section>
