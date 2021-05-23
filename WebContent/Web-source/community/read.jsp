@@ -12,8 +12,7 @@
 <html>
 	<head>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-		<!-- 제 컴퓨터만 그런건지 js 크롬실행 오류 떄문에 파일이름을 바꿔야 적용되는 오류가 있어서 scrap1으로 일단 바꾸고 며칠 뒤에 원상 복귀 시켜 놓겠습니다-->
-		<script type="text/javascript" src="<%=absolutePath_read %>/js/scrap1.js" defer></script>
+		<script type="text/javascript" src="<%=absolutePath_read %>/js/scrap.js" defer></script>
 	
 		<%@include file="../head-tags.jsp" %>
         <!-- css -->
