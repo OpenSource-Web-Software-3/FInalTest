@@ -16,16 +16,16 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import communication.CommunicationDAO;
-import communication.CommunicationDTO;
+import QnA.QnADAO;
+import QnA.QnADTO;
 import image.ImageDAO;
 import image.ImageDTO;
 
 /**
  * Servlet implementation class deleteAction
  */
-@WebServlet("/deleteAction")
-public class deleteAction extends HttpServlet {
+@WebServlet("/QNAdeleteAction")
+public class QNAdeleteAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -57,16 +57,12 @@ public class deleteAction extends HttpServlet {
 			return;
 		}
 
-		int writingID = 0;
-		if (request.getParameter("writingID") != null) {
-			writingID = Integer.parseInt(request.getParameter("writingID"));
+		int QID = 0;
+		if (request.getParameter("QID") != null) {
+			QID = Integer.parseInt(request.getParameter("QID"));
 		}
 		
-		String category = null;
-		if (request.getParameter("category")!= null) {
-			category = request.getParameter("category");
-		}
-		if (writingID == 0 || category == null || category.equals("")) {
+		if (QID <= 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다')");
@@ -76,15 +72,16 @@ public class deleteAction extends HttpServlet {
 		}
 		// 파일관련 변수
 		ServletContext application = request.getServletContext();
-		String directory = application.getRealPath("/file/");
+		String directory = application.getRealPath("/qnaFile/");
 		ImageDAO imageDao = new ImageDAO();
 		ArrayList<ImageDTO> imageList = new ArrayList<>();
 		ArrayList<ImageDTO> documentList = new ArrayList<>();
-		imageList = imageDao.getFiles(writingID,1);
+		imageList = imageDao.getFiles(QID,2);
+//		documentList = 여기 코딩해야함
 		
-		CommunicationDAO communicationDAO = new CommunicationDAO();
-		CommunicationDTO commu = communicationDAO.getCommunication(writingID);
-		if (!userID.equals(commu.getID())) // 동일한 아이디가 아니라면
+		QnADAO qnaDao = new QnADAO();
+		QnADTO qnaDto = qnaDao.getQnA(QID);
+		if (!userID.equals(qnaDto.getID())) // 동일한 아이디가 아니라면
 		{
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -93,7 +90,7 @@ public class deleteAction extends HttpServlet {
 			script.println("</script>");
 			return;
 		} else {
-			int result = communicationDAO.delete(writingID);
+			int result = qnaDao.delete(QID);
 
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
@@ -104,10 +101,10 @@ public class deleteAction extends HttpServlet {
 				return;
 			} else {
 				PrintWriter script = response.getWriter();
-				deleteFileFunction(imageList, directory, writingID); //기존 파일 삭제
+				deleteFileFunction(imageList, directory, QID); //기존 파일 삭제
 				script.println("<script>");
 				script.println("alert('삭제했습니다.')");
-				script.println("location.href = 'commuListAction.do?category="+category+"'");
+				script.println("location.href = 'questionListAction.do'");
 				script.println("</script>");
 
 			}
@@ -116,12 +113,12 @@ public class deleteAction extends HttpServlet {
 	}
 
 	// 기존파일 삭제
-	public void deleteFileFunction(ArrayList<ImageDTO> fileList, String directory, int writingID) {
+	public void deleteFileFunction(ArrayList<ImageDTO> fileList, String directory, int QID) {
 		for (int i = 0; i < fileList.size(); i++) {
 			File prevfile = new File(directory + fileList.get(i).getFileRealName()); // 실제 파일도 같이 삭제
 			prevfile.delete();
 		}
-		new ImageDAO().delete(writingID,1); // 기존에 있던 사진을 먼저 삭제 한다
+		new ImageDAO().delete(QID,2); // 기존에 있던 사진을 먼저 삭제 한다
 
 	}
 

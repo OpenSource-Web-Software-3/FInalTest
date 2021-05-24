@@ -124,12 +124,12 @@ public class QNAwriteAction extends HttpServlet {
 	}
 
 	// 기존파일 삭제
-	public void deleteFileFunction(ArrayList<ImageDTO> fileList, String directory, int bbsID) {
+	public void deleteFileFunction(ArrayList<ImageDTO> fileList, String directory, int QID) {
 		for (int i = 0; i < fileList.size(); i++) {
 			File prevfile = new File(directory + fileList.get(i).getFileRealName()); // 실제 파일도 같이 삭제
 			prevfile.delete();
 		}
-		new ImageDAO().delete(bbsID,2); // 기존에 있던 사진을 먼저 삭제 한다
+		new ImageDAO().delete(QID,2); // 기존에 있던 사진을 먼저 삭제 한다
 
 	}
 
