@@ -12,8 +12,7 @@
 <html>
 	<head>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-		<!-- 제 컴퓨터만 그런건지 js 크롬실행 오류 떄문에 파일이름을 바꿔야 적용되는 오류가 있어서 scrap1으로 일단 바꾸고 며칠 뒤에 원상 복귀 시켜 놓겠습니다-->
-		<script type="text/javascript" src="<%=absolutePath_read %>/js/scrap1.js" defer></script>
+		<script type="text/javascript" src="<%=absolutePath_read %>/js/scrap.js" defer></script>
 	
 		<%@include file="../head-tags.jsp" %>
         <!-- css -->
@@ -39,7 +38,6 @@
 			String category = null;
 			if(request.getParameter("category") != null) category = request.getParameter("category"); 
 			
-			
 			if(writingID <= 0 || category == null || category.equals("")){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -51,7 +49,6 @@
 				communicationDAO.increaseView(writingID); //조회수 증가
 			}
 			
-			
 			//로그인한 아이디 스크랩 체크 
 			CommuscrapDAO commuscrapDao = new CommuscrapDAO();
 			
@@ -60,7 +57,6 @@
 				checkScrap = commuscrapDao.checkCommuScrap(userID, writingID);
 			else  
 				checkScrap = false; //로그인 되어 있지 않다면 false
-				
 				
 			/* 댓글 */
 			CommentDAO commentDao = new CommentDAO();
@@ -106,7 +102,7 @@
 	                       <!-- 댓글 수  -->
 	                       <li class="comment">
 	                           <i class="far fa-comment-dots"></i>
-	                           <span class="count">commentCount</span>
+	                           <span class="count"><%=commentDao.getAllComment(writingID) %></span>
 	                       </li>
 	                       <!-- 스크랩한 사용자 수 -->
 	                       <li class="scrap" value=<%=commu.getWritingID() %>>
@@ -118,14 +114,14 @@
 	                   </ul>
 	                   <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
 	                   <div class="btn-wrap">
-	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp'">수정</button>
+	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp?writingID=<%=writingID%>'">수정</button>
 	                       <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
 	                   </div>
 	               </div>
 	           </div>
 	           <!-- 게시글 내용 -->
 	           <div class="content">
-	              <%=commu.getContent() %>
+	              <%=commu.getContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
 	           </div>
 	           
 	           

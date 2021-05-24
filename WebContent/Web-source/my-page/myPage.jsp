@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="user.*" %>
+<%@ page import ="java.io.PrintWriter" %>
 <% String  absolutePath = request.getContextPath()+"/Web-source";%>
     
 <!DOCTYPE html>
@@ -9,12 +11,33 @@
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath %>/css/mypage-style.css" />
         <link rel="stylesheet" href="<%= absolutePath %>/css/aside-style.css" />
-        <script src="<%= absolutePath %>/js/my-page.js" defer></script>
 		<title>마이 페이지</title>
 	</head>
 	<body>
+		<%
+
+			String userID = null;
+			if(session.getAttribute("userID") != null){
+				userID = (String) session.getAttribute("userID");
+			}
+			if (userID == null) {
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('로그인을 하세요')");
+				script.println("history.back()");
+				script.println("</script>");
+				return;
+			}
+			
+			UserDTO userDto = new UserDTO();
+			UserDAO userDao = new UserDAO();
+			userDto = userDao.getUser(userID);
+		%>
+	
+	
 	   <!-- aside -->
 	   <%@include file="../aside.jsp" %>
+	   
 	   <!-- my page 영역 -->
 	   <section class="set-margin my-page">
 	        <!-- 페이지 타이틀 -->
@@ -27,8 +50,8 @@
                     <i class="fas fa-user-alt"></i>
                     <!-- 실제 정보 -->
                     <div class="info-wrap">
-                        <span class="nickname">nickname</span>
-                        <span class="other">name(실명) | userID</span>
+                        <span class="nickname"><%=userDto.getNickName() %></span>
+                        <span class="other"><%=userDto.getName()%> | <%=userID %></span>
                     </div>
                 </li>
                 <!-- 개인정보 영역 -->
@@ -60,7 +83,7 @@
                 </li>
             </ul>
 	   </section>
-       <%@include file="./popUp.jsp" %>
+	   <%@include file="./popUp.jsp" %>
 	</body>
 </html>
 <!-- 간단한 js라서 따로 파일 생성x -->

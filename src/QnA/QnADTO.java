@@ -8,6 +8,15 @@ public class QnADTO {
 	private String content;
 	private String QDate;
 	private String answer;
+	private int available;
+
+	public int getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(int available) {
+		this.available = available;
+	}
 
 	public int getQID() {
 		return QID;

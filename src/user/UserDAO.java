@@ -68,6 +68,22 @@ public class UserDAO {
 		return -1; // DB오류
 
 	}
+	
+	public int checkNickName(String nickName) {
+		String SQL = "SELECT nickName FROM user WHERE nickName = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, nickName);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) return -1; //중복
+			else return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -2; // DB오류
+		
+	}
 
 	public UserDTO getUser(String userID) {
 		String SQL = "SELECT * FROM user WHERE ID = ?";
@@ -116,5 +132,49 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return null; // DB오류
+	}
+	
+	public int secession(String userID) {
+		String SQL = "DELETE FROM user WHERE ID = ?";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
+	public int changePassword(String userID, String password) {
+		String SQL = "UPDATE user SET password = ? WHERE ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, password);
+			pstmt.setString(2, userID);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
+	public int changeEmail(String userID, String email) {
+		String SQL = "UPDATE user SET email = ? WHERE ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, email);
+			pstmt.setString(2, userID);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
 	}
 }

@@ -9,6 +9,12 @@
         <title>LINS에 오신 걸 환영합니다</title>
     </head>
     <body>
+    	<%
+    		String userID = null;
+    		if(session.getAttribute("userID")!=null){
+    			userID = (String) session.getAttribute("userID");
+    		}
+    	%>
         <!-- 4가지 서비스를 보여주는 부분 -->
         <section class="main">
             <!-- LINS 환영 멘트 -->
@@ -36,7 +42,7 @@
                    </a>
                </li>
                <li class="menu fourth">
-                   <a href="<%=url1%>/questions/questionList.jsp">
+                   <a href="<%=url1%>/questionListAction.do">
 	                   <i class="fas fa-chalkboard"></i>
 	                   <span>문의사항</span>
                    </a>
@@ -47,6 +53,7 @@
         <aside class="login">
             <!-- LINS -->
            <div class="title">LINS</div>
+           <%if(userID == null){ %>
            <!-- 아이디 / 비밀번호 입력 (로그인을 하지 않았을 때 보여짐) - display: none or block으로 조정 -->
            <form class="login-form" method="POST" action="loginAction.do" style="display:block">
                <input type="text" id="id" name="ID" placeholder="아이디"/>
@@ -58,14 +65,16 @@
 	           <!-- 찾기 페이지로 이동 -->
 	           <a href="<%=url1%>/user-info/find.jsp" class="find">ID/password 찾기</a>
            </form>
+           <%}else{ %>
            <!-- 로그아웃 (로그인을 한 후에 보여짐) - display: none or block으로 조정 -->
-           <form class="logout-form" action="" style="display: none">
-                <span class="comment">userName</span>
+           <form class="logout-form" method="POST" action="logoutAction.do" style="display:block">
+                <span class="comment"><%=userID %></span>
                 <ul class="menu">
                     <li class="my-page"><a href="<%=url1%>/my-page/myPage.jsp">내 정보</a></li>
-                    <li class="logout"><button>로그아웃</button></li>
+                    <li class="logout"><button type="submit">로그아웃</button></li>
                 </ul>
            </form>
+           <%} %>
         </aside>
 	</body>
 </html>

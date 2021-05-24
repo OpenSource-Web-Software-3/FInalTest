@@ -79,6 +79,22 @@ public class CommentDAO {
 		return -1; // DB오류
 
 	}
+	
+	public int getAllComment(int writingID) {
+		String SQL = "SELECT COUNT(*) FROM comment WHERE writingID = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, writingID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //DB오류
+	}
 
 	public ArrayList<CommentDTO> getCommentList(int writingID) {
 		String SQL = "SELECT * FROM comment WHERE writingID = ? ORDER BY commentID ASC";
@@ -116,6 +132,18 @@ public class CommentDAO {
 			e.printStackTrace();
 		}
 		return list;
-
 	}
+	public int secessionUpdate(String userID) {
+		String SQL = "UPDATE comment SET ID = '탈퇴한 회원입니다', nickName ='탈퇴한 회원입니다' WHERE ID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
 }

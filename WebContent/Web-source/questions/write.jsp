@@ -17,7 +17,7 @@
 			if (session.getAttribute("userID") != null) {
 				userID = (String) session.getAttribute("userID");
 			}
-			if (userID == null) { //이부분이 실행이 안된다 (로그인 안될시 )  크롬에서는 실행됨
+			if (userID == null) { 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('로그인을 하세요')");
@@ -33,9 +33,7 @@
 	       <!-- 해당 페이지 title -->
 	       <div class="title">문의사항 작성</div>
 	       <!-- 실제로 글을 작성는 부분 -->
-	       <form class="writing-part" method="POST" action="<%= absolutePath_write %>/writeAction.do" enctype = "multipart/form-data">
-	 
-			   <input type="hidden" name="category" value="<%=request.getParameter("category") %>"/>
+	       <form class="writing-part" method="POST" action="<%= absolutePath_write %>/QNAwriteAction.do" enctype = "multipart/form-data">
 	           <!-- 제목 입력 -->
 	           <input type="text" id="title" name="title" placeholder="제목"/>
 	           <!-- 내용 입력 -->
@@ -44,17 +42,15 @@
 		       <!-- 사진 첨부 -->
 		       <div class="file-area">
 		           <label for="">사진 첨부하기</label>
-		           <!-- name에는 fileName를 적어야 하나요, 아님 fileRealName을 적어야 하나요 -->
-		           <!-- re. 동일하게 file적으면 될 것 같습니다!-->
-		           <input type="file" id="file" name="file" />
+		           <input type="file" id="file" name="QNAfile" />
 		       </div>
 		       <!-- 교수님 피드백 수용으로 `문서 첨부`을 생성함 -->
 		       <div class="document-area">
 	               <label for="">문서 첨부하기</label>
-	               <input type="file" id="document" name="document" />
+	               <input type="file" id="document" name="QNAdocument" />
 	           </div>
 	           <div class="btn-area">
-		           <button class="sendBtn">완료</button>
+		           <button class="sendBtn" type="submit">완료</button>
 	           </div>
 	       </form>
 	   </section>

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,17 +17,24 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import QnA.QnADAO;
+import QnA.QnADTO;
 import communication.CommunicationDAO;
+import communication.CommunicationDTO;
 import image.ImageDAO;
 import image.ImageDTO;
-import user.UserDAO;
 
 /**
- * Servlet implementation class writeAction
+ * Servlet implementation class updateAction
  */
-@WebServlet("/writeAction")
-public class writeAction extends HttpServlet {
+@WebServlet("/QNAmodifyAction")
+public class QNAmodifyAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,53 +52,66 @@ public class writeAction extends HttpServlet {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 하세요')");
-			script.println("history.back()");
+			script.println("location.href = 'index.do'");
 			script.println("</script>");
 			return;
 		}
 
-		String fileDirectory = application.getRealPath("/file/"); // 일반 파일
-
+		String fileDirectory = application.getRealPath("/qnaFile/");
 		int maxSize = 1024 * 1024 * 100; // 100MB
 		String encoding = "UTF-8";
 		MultipartRequest multipartRequest = new MultipartRequest(request, fileDirectory, maxSize, encoding,
 				new DefaultFileRenamePolicy());
+
 		String title = (String) multipartRequest.getParameter("title");
 		String content = (String) multipartRequest.getParameter("content");
-		String category = (String) multipartRequest.getParameter("category");
 
-		if (category == null || category.equals("")) {
+		int QID = 0;
+//		System.out.println(multipartRequest.getParameter("writingID") +" ?");
+		if (multipartRequest.getParameter("QID") != null) {
+			QID = Integer.parseInt((String) multipartRequest.getParameter("QID"));
+		}
+		if (QID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('잘못된 접근입니다.')");
-			script.println("history.back()");
+			script.println("alert('유효하지 않은 글입니다')");
+			script.println("location.href = 'questionListAction.do'");
 			script.println("</script>");
+			deleteFileFunction(multipartRequest, fileDirectory); // 현재 파일 삭제
+			return;
+		}
+
+		QnADAO qnaDao = new QnADAO();
+		QnADTO qnaDto = qnaDao.getQnA(QID);
+		
+		if (!userID.equals(qnaDto.getID())) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href = 'index.do'");
+			script.println("</script>");
+			deleteFileFunction(multipartRequest, fileDirectory); // 현재 파일 삭제
 			return;
 		} else {
 			if (title == null || content == null || title.equals("") || content.equals("")) {
-
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력되지 않는 정보가 있습니다.')");
 				script.println("history.back()");
 				script.println("</script>");
 				deleteFileFunction(multipartRequest, fileDirectory); // 현재 파일 삭제
+				return;
 			} else {
-				CommunicationDAO communicationDAO = new CommunicationDAO();
-				UserDAO userDao = new UserDAO();
-
-				int result = communicationDAO.write(category, title, userID, userDao.getUser(userID).getNickName(),
-						content);
-
+				int result = qnaDao.update(QID, title, content);
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("alert('글쓰기에 실패했습니다.(DB오류)')");
+					script.println("alert('글수정에 실패했습니다.')");
 					script.println("history.back()");
 					script.println("</script>");
-					deleteFileFunction(multipartRequest, fileDirectory);
+					deleteFileFunction(multipartRequest, fileDirectory); // 현재 파일 삭제
+					return;
 				} else {
-					int nextID = communicationDAO.getNext() - 1;
 					// 글쓰기 성공시 파일도 저장하기
 					Enumeration fileNames = multipartRequest.getFileNames(); // type = file
 					while (fileNames.hasMoreElements()) {
@@ -113,44 +132,52 @@ public class writeAction extends HttpServlet {
 							PrintWriter script = response.getWriter();
 							script.println("<script>");
 							script.println("alert('파일을 업로드 하지 못했습니다.')");
-							script.println("location.href = 'commuListAction.do?category=" + category + "'");
+							script.println("location.href = './questions/read.jsp?QID="+ QID + "'");
 							script.println("</script>");
 							deleteFileFunction(multipartRequest, fileDirectory); // 현재 파일 삭제
 
 						} else {
-							new ImageDAO().upload(nextID, parameter, fileName, fileRealName);
+							ImageDAO imageDao = new ImageDAO();
+							ImageDTO imageDto = new ImageDTO();
+							
+							imageDto = imageDao.getFile(QID, parameter);
+							
+							if (imageDto != null) { // 파일을 업로드 하지 않고 글을 썼다가 파일을 추가로 업로드 하는경우는 기존 파일이 없기대문에 delete를 해주지
+													// 않음
+								deleteFileFunction(imageDto, fileDirectory, QID, parameter);
+							}
+
+							imageDao.upload(QID, parameter, fileName, fileRealName);
 						}
 					}
 
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("location.href = 'commuListAction.do?category=" + category + "'");
+					script.println("alert('수정했습니다')");
+					script.println("location.href = './questions/read.jsp?QID="+ QID + "'");
 					script.println("</script>");
 
 				}
 			}
 		}
+	}
+
+	// 기존파일 삭제 : file업로드까지 성공했을때 사용하는 함수
+	public void deleteFileFunction(ImageDTO imageDto, String directory, int bbsID, String parameter) {
+		File file = new File(directory + imageDto.getFileRealName()); // 실제 파일도 같이 삭제
+		file.delete();
+		new ImageDAO().delete(bbsID, parameter); // 기존에 있던 사진을 먼저 삭제
 
 	}
 
-	// 기존파일 삭제
-	public void deleteFileFunction(ArrayList<ImageDTO> fileList, String directory, int bbsID) {
-		for (int i = 0; i < fileList.size(); i++) {
-			File prevfile = new File(directory + fileList.get(i).getFileRealName()); // 실제 파일도 같이 삭제
-			prevfile.delete();
-		}
-		new ImageDAO().delete(bbsID,1); // 기존에 있던 사진을 먼저 삭제 한다
-
-	}
-
-	// 현재 날라온 파일 삭제
+	// 현재 날라온 파일 모두 삭제 : 예외처리부분에서 사용하는 함수
 	public void deleteFileFunction(MultipartRequest multipartRequest, String directory) {
 		Enumeration fileNames = multipartRequest.getFileNames();
 		while (fileNames.hasMoreElements()) {
 			String parameter = (String) fileNames.nextElement();
 			String fileRealName = multipartRequest.getFilesystemName(parameter);
-			File prevfile = new File(directory + fileRealName); // 실제 파일도 같이 삭제
-			prevfile.delete();
+			File file = new File(directory + fileRealName); // 실제 파일도 같이 삭제
+			file.delete();
 		}
 	}
 }
