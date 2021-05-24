@@ -147,4 +147,34 @@ public class UserDAO {
 		}
 		return -1; // DB오류
 	}
+	
+	public int changePassword(String userID, String password) {
+		String SQL = "UPDATE user SET password = ? WHERE ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, password);
+			pstmt.setString(2, userID);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
+	public int changeEmail(String userID, String email) {
+		String SQL = "UPDATE user SET email = ? WHERE ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, email);
+			pstmt.setString(2, userID);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
 }

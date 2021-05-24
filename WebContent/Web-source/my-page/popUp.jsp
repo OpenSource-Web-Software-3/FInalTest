@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="user.*" %>
+<%@ page import ="java.io.PrintWriter" %>
 <% String absolutePath1 = request.getContextPath()+"/Web-source";%>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="<%=absolutePath1 %>/js/myPage.js" defer></script>
+
 <!-- 팝업창 형식으로 띄울거에요! (새 페이지X) -->
 <div class="change">
     <!-- 인증 영역 : 사용자가 올바른 비밀번호를 입력했다면, 해당 영역을 style="display: none"으로 변경 + 
@@ -10,29 +15,23 @@
         <i class="fas fa-arrow-left" onclick="DeleteCheckPop()"></i>
         <span class="title">본인확인</span>
         <span class="comment">본인확인을 위해 비밀번호를 입력해주세요.</span>
-        <form action="" method="POST">
-            <input type="password" name="password" placeholder="현재 비밀번호 입력" required="required"/>
-            <button class="check" type="submit">확인</button>
-        </form>
+           <input type="password" name="password" placeholder="현재 비밀번호 입력" id="currnet-password" required="required"/>
+           <button class="check">확인</button>
     </div>
     <!-- 비밀번호 변경 영역 -->    
     <div class="password">
         <i class="fas fa-arrow-left" onclick="DeleteCheckPop()"></i>
         <div class="title">비밀번호 변경</div>
-        <form class="change-form" method="POST" action="">
             <input type="password" class="new1-pass" placeholder="새로운 비밀번호" name="password" required="required"/>
             <input type="password" class="new2-pass" placeholder="새로운 비밀번호 확인" name="password" required="required"/>
-            <button class="sendBtn" type="submit">변경</button>
-        </form>
+            <button class="sendBtn" id="sendBtn_password">변경</button>
     </div>
     <!-- 이메일 변경 영역 -->
     <div class="email">
         <i class="fas fa-arrow-left" onclick="DeleteCheckPop()"></i>
         <div class="title">이메일 변경</div>
-        <form class="change-form" method="POST" action="">
             <input type="text" class="new-email" placeholder="변경할 이메일" name="email" required="required"/>
-            <button class="sendBtn" type="submit">변경</button>
-        </form>
+            <button class="sendBtn" type="submit" id="sendBtn_email">변경</button>
     </div>
     <!-- 회원탈퇴 영역 -->
     <div class="withdrawal">

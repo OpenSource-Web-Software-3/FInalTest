@@ -96,7 +96,16 @@ public class FrontController extends HttpServlet {
 		} 
 		else if (com.contains("/withdrawalAction.do")) { // 탈퇴
 			viewPage = "../withdrawalAction";
-		} 
+		}
+		else if (com.contains("/myPage_checkPasswordAction.do")) { //마이페이지 비밀번호 인증
+			viewPage = "../../myPage_checkPasswordAction";
+		}
+		else if (com.contains("/myPage_changePasswordAction.do")) { //마이페이지 비밀번호 변경
+			viewPage = "../../myPage_changePasswordAction";
+		}
+		else if (com.contains("/myPage_changeEmailAction.do")) { //마이페이지 이메일 변경
+			viewPage = "../../myPage_changeEmailAction";
+		}
 //		else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼
 //			viewPage = "../purchaseAction";
 //		} else if (com.contains("/purchaseListAction.do")) { // 구매내역 목록 이동 시

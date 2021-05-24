@@ -11,32 +11,33 @@
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath %>/css/mypage-style.css" />
         <link rel="stylesheet" href="<%= absolutePath %>/css/aside-style.css" />
-        <script src="<%= absolutePath %>/js/my-page.js" defer></script>
 		<title>마이 페이지</title>
 	</head>
-	
-	<%
-		
-		String userID = null;
-		if(session.getAttribute("userID") != null){
-			userID = (String) session.getAttribute("userID");
-		}
-		if (userID == null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 하세요')");
-			script.println("history.back()");
-			script.println("</script>");
-			return;
-		}
-			
-		UserDTO userDto = new UserDTO();
-		UserDAO userDao = new UserDAO();
-		userDto = userDao.getUser(userID);
-	%>
 	<body>
+		<%
+
+			String userID = null;
+			if(session.getAttribute("userID") != null){
+				userID = (String) session.getAttribute("userID");
+			}
+			if (userID == null) {
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('로그인을 하세요')");
+				script.println("history.back()");
+				script.println("</script>");
+				return;
+			}
+			
+			UserDTO userDto = new UserDTO();
+			UserDAO userDao = new UserDAO();
+			userDto = userDao.getUser(userID);
+		%>
+	
+	
 	   <!-- aside -->
 	   <%@include file="../aside.jsp" %>
+	   
 	   <!-- my page 영역 -->
 	   <section class="set-margin my-page">
 	        <!-- 페이지 타이틀 -->
@@ -82,7 +83,7 @@
                 </li>
             </ul>
 	   </section>
-       <%@include file="./popUp.jsp" %>
+	   <%@include file="./popUp.jsp" %>
 	</body>
 </html>
 <!-- 간단한 js라서 따로 파일 생성x -->
