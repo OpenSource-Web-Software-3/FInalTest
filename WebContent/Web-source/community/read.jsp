@@ -102,7 +102,7 @@
 	                       <!-- 댓글 수  -->
 	                       <li class="comment">
 	                           <i class="far fa-comment-dots"></i>
-	                           <span class="count">commentCount</span>
+	                           <span class="count"><%=commentDao.getAllComment(writingID) %></span>
 	                       </li>
 	                       <!-- 스크랩한 사용자 수 -->
 	                       <li class="scrap" value=<%=commu.getWritingID() %>>
