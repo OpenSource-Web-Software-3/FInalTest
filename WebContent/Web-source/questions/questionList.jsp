@@ -1,5 +1,9 @@
+<%@page import="QnAcomment.QnacommentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.io.PrintWriter" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="QnA.QnADTO" %>
 <% String  absolutePath_ques = request.getContextPath()+"/Web-source";%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +15,17 @@
 		<title>문의사항</title>
 	</head>
 	<body>
+	
+		<% 
+			String userID = null;
+			if(session.getAttribute("userID") != null){
+				userID = (String) session.getAttribute("userID");
+			}
+			
+			ArrayList<QnADTO> qnaList = (ArrayList<QnADTO>) request.getAttribute("qnaList");
+			QnacommentDAO qnaCommentDao = new QnacommentDAO();
+		%>
+	
 	   <!-- aside -->
 	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글을 보여주는 영역 -->
@@ -40,20 +55,20 @@
 	       <!-- 문의사항 list -->
 	       <ul class="list">
               <!-- scroll로 구현 (로그인한 사용자가 작성한 문의만 보여줌) -->
-              <% for(int i = 0; i < 8; i++) { %>
+              <% for(int i = 0; i < qnaList.size(); i++) { %>
                <li class="items">
                    <!-- 문의사항 작성글 정보  -->
-                   <a href="<%= absolutePath_ques %>/questions/read.jsp" class="url">             
+                   <a href="<%= absolutePath_ques %>/questions/read.jsp?QID=<%=qnaList.get(i).getQID() %>" class="url">             
                        <div class="writing">
-                           <span class="title">문의 제목</span>
-                           <span class="writer-info">사용자 닉네임 | 2021.05.23</span>
+                           <span class="title"><%=qnaList.get(i).getTitle() %></span>
+                           <span class="writer-info"><%=qnaList.get(i).getNickName() %> | <%=qnaList.get(i).getQDate() %></span>
                        </div>
                    </a>
                    <!-- comment 횟수 -->
                    <div class="writing-info">
                        <div class="comment">
                            <i class="far fa-comment-dots"></i>
-                           <span class="count">나중에 commentDAO.getAllComment(ID)</span>
+                           <span class="count"><%=qnaCommentDao.getAllComment(qnaList.get(i).getQID()) %></span>
                        </div>
                    </div>
                </li>

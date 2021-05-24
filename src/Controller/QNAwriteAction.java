@@ -115,7 +115,7 @@ public class QNAwriteAction extends HttpServlet {
 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("location.href = 'questionListAction.do");
+				script.println("location.href = 'questionListAction.do'");
 				script.println("</script>");
 
 			}

@@ -42,7 +42,7 @@
                    </a>
                </li>
                <li class="menu fourth">
-                   <a href="<%=url1%>/questions/questionList.jsp">
+                   <a href="<%=url1%>/questionListAction.do">
 	                   <i class="fas fa-chalkboard"></i>
 	                   <span>문의사항</span>
                    </a>
