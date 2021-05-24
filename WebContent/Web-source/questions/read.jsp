@@ -108,7 +108,7 @@
 	           </div>
            </div>
            <!-- 댓글 작성 -->
-           <form class="type-comment" method="POST" action="" >
+           <form class="type-comment" method="POST" action="<%=absolutePath_read %>/QNAcommentWriteAction.do?QID=<%=QID%>" >
                <!-- 나중에 수정할 부분이 있음 / 입력한 값이 없으면 알아서 경고 띄움(추가적인 조건 삽입 필요 X) -->
                <textarea type="text" id="content" name="content" placeholder="댓글을 작성해주세요." required="required">
                </textarea>
