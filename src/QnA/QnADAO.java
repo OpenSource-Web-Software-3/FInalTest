@@ -222,4 +222,17 @@ public class QnADAO {
 		return null; // 데이터가 없는 경우 or DB오류
 	}
 	
+	public int secessionUpdate(String userID) {
+		String SQL = "UPDATE qna SET ID = '탈퇴한 회원입니다', nickName ='탈퇴한 회원입니다' WHERE ID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
 }

@@ -132,6 +132,18 @@ public class CommentDAO {
 			e.printStackTrace();
 		}
 		return list;
-
 	}
+	public int secessionUpdate(String userID) {
+		String SQL = "UPDATE comment SET ID = '탈퇴한 회원입니다', nickName ='탈퇴한 회원입니다' WHERE ID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
+	
 }

@@ -94,6 +94,9 @@ public class FrontController extends HttpServlet {
 		else if (com.contains("/QNAcommentWriteAction.do")) { // QNA 댓글 달기 
 			viewPage = "../QNAcommentWriteAction";
 		} 
+		else if (com.contains("/withdrawalAction.do")) { // 탈퇴
+			viewPage = "../withdrawalAction";
+		} 
 //		else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼
 //			viewPage = "../purchaseAction";
 //		} else if (com.contains("/purchaseListAction.do")) { // 구매내역 목록 이동 시

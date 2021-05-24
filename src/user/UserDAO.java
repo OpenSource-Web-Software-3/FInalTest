@@ -117,4 +117,18 @@ public class UserDAO {
 		}
 		return null; // DB오류
 	}
+	
+	public int secession(String userID) {
+		String SQL = "DELETE FROM user WHERE ID = ?";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // DB오류
+	}
 }
