@@ -40,16 +40,15 @@ public class registerAction extends HttpServlet {
 			script.println("alert('이미 로그인 되어 있습니다.')");
 			script.println("location.href = 'index.do'");
 			script.println("</script>");
-		} 
-		/*
-		else if (request.getParameter("agreeCheck") == null || request.getParameter("agreeCheck").equals("")) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('게인정보동의란을 다시 체크해주세요')");
-			script.println("location.href = 'resister1.do'");
-			script.println("</script>");
 		}
-		*/
+		/*
+		 * else if (request.getParameter("agreeCheck") == null ||
+		 * request.getParameter("agreeCheck").equals("")) { PrintWriter script =
+		 * response.getWriter(); script.println("<script>");
+		 * script.println("alert('게인정보동의란을 다시 체크해주세요')");
+		 * script.println("location.href = 'resister1.do'");
+		 * script.println("</script>"); }
+		 */
 		else {
 			UserDTO user = new UserDTO();
 			user.setID(request.getParameter("ID"));
@@ -58,7 +57,7 @@ public class registerAction extends HttpServlet {
 			user.setName(request.getParameter("name"));
 			user.setPhoneNum(request.getParameter("phoneNum"));
 			user.setEmail(request.getParameter("email"));
-			
+
 			if (user.getID() == null || user.getID().equals("") || user.getPassword() == null
 					|| user.getPassword().equals("") || user.getNickName() == null || user.getNickName().equals("")
 					|| request.getParameter("nickname") == null || request.getParameter("nickname").equals("")
@@ -72,7 +71,7 @@ public class registerAction extends HttpServlet {
 				script.println("</script>");
 				return;
 			}
-			//비밀번호가 일치하는지 확인
+			// 비밀번호가 일치하는지 확인
 //			else if (!request.getParameter("password1").equals(request.getParameter("password2"))) {
 //				PrintWriter script = response.getWriter();
 //				script.println("<script>");
@@ -83,20 +82,39 @@ public class registerAction extends HttpServlet {
 //			}
 			else {
 				UserDAO userDao = new UserDAO();
-				int result = userDao.join(user);
-				if (result == -1) {
+
+				int checkNickName = userDao.checkNickName(user.getNickName());
+				if (checkNickName == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("alert('이미 존재하는 아이디 입니다.')");
+					script.println("alert('중복되는 닉네임입니다.')");
 					script.println("history.back()");
 					script.println("</script>");
-				} else { // 회원가입 성공
+					return;
+				}
+				else if (checkNickName == -2) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("alert('회원가입하였습니다')");
-					script.println("location.href = 'index.do'");
+					script.println("alert('DB오류')");
+					script.println("history.back()");
 					script.println("</script>");
-
+					return;
+				}
+				else {
+					int result = userDao.join(user);
+					if (result == -1) {
+						PrintWriter script = response.getWriter();
+						script.println("<script>");
+						script.println("alert('이미 존재하는 아이디 입니다.')");
+						script.println("history.back()");
+						script.println("</script>");
+					} else { // 회원가입 성공
+						PrintWriter script = response.getWriter();
+						script.println("<script>");
+						script.println("alert('회원가입하였습니다')");
+						script.println("location.href = 'index.do'");
+						script.println("</script>");
+					}
 				}
 			}
 		}

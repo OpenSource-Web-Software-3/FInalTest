@@ -68,6 +68,22 @@ public class UserDAO {
 		return -1; // DB오류
 
 	}
+	
+	public int checkNickName(String nickName) {
+		String SQL = "SELECT nickName FROM user WHERE nickName = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, nickName);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) return -1; //중복
+			else return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -2; // DB오류
+		
+	}
 
 	public UserDTO getUser(String userID) {
 		String SQL = "SELECT * FROM user WHERE ID = ?";
