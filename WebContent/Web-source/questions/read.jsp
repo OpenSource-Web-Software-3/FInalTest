@@ -33,10 +33,6 @@
  			QnADAO qnADao = new QnADAO();
  			QnADTO qnaDto = qnADao.getQnA(QID);
 			
- 			String category = null;
-			if(request.getParameter("category") != null) category = request.getParameter("category"); 
-			
-			
 			if(QID <= 0 || userID == null){
 				PrintWriter script = response.getWriter();
  				script.println("<script>");

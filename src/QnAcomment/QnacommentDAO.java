@@ -43,7 +43,7 @@ public class QnacommentDAO {
 	}
 
 	public int getNext(int QID) {
-		String SQL = "SELECT QcommentID FROM qnacomment WHERE QID = ? ORDER BY commentID DESC";
+		String SQL = "SELECT QcommentID FROM qnacomment WHERE QID = ? ORDER BY QcommentID DESC";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

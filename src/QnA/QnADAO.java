@@ -193,4 +193,33 @@ public class QnADAO {
 		return null; // 데이터가 없는 경우 or DB오류
 	}
 	
+	// Communication 에 해당하는 모든 데이터 가져오기 ADMIN
+	public ArrayList<QnADTO> getCommunicationList_ADMIN() {
+		ArrayList<QnADTO> list = new ArrayList<QnADTO>();
+		
+		String SQL = "SELECT * FROM qna WHERE available = 1 ORDER BY QID DESC";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				QnADTO qnADTO = new QnADTO();
+				qnADTO.setQID(rs.getInt(1));
+				qnADTO.setID(rs.getString(2));
+				qnADTO.setNickName(rs.getString(3));
+				qnADTO.setTitle(rs.getString(4));
+				qnADTO.setContent(rs.getString(5));
+				qnADTO.setQDate(rs.getString(6));
+				qnADTO.setAnswer(rs.getString(7));
+				qnADTO.setAvailable(rs.getInt(8));
+				list.add(qnADTO);
+				
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null; // 데이터가 없는 경우 or DB오류
+	}
+	
 }

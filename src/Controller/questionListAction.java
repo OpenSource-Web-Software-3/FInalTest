@@ -62,7 +62,12 @@ public class questionListAction extends HttpServlet {
 		QnADAO qnaDao = new QnADAO();
 		
 		ArrayList<QnADTO> qnaList = new ArrayList<QnADTO>();
-		qnaList = qnaDao.getCommunicationList(userID);
+		if (userID.equals("LINS")) { //관리자로 로그인 했을 시 모든 QnA 글을 보여주기
+			qnaList = qnaDao.getCommunicationList_ADMIN();
+		}
+		else {
+			qnaList = qnaDao.getCommunicationList(userID);
+		}
 		
 		request.setAttribute("qnaList", qnaList);
 
