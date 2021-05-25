@@ -1,37 +1,76 @@
 /*AJAX myPage*/
+let identiSection = document.querySelector('.change .identification');
+var passwordView = document.querySelector('.change .password');
+var emailView = document.querySelector('.change .email');
 
-var passwordView = document.querySelector('.password');
-var emailView = document.querySelector('.email');
+let mypagePassword = document.querySelector('.personal-info .password');
+let mypageEmail = document.querySelector('.personal-info .email');
 
 var request = new XMLHttpRequest();
 
 //비밀번호 인증 
 $(document).ready(function() {
+	$(".personal-info .password").click(function() {
+		$(".change .check").click(function() {
 
-	$(".check").click(function() {
+			var password = $("#currnet-password").val();
 
-		var password = $("#currnet-password").val();
+			$.ajax({
+				url: "myPage_checkPasswordAction.do",
+				type: "POST",
+				data: {
+					password: password,
+				},
+				success: function(result) {
+					if (result == 1) { // 비밀번호 일치
+						identiSection.style.display = "none";
+						passwordView.style.display = "flex";
+						emailView.style.display = "none";
+					}
+					else if (result == 0) { // 비밀번호 불일치
+						alert('비밀번호가 일치하지 않습니다.');
+					}
+					else if (result == -1) {
+						alert('존재하는 아이디가 없습니다.');
+					}
+					else { // -2
+						alert('DB오류');
+					}
+				}
+			});
+		});
+	});	
+});
 
-		$.ajax({
-			url: "myPage_checkPasswordAction.do",
-			type: "POST",
-			data: {
-				password: password,
-			},
-			success: function(result) {
-				if (result == 1) { // 비밀번호 일치
-					passwordView.style.display = "flex"; // 여기에 <비밀번호 변경 팝업> or <이메일 변경 팝업> 보이게 하면 될 것같습니다.
+$(document).ready(function(){
+	$(".personal-info .email").click(function() {
+		$(".change .check").click(function() {
+
+			var password = $("#currnet-password").val();
+
+			$.ajax({
+				url: "myPage_checkPasswordAction.do",
+				type: "POST",
+				data: {
+					password: password,
+				},
+				success: function(result) {
+					if (result == 1) { // 비밀번호 일치
+						identiSection.style.display = "none";
+						emailView.style.display = "flex";
+						passwordView.style.display = "none";
+					}
+					else if (result == 0) { // 비밀번호 불일치
+						alert('비밀번호가 일치하지 않습니다.');
+					}
+					else if (result == -1) {
+						alert('존재하는 아이디가 없습니다.');
+					}
+					else { // -2
+						alert('DB오류');
+					}
 				}
-				else if (result == 0) { // 비밀번호 불일치
-					alert('비밀번호가 일치하지 않습니다.');
-				}
-				else if (result == -1) {
-					alert('존재하는 아이디가 없습니다.');
-				}
-				else { // -2
-					alert('DB오류');
-				}
-			}
+			});
 		});
 	});
 });
@@ -59,6 +98,7 @@ $(document).ready(function() {
 				if (result == 1) {
 					alert('비밃번호가 변경 되었습니다. 다시 로그인 해주세요');
 					location.href = "/index.do";
+					passwordView.style.display = "none";
 				}
 				else if (result == -1) {
 					alert("DB오류");
@@ -82,7 +122,7 @@ $(document).ready(function() {
 			success: function(result) {
 				if (result == 1) {
 					alert('이메일이 변경되었습니다'); 
-					//여기에 이메일 변경 팝업 닫아주시면 될 것같습니다.
+					emailView.style.display = "none";
 				}
 				else if (result == -1) {
 					alert("DB오류");
