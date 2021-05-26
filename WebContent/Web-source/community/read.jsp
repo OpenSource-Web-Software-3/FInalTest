@@ -121,7 +121,34 @@
 	           </div>
 	           <!-- 게시글 내용 -->
 	           <div class="content">
-	              <%=commu.getContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
+	               <div class="user-content">
+		               <!-- 사용자가 작성한 내용 -->
+		              <%=commu.getContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
+	               </div>
+	              <!-- 사용자가 업로드한 files -->
+	              <div class="download-area">
+		               <ul class="images">
+	                       <!-- 사용자가 업로드한 이미지의 개수만큼 보이도록 설정 -->
+	                        <%for(int i = 0; i < 13; i++) { %>
+	                            <li class="user-img">
+	                                <a href="#image-path 작성" download>
+	                                    <img src="#image-path" />
+	                                </a>
+	                            </li>
+	                        <% }  %>                       
+	                  </ul>
+	                  <ul class="documents">
+	                       <!-- 사용자가 업로드한 문서 개수만큼 보이도록 설정 -->
+	                       <%for(int i = 0; i < 3; i++) { %>
+	                            <li class="user-doc">
+	                                <a href="#doc-path 작성" download>
+	                                   <span>`문서이름.확장자 작성(전체 path를 보여주는 것은 불필요하다고 생각)`</span> 
+	                                   <i class="fas fa-download"></i>
+	                                 </a>
+	                            </li>
+	                        <% }  %>    
+	                  </ul>
+	              </div>
 	           </div>
 	           
 	           
@@ -143,7 +170,7 @@
            <!-- 댓글 작성 -->
            <form class="type-comment" method="POST" action="<%=absolutePath_read %>/commentWriteAction.do?category=<%=category%>&writingID=<%=writingID %>" >
                <!-- 나중에 수정할 부분이 있음 / 입력한 값이 없으면 알아서 경고 띄움(추가적인 조건 삽입 필요 X) -->
-               <textarea type="text" id="content" name="content" placeholder="댓글을 작성해주세요." required="required">
+               <textarea type="text" id="comment" name="content" placeholder="댓글을 작성해주세요." required="required">
                </textarea>
                <button class="submit">
                    <i class="far fa-paper-plane"></i>
