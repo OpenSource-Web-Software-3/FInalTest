@@ -1,7 +1,12 @@
 @charset "EUC-KR";
+.read {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 
 .read .test{
-    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     height: 93%;
     overflow-y: scroll;
 }
@@ -68,7 +73,7 @@
 }
 
 .read .title-part .wrap .scrap.active button {
-	color: var(--pastel-yellow);
+    color: var(--pastel-yellow);
 }
 
 .read .title-part .wrap .btn-wrap {
@@ -89,6 +94,15 @@
 .read .test > .content {
     width: 100%;
     min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+
+.user-content {
+    width: 100%;
+    height: fit-content;
 }
 
 .read .comment-area {
@@ -134,14 +148,76 @@
     font-size: 15px;
 }
 
-.read .type-comment {
-    width: 72%;
+
+.read .download-area,
+.read .download-area > ul {
+    width: 100%;
     height: fit-content;
-    position: fixed;
-    bottom: 45px;
+    margin: 0px;
+    overflow-x: hidden;
 }
 
-.read .type-comment #content {
+.read .download-area ul.images {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin-bottom: 10px;
+}
+
+.read .download-area ul.images::-webkit-scrollbar {
+    display: none;
+}
+
+.read .download-area .user-img {
+    min-width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    border: 1px solid black;
+    margin-right: 10px;
+}
+
+.read .documents .user-doc {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 13px;
+    background-color: var(--current-aside);
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.read .documents .user-doc > a {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.read .documents .user-doc > a > span {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+
+.read .documents .user-doc > a > i {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.fa-download:before {
+    content: "\f019";
+    margin-left: 10px;
+    color: var(--current-basic-font);
+}
+
+.read .type-comment {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+}
+
+.read .type-comment #comment {
     width: -webkit-fill-available;
     height: fit-content;
     resize: none;
@@ -151,21 +227,22 @@
     border: 1px solid var(--current-basic-font);
     font-family: 'Noto Sans KR', sans-serif;
 }
-.read .type-comment #content::-webkit-scrollbar {
+.read .type-comment #comment::-webkit-scrollbar {
     display: none;
 }
-.read .type-comment #content::placeholder {
+.read .type-comment #comment::placeholder {
     color: var(--current-basic-font);
 }
 
-.read .type-comment #content:focus {
+.read .type-comment #comment:focus {
     outline: none;
 }
 
 .read .type-comment .submit {
+    height: 100%;
     position: absolute;
-    right: 9px;
-    top: 14px;
+    right: 10px;
+    top: -2px;
     font-size: 20px;
     color: var(--currnet-basic-font);
     background-color: #ffffff00;

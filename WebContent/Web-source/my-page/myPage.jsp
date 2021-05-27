@@ -11,6 +11,8 @@
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath %>/css/mypage-style.css" />
         <link rel="stylesheet" href="<%= absolutePath %>/css/aside-style.css" />
+        <!-- js -->
+        <script src="<%= absolutePath%>/js/popUp.js" defer></script>
 		<title>마이 페이지</title>
 	</head>
 	<body>
@@ -90,7 +92,9 @@
 <script>
 	const changeSection = document.querySelector('.change');
     const withdrawal = document.querySelector('.change .withdrawal'); 
-    const identification = document.querySelector('.change .identification');
+    const identification = document.querySelector('.change div.identification');
+    const passwordSection = document.querySelector('.change div.password');
+    const emailSection = document.querySelector('.change div.email');
     
     /* 본인인증 & 변경 관련 팝업창 띄움 */	
 	function CreateChangePop() {
@@ -100,7 +104,10 @@
 	}
 	/* 본인인증 & 변경 관련 팝업창 닫음 */
 	function DeleteCheckPop() {
-	    changeSection.style.display = "none";   
+	    changeSection.style.display = "none";
+	    passwordSection.style.display = "none";
+	    emailSection.style.display = "none";
+	    withdrawal.style.display = "none";
 	}
 	
 	function CreatewithdrawalPop() {
