@@ -113,10 +113,12 @@
 	                       </li>
 	                   </ul>
 	                   <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
+	                   <%if(userID.equals(commu.getID())) {%>
 	                   <div class="btn-wrap">
 	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp?writingID=<%=writingID%>'">수정</button>
 	                       <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
 	                   </div>
+	                   <%} %>
 	               </div>
 	           </div>
 	           <!-- 게시글 내용 -->
