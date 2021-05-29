@@ -131,8 +131,8 @@
 	                       <!-- 사용자가 업로드한 이미지의 개수만큼 보이도록 설정 -->
 	                        <%for(int i = 0; i < 13; i++) { %>
 	                            <li class="user-img">
-	                                <a href="#image-path 작성" download>
-	                                    <img src="#image-path" />
+	                                <a href="<%= absolutePath_read%>/20210524_171000.png" download>
+	                                    <img src="<%= absolutePath_read%>/20210524_171000.png" style="width: 100%; height: 100%;"/>
 	                                </a>
 	                            </li>
 	                        <% }  %>                       
