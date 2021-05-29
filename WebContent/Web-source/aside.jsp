@@ -40,7 +40,7 @@
 	    </ul>
 	    <!-- 스케줄러 -->
 	    <ul class="subtitle" class="scheduler">
-	        <a href="<%=absolutePath_aside%>/scheduler.jsp">스케줄러</a>
+	        <a href="<%=absolutePath_aside%>/calendar/calendar.jsp">스케줄러</a>
 	    </ul>
 	    <!-- 문의사항 -->
 	    <ul class="subtitle" class="questions">
