@@ -4,6 +4,7 @@
 <%@page import="communication.CommunicationDAO"%>
 <%@page import="comment.CommentDTO"%>
 <%@page import="comment.CommentDAO"%>
+<%@page import="image.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -49,20 +50,22 @@
 				communicationDAO.increaseView(writingID); //조회수 증가
 			}
 			
-			//로그인한 아이디 스크랩 체크 
+			/*로그인한 아이디 스크랩 체크*/ 
 			CommuscrapDAO commuscrapDao = new CommuscrapDAO();
-			
 			boolean checkScrap;
-			if(userID != null)
-				checkScrap = commuscrapDao.checkCommuScrap(userID, writingID);
-			else  
-				checkScrap = false; //로그인 되어 있지 않다면 false
+			if(userID != null) checkScrap = commuscrapDao.checkCommuScrap(userID, writingID);
+			else checkScrap = false; //로그인 되어 있지 않다면 false
 				
 			/* 댓글 */
 			CommentDAO commentDao = new CommentDAO();
 			ArrayList<CommentDTO> commentList = new ArrayList<CommentDTO>();
 			
 			commentList = commentDao.getCommentList(writingID);
+			
+			/*file 가져오기*/
+			ImageDAO imageDao = new ImageDAO();
+			ImageDTO imageFile = imageDao.getFile(commu.getWritingID(), "file");
+			ImageDTO documentFile = imageDao.getFile(commu.getWritingID(), "document");
 		%>
 		<script type="text/javascript">
 		$(document).ready(function() {
@@ -113,10 +116,12 @@
 	                       </li>
 	                   </ul>
 	                   <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
+	                   <%if(userID.equals(commu.getID())) {%>
 	                   <div class="btn-wrap">
 	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp?writingID=<%=writingID%>'">수정</button>
 	                       <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
 	                   </div>
+	                   <%} %>
 	               </div>
 	           </div>
 	           <!-- 게시글 내용 -->
@@ -125,29 +130,30 @@
 		               <!-- 사용자가 작성한 내용 -->
 		              <%=commu.getContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
 	               </div>
+	               
+	          
 	              <!-- 사용자가 업로드한 files -->
 	              <div class="download-area">
-		               <ul class="images">
-	                       <!-- 사용자가 업로드한 이미지의 개수만큼 보이도록 설정 -->
-	                        <%for(int i = 0; i < 13; i++) { %>
+	                  <%if(imageFile != null){ %>
+			               <ul class="images">
 	                            <li class="user-img">
-	                                <a href="<%= absolutePath_read%>/20210524_171000.png" download>
-	                                    <img src="<%= absolutePath_read%>/20210524_171000.png" style="width: 100%; height: 100%;"/>
+	                               <a href="${pageContext.request.contextPath}/file/<%=imageFile.getFileRealName() %>" download>
+	                                    <img src="${pageContext.request.contextPath}/file/<%=imageFile.getFileRealName() %>" style="width: 100%; height: 100%;"/>
 	                                </a>
 	                            </li>
-	                        <% }  %>                       
-	                  </ul>
-	                  <ul class="documents">
-	                       <!-- 사용자가 업로드한 문서 개수만큼 보이도록 설정 -->
-	                       <%for(int i = 0; i < 3; i++) { %>
+		                  </ul>
+                	  <%} %>
+                	  
+                	  <%if(documentFile != null){ %>
+		                  <ul class="documents">
 	                            <li class="user-doc">
-	                                <a href="#doc-path 작성" download>
-	                                   <span>`문서이름.확장자 작성(전체 path를 보여주는 것은 불필요하다고 생각)`</span> 
+	                                <a href="${pageContext.request.contextPath}/file/<%=documentFile.getFileRealName() %>" download>
+	                                   <span><%=documentFile.getFileRealName() %></span> 
 	                                   <i class="fas fa-download"></i>
 	                                 </a>
 	                            </li>
-	                        <% }  %>    
-	                  </ul>
+		                  </ul>
+	                  <%} %>
 	              </div>
 	           </div>
 	           

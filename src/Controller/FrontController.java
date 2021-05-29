@@ -106,19 +106,6 @@ public class FrontController extends HttpServlet {
 		else if (com.contains("/myPage_changeEmailAction.do")) { //마이페이지 이메일 변경
 			viewPage = "../../myPage_changeEmailAction";
 		}
-//		else if (com.contains("/purchaseAction.do")) { // 구매하기 버튼
-//			viewPage = "../purchaseAction";
-//		} else if (com.contains("/purchaseListAction.do")) { // 구매내역 목록 이동 시
-//			viewPage = "../purchaseListAction";
-//		} else if (com.contains("/shopCartAction.do")) { // 장바구니 목록 보여주기
-//			viewPage = "../shopCartAction";
-//		} else if (com.contains("/addToCartAction.do")) { // 장바구니 추가 버튼 클릭시
-//			viewPage = "../addToCartAction";
-//		} else if (com.contains("/insertItemAction.do")) { // 상품 추가 시
-//			viewPage = "../insertItemAction";
-//		} else if (com.contains("/getItemList_to_SubCateAction.do")) { 
-//			viewPage = "../getItemList_to_SubCateAction";
-//		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response); // RequestDispatcher 현재 req와 res객체를 공유한다.

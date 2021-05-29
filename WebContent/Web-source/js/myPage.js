@@ -97,7 +97,7 @@ $(document).ready(function() {
 			success: function(result) {
 				if (result == 1) {
 					alert('비밃번호가 변경 되었습니다. 다시 로그인 해주세요');
-					location.href = "/index.do";
+					location.href = "../index.do";
 					passwordView.style.display = "none";
 				}
 				else if (result == -1) {
