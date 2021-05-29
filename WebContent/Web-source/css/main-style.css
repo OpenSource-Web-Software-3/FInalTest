@@ -25,6 +25,8 @@
     --current-basic-font: var(--dark-basic-font);
     --current-btn: var(--pastel-skyblue);
     --current-btn-hover: var(--pastel-blue);
+    
+    --change-mode: dark;
 }
 
 html, body {
@@ -191,6 +193,14 @@ button:hover {
     background: var(--current-btn-hover);
 }
 
+.login .login-form > div {
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
 .login .register,
 .login .find {
     font-size: 17px;
@@ -206,4 +216,17 @@ button:hover {
 .logout-form .comment {
     font-size: 30px;
     font-weight: 500;
+}
+
+.change-mode {
+    width: 100%;
+    height: fit-content;
+    margin-top: 55px;
+    color: var(--current-basic-font);
+    background: none;
+    font-weight: 100;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    border: 1px solid var(--current-basic-font);
+    padding: 5px 10px;
 }
