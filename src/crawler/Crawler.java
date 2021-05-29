@@ -8,6 +8,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import com.sun.scenario.effect.LinearConvolveCoreEffect;
+
 import license.LicenseDTO;
 
 public class Crawler {
@@ -53,12 +55,14 @@ public class Crawler {
 			license1.setLicenseType(elements.get(i).child(0).text() + " 필기");
 			license1.setLicenseDate(elements.get(i).child(2).text().trim());
 			license1.setLicenseTime("no notice"); // 시간 안나와 있음 -> 문자로
+			license1.setApplyPeriod(elements.get(i).child(1).text().trim()); // 시간 안나와 있음 -> 문자로
 			license1.setLicenseURL(this.URL);
 
 			license2.setLicenseName("정보처리기사");
 			license2.setLicenseType(elements.get(i).child(0).text() + " 실기");
 			license2.setLicenseDate(elements.get(i).child(5).text().trim());
 			license2.setLicenseTime("no notice"); // 시간 안나와 있음 -> 문자로
+			license2.setApplyPeriod(elements.get(i).child(4).text().trim()); // 시간 안나와 있음 -> 문자로
 			license2.setLicenseURL(this.URL);
 
 			list.add(license1);
@@ -139,6 +143,7 @@ public class Crawler {
 			license.setLicenseType(elements.get(i).child(0).text()); // n회차 저장
 			license.setLicenseDate(elements.get(i).child(1).text().substring(0, 10));
 			license.setLicenseTime(elements.get(i).child(1).text().substring(18, 23)); // 시간 안나와 있음 -> 일단 해당 날짜로 대체
+			license.setApplyPeriod(elements.get(i).child(3).text().substring(7, 17)+" ~ "+elements.get(i).child(3).text().substring(29, 40));
 			license.setLicenseURL(this.URL);
 			list.add(license);
 		}
@@ -165,6 +170,7 @@ public class Crawler {
 		// 12).trim()+"-"+elements.get(0).child(1).text().substring(26,38).trim()
 		license.setLicenseDate(elements.get(2).child(1).text().substring(0, 12));
 		license.setLicenseTime(elements.get(2).child(1).text().substring(0, 12)); // 시간 안나와 있음 -> 일단 해당 날짜로 대체
+		license.setApplyPeriod(elements.get(0).child(1).text().substring(0, 12).trim()+" ~ "+elements.get(0).child(1).text().substring(26,38).trim());
 		license.setLicenseURL(this.URL);
 		list.add(license);
 

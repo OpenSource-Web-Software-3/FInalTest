@@ -24,13 +24,13 @@
            <!-- 서비스 선택 부분 -->
            <ul class="service-list">
                <li class="menu first">
-                   <a href="<%=url1%>/licenseListAction.do?licenseName=기술사">
+                   <a href="<%=url1%>/licenseListAction.do?licenseName=정보처리기사">
 	                   <i class="far fa-file-alt"></i>
 	                   <span>시험일정</span>
                    </a>
                </li>
                <li class="menu second">
-                   <a href="<%=url1%>/commuListAction.do?category=기술사">
+                   <a href="<%=url1%>/commuListAction.do?category=정보처리기사">
 	                   <i class="fas fa-users"></i>
 	                   <span>커뮤니티</span>
                    </a>
