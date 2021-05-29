@@ -94,7 +94,7 @@ public class LicenseDAO {
 				licenseDto.setLicenseDate(rs.getString(4));
 				licenseDto.setLicenseTime(rs.getString(5));
 				licenseDto.setLicenseURL(rs.getString(6));
-				licenseDto.setScrapCount(rs.getInt(7));
+				licenseDto.setApplyPeriod(rs.getString(7));
 				return licenseDto;
 			}
 		} catch (Exception e) {
@@ -119,7 +119,7 @@ public class LicenseDAO {
 				licenseDto.setLicenseDate(rs.getString(4));
 				licenseDto.setLicenseTime(rs.getString(5));
 				licenseDto.setLicenseURL(rs.getString(6));
-				licenseDto.setScrapCount(rs.getInt(7));
+				licenseDto.setApplyPeriod(rs.getString(7));
 				return licenseDto;
 			}
 		} catch (Exception e) {
@@ -146,7 +146,7 @@ public class LicenseDAO {
 				licenseDto.setLicenseDate(rs.getString(4));
 				licenseDto.setLicenseTime(rs.getString(5));
 				licenseDto.setLicenseURL(rs.getString(6));
-				licenseDto.setScrapCount(rs.getInt(7));
+				licenseDto.setApplyPeriod(rs.getString(7));
 				list.add(licenseDto);
 			}
 			return list;
@@ -191,7 +191,7 @@ public class LicenseDAO {
 				pstmt.setString(4, license.getLicenseDate());
 				pstmt.setString(5, license.getLicenseTime());
 				pstmt.setString(6, license.getLicenseURL());
-				pstmt.setInt(7, license.getScrapCount());
+				pstmt.setString(7, license.getApplyPeriod());
 				pstmt.executeUpdate();
 			}
 
@@ -206,7 +206,7 @@ public class LicenseDAO {
 	
 	//크롤링해온 데이터를 DB에 update -- 아직 다 구현안함
 	public int updateCrawlingData(ArrayList<LicenseDTO> licenseList) {
-		String SQL = "UPDATE license SET licenseName = ?, licenseType = ?, licenseDate = ?, licenseTime = ?, licenseURL = ?, scrapCount = ? WHERE licenseID = ?";
+		String SQL = "UPDATE license SET licenseName = ?, licenseType = ?, licenseDate = ?, licenseTime = ?, licenseURL = ?, applyPeriod = ? WHERE licenseID = ?";
 		
 		try {
 			for (LicenseDTO license : licenseList) {
@@ -216,7 +216,7 @@ public class LicenseDAO {
 				pstmt.setString(3, license.getLicenseDate());
 				pstmt.setString(4, license.getLicenseTime());
 				pstmt.setString(5, license.getLicenseURL());
-				pstmt.setInt(6, license.getScrapCount());
+				pstmt.setString(6, license.getApplyPeriod());
 				if (getLicenseID(license.getLicenseID()) == 0) {
 					
 				}

@@ -19,7 +19,7 @@ public class Qnet {
 
 		try {
 			// 1. 수집 대상 URL
-			String URL = "http://www.q-net.or.kr/crf021.do?id=crf02101s03&IMPL_YY=2021&SERIES_CD=03";
+			String URL = "https://www.q-net.or.kr/crf005.do?id=crf00503s02&gSite=Q&gId=&jmCd=1320&jmInfoDivCcd=B0&jmNm=%C1%A4%BA%B8%C3%B3%B8%AE%B1%E2%BB%E7";
 
 			// 2. Connection 생성
 			Connection conn = Jsoup.connect(URL);
@@ -28,8 +28,7 @@ public class Qnet {
 
 			Document doc = conn.get();
 
-			Elements elements = doc.select(".webCont tbody tr");
-
+			Elements elements = doc.select(".tdCenter tbody tr");
 			// 4. HTML 출력
 			for (int i = 0; i < elements.size(); i++) {
 				for (int j = 0; j < elements.get(i).children().size(); j++) {

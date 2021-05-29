@@ -46,7 +46,7 @@
 		           <a href="" class="url">	           
 		               <div class="text-area">
 		                   <span class="date"><%=licenseList.get(i).getLicenseDate() %></span>
-		                   <span class="time"><%=licenseList.get(i).getLicenseTime() %></span>
+		                   <span class="time"><%=licenseList.get(i).getApplyPeriod() %></span>
 		               </div>
 		           </a>
 		           <!-- 스크랩 버튼 -->
