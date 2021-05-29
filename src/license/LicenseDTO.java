@@ -7,7 +7,15 @@ public class LicenseDTO {
 	private String licenseDate;
 	private String licenseTime;
 	private String licenseURL;
-	private int scrapCount;
+	private String applyPeriod;
+
+	public String getApplyPeriod() {
+		return applyPeriod;
+	}
+
+	public void setApplyPeriod(String applyPeriod) {
+		this.applyPeriod = applyPeriod;
+	}
 
 	public String getLicenseType() {
 		return licenseType;
@@ -15,14 +23,6 @@ public class LicenseDTO {
 
 	public void setLicenseType(String licenseType) {
 		this.licenseType = licenseType;
-	}
-
-	public int getScrapCount() {
-		return scrapCount;
-	}
-
-	public void setScrapCount(int scrapCount) {
-		this.scrapCount = scrapCount;
 	}
 
 	public int getLicenseID() {

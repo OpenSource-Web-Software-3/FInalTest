@@ -39,6 +39,7 @@ public class TOEIC {
 			System.out.println("===========================================");
 			System.out.println(elements.get(0).child(1).text().substring(0, 10));
 			System.out.println(elements.get(0).child(1).text().substring(18, 23));
+			System.out.println(elements.get(0).child(3).text().substring(7, 17)+"~"+elements.get(0).child(3).text().substring(29, 40));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
