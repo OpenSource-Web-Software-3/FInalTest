@@ -36,6 +36,40 @@ public class Crawler {
 	}
 
 	// 크롤링한 데이터를 list에 맞게 저장
+	public ArrayList<LicenseDTO> getQnetList() throws IOException {
+		ArrayList<LicenseDTO> list = new ArrayList<LicenseDTO>();
+
+		// 2. Connection 생성
+		Connection conn = Jsoup.connect(this.URL);
+		// 3. HTML 파싱.
+		Document doc = conn.get(); // conn.post();
+		Elements elements = doc.select(this.selectHTML);
+
+		for (int i = 0; i < elements.size(); i++) {
+			LicenseDTO license1 = new LicenseDTO(); // qnet의 필기시험을 담을 항목
+			LicenseDTO license2 = new LicenseDTO(); // qnet의 실기시험을 담을 항목
+
+			license1.setLicenseName("정보처리기사");
+			license1.setLicenseType(elements.get(i).child(0).text() + " 필기");
+			license1.setLicenseDate(elements.get(i).child(2).text().trim());
+			license1.setLicenseTime("no notice"); // 시간 안나와 있음 -> 문자로
+			license1.setLicenseURL(this.URL);
+
+			license2.setLicenseName("정보처리기사");
+			license2.setLicenseType(elements.get(i).child(0).text() + " 실기");
+			license2.setLicenseDate(elements.get(i).child(5).text().trim());
+			license2.setLicenseTime("no notice"); // 시간 안나와 있음 -> 문자로
+			license2.setLicenseURL(this.URL);
+
+			list.add(license1);
+			list.add(license2);
+
+		}
+
+		return list;
+	}
+
+	// 크롤링한 데이터를 list에 맞게 저장
 	public ArrayList<LicenseDTO> getQnetList(String SERIES_CD) throws IOException {
 		ArrayList<LicenseDTO> list = new ArrayList<LicenseDTO>();
 
@@ -108,6 +142,31 @@ public class Crawler {
 			license.setLicenseURL(this.URL);
 			list.add(license);
 		}
+
+		return list;
+	}
+
+	// 크롤링한 데이터를 list에 맞게 저장
+	public ArrayList<LicenseDTO> getTOPCITList() throws IOException {
+		ArrayList<LicenseDTO> list = new ArrayList<LicenseDTO>();
+
+		// 2. Connection 생성
+		Connection conn = Jsoup.connect(this.URL);
+		// 3. HTML 파싱.
+		Document doc = conn.get(); // conn.post();
+		Elements elements = doc.select(this.selectHTML);
+
+		LicenseDTO license = new LicenseDTO(); // qnet의 필기시험을 담을 항목
+
+		license.setLicenseName("TOPCIT");
+		license.setLicenseType("1회차"); // n회차 저장
+		// 이거 원서접수기간
+		// elements.get(0).child(1).text().substring(0,
+		// 12).trim()+"-"+elements.get(0).child(1).text().substring(26,38).trim()
+		license.setLicenseDate(elements.get(2).child(1).text().substring(0, 12));
+		license.setLicenseTime(elements.get(2).child(1).text().substring(0, 12)); // 시간 안나와 있음 -> 일단 해당 날짜로 대체
+		license.setLicenseURL(this.URL);
+		list.add(license);
 
 		return list;
 	}
