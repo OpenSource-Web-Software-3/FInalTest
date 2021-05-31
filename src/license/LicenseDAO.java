@@ -188,10 +188,10 @@ public class LicenseDAO {
 				pstmt.setInt(1, getNext());
 				pstmt.setString(2, license.getLicenseName());
 				pstmt.setString(3, license.getLicenseType());
-				pstmt.setString(4, license.getLicenseDate());
+				pstmt.setString(4, license.getLicenseDate().replaceAll(" ", ""));
 				pstmt.setString(5, license.getLicenseTime());
 				pstmt.setString(6, license.getLicenseURL());
-				pstmt.setString(7, license.getApplyPeriod());
+				pstmt.setString(7, license.getApplyPeriod().replaceAll(" ", ""));
 				pstmt.executeUpdate();
 			}
 

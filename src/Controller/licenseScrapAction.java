@@ -32,7 +32,6 @@ public class licenseScrapAction extends HttpServlet {
 			userID = (String) session.getAttribute("userID");
 		}
 		if (userID == null) {
-			System.out.println("여기 들어오나?");
 			response.getWriter().write("-1"); //로그인안되어 있음
 			return;
 		} else {
