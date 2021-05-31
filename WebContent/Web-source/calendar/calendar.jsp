@@ -14,6 +14,7 @@
 	<body>
 	   <%@include file="../aside.jsp" %>
 	   <section class="calendar set-margin">
+	       <!-- 실제 달력 구현은 calendar-main.js 부분에 위치함 -->
 		   <div id="calendarForm"></div>
 	   </section>
 	</body>
