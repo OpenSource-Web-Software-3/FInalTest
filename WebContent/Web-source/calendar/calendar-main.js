@@ -2,6 +2,7 @@
   calendarMaker($("#calendarForm"), new Date());
 })();
 
+// 달력을 생성하는 function
 var nowDate = new Date();
 function calendarMaker(target, date) {
   if (date == null || date == undefined) {
@@ -30,10 +31,10 @@ function calendarMaker(target, date) {
   }
 
   //날짜 채우기
-  for (i = 1; i <= thisLastDay.getDate(); i++) {
+  for (let i = 1; i <= thisLastDay.getDate(); i++) {
       if (cnt % 7 == 0) { tag += "<tr class='cal_date'>"; }
 
-      tag += "<td>" + i + "</td>";
+      tag += `<td class="year${year} month${month} date${i}">` + i + "</td>";
       cnt++;
       if (cnt % 7 == 0) {
           tag += "</tr>";
@@ -45,7 +46,7 @@ function calendarMaker(target, date) {
 
   function assembly(year, month) {
       var calendar_html_code =
-          "<table class='custom_calendar_table'>" +
+          "<table class='custom_calendar_table' onchange='test()'>" +
 	          "<colgroup>" +
 		          "<col style='width:81px'/>" +
 		          "<col style='width:81px'/>" +
@@ -57,7 +58,7 @@ function calendarMaker(target, date) {
 	          "</colgroup>" +
 	          "<thead class='date'>" +
 		          "<td><button type='button' class='prev'><</button></td>" +
-		          "<td colspan='5'><p><span>" + year + "</span>년 <span>" + month + "</span>월</p></td>" +
+		          "<td colspan='5'><p><span class>" + year + "</span>년 <span>" + month + "</span>월</p></td>" +
 		          "<td><button type='button' class='next'>></button></td>" +
 	          "</thead>" +
 	          "<tbody id='custom_set_date'>" +
@@ -78,18 +79,30 @@ function calendarMaker(target, date) {
   function calMoveEvtFn() {
       //전달 클릭
       $(".custom_calendar_table").on("click", ".prev", function () {
-          nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate());
+          nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth()-1, nowDate.getDate());
           calendarMaker($(target), nowDate);
       });
       //다음날 클릭
       $(".custom_calendar_table").on("click", ".next", function () {
-          nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, nowDate.getDate());
+          nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth()+1, nowDate.getDate());
           calendarMaker($(target), nowDate);
       });
       //일자 선택 클릭
-      $(".custom_calendar_table").on("click", "td", function () {
+      /*$(".custom_calendar_table").on("click", "td", function () {
           $(".custom_calendar_table .select_day").removeClass("select_day");
           $(this).removeClass("select_day").addClass("select_day");
-      });
+      });*/
   }
+  /* 일정관리와 관련된 부분 */
+//각 숫자는 시험일정이 있는 날짜를 의미 (test 요소)
+  const selectDate = document.querySelector(`.year2021.month${month}.date1`);
+// 가져온 스크랩 일정중에 해당날짜에 시험이 치뤄지는 자격증 이름을 저장
+  let licenseName = "TOEIC";
+  
+// 해당 일정이 단일 기간인 경우 -> class name에 single-date add
+  selectDate.classList.add("single-date");
+  
+// 해당 일정의 td에 
+  selectDate.innerHTML += `<div>${licenseName}</div>`;
 }
+
