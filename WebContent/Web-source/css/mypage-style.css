@@ -66,10 +66,9 @@
     display: none;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
     height: 100%;
     right: 0px;
-    padding: 0px 31px;
     background-color: #332e2e90;
 }
 
@@ -115,6 +114,7 @@
     width: 93%;
     padding: 10px;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .change button {
@@ -130,6 +130,6 @@
 
 .change .withdrawal .alert {
     font-size: 13px;
-    font-weight: 100;
+    font-weight: 300;
     margin-bottom: 18px;
 }
