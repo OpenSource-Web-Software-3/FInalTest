@@ -8,9 +8,13 @@
 <html>
 	<head>
 		<%@include file="../head-tags.jsp" %>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="<%= absolutePath_commu%>/js/communication.js" defer></script>
+		
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/commu-list-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/aside-style.css" />
+        
 		<title>커뮤니티 | licenseName</title>
 	</head>
 	<body>
