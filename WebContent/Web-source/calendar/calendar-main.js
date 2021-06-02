@@ -1,5 +1,6 @@
 (function () {
   calendarMaker($("#calendarForm"), new Date());
+  getScrapLicenseList(new Date().getFullYear(), new Date().getMonth()+1)
 })();
 
 // 달력을 생성하는 function
@@ -81,11 +82,13 @@ function calendarMaker(target, date) {
       $(".custom_calendar_table").on("click", ".prev", function () {
           nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth()-1, nowDate.getDate());
           calendarMaker($(target), nowDate);
+          getScrapLicenseList(nowDate.getFullYear(), nowDate.getMonth()+1); //AJAX
       });
       //다음날 클릭
       $(".custom_calendar_table").on("click", ".next", function () {
           nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth()+1, nowDate.getDate());
           calendarMaker($(target), nowDate);
+          getScrapLicenseList(nowDate.getFullYear(), nowDate.getMonth()+1); //AJAX
       });
       //일자 선택 클릭
       /*$(".custom_calendar_table").on("click", "td", function () {
@@ -93,16 +96,67 @@ function calendarMaker(target, date) {
           $(this).removeClass("select_day").addClass("select_day");
       });*/
   }
+  
   /* 일정관리와 관련된 부분 */
-//각 숫자는 시험일정이 있는 날짜를 의미 (test 요소)
-  const selectDate = document.querySelector(`.year2021.month${month}.date1`);
-// 가져온 스크랩 일정중에 해당날짜에 시험이 치뤄지는 자격증 이름을 저장
-  let licenseName = "TOEIC";
-  
-// 해당 일정이 단일 기간인 경우 -> class name에 single-date add
-  selectDate.classList.add("single-date");
-  
-// 해당 일정의 td에 
-  selectDate.innerHTML += `<div>${licenseName}</div>`;
+	//각 숫자는 시험일정이 있는 날짜를 의미 (test 요소)
+	  const selectDate = document.querySelector(
+			  `.year${year}.month${month}.date1`
+			  );
+	// 가져온 스크랩 일정중에 해당날짜에 시험이 치뤄지는 자격증 이름을 저장
+	  let licenseName = "TOEIC";
+	  
+	// 해당 일정이 단일 기간인 경우 -> class name에 single-date add
+	  selectDate.classList.add("single-date");
+	  
+	// 해당 일정의 td에 
+	  selectDate.innerHTML += `<div>${licenseName}</div>`;
 }
 
+//해당 년,월에 해당하는 license일정 가져오기
+function getScrapLicenseList(thisYear, thisMonth){
+	$.ajax({
+		url: "Calendar_scrapLicenseListAction.do",
+		type: "POST",
+		data: {
+			thisYear: thisYear,
+			thisMonth: thisMonth
+		},
+		success: function(data) {
+			if(data == -1){
+				alert('로그인을 해주세요');
+				location.href="../index.do";
+			}
+			else{
+				//result[i][1].value
+				var parsed = JSON.parse(data); 
+				var result = parsed.result;
+				
+				for (var i = 0; i < result.length; i++) {
+					var licenseDate = result[i][3].value; //시험일정 (xxxx.xx.xx~xxxx.xx.xx)
+					// ~기준으로 자르기 
+					// 각각 date객체
+					var start_LicenseDate = parseDate(licenseDate.substr(0,10)); //시험기간시작 
+					var end_LicenseDate = parseDate(licenseDate.substr(11,21)); //시험기간 끝
+					
+					// 현재 캘린더의 년,월과 가져온 데이터의 날짜가 같은지 판별
+					if(start_LicenseDate != null && start_LicenseDate.getMonth() == thisMonth && start_LicenseDate.getFullYear() == thisYear){
+						
+					}
+					if(end_LicenseDate != null && end_LicenseDate.getMonth() == thisMonth-1  && start_LicenseDate.getFullYear() == thisYear){
+						alert("~~!");
+					}
+					
+				}
+			}
+			
+		}
+		
+	});
+}
+
+function parseDate(str) {
+    var y = str.substr(0, 4);
+    var m = str.substr(5, 2);
+    var d = str.substr(8, 2);
+    return new Date(y,m,d);
+}
