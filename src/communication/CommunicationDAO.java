@@ -327,8 +327,7 @@ public class CommunicationDAO {
 		if (sub_category != null && !sub_category.equals("")) SQL += " AND sub_category = \""+sub_category+"\"";
 		if (sort != null && !sort.equals("")) SQL += " ORDER BY "+sort+"";
 		
-		System.out.println(SQL);
-			
+		//System.out.println(SQL);
 		
 //		String SQL = "SELECT * FROM communication WHERE title LIKE ? AND category = ?";
 		ArrayList<CommunicationDTO> list = new ArrayList<CommunicationDTO>();

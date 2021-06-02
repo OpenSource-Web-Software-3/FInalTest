@@ -22,7 +22,7 @@ $(document).ready(function() {
 		
 		
 		$.ajax({
-			url: getContextPath()+"/searchTitleAction.do",
+			url: getContextPath()+"/Community_groupingConditionAction.do",
 			type: "POST",
 			data: {
 				bbsTitle: bbsTitle,
@@ -69,7 +69,7 @@ $(document).ready(function() {
 		
 		
 		$.ajax({
-			url: getContextPath()+"/searchTitleAction.do",
+			url: getContextPath()+"/Community_groupingConditionAction.do",
 			type: "POST",
 			data: {
 				bbsTitle: bbsTitle,
@@ -120,7 +120,7 @@ $(document).ready(function() {
 		
 		
 		$.ajax({
-			url: getContextPath()+"/searchTitleAction.do",
+			url: getContextPath()+"/Community_groupingConditionAction.do",
 			type: "POST",
 			data: {
 				bbsTitle: bbsTitle,

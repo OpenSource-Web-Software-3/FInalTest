@@ -13,8 +13,8 @@ import comment.CommentDAO;
 import communication.CommunicationDAO;
 import communication.CommunicationDTO;
 
-@WebServlet("/searchTitleAction")
-public class searchTitleAction extends HttpServlet {
+@WebServlet("/Community_groupingConditionAction")
+public class Community_groupingConditionAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,10 +38,10 @@ public class searchTitleAction extends HttpServlet {
 		result.append("{\"result\":[");
 		CommunicationDAO communicationDAO = new CommunicationDAO();
 		ArrayList<CommunicationDTO> commuList = new ArrayList<CommunicationDTO>();
-		System.out.println("bbsTitle " + bbsTitle);
-		System.out.println("category " + category);
-		System.out.println("sort " + sort);
-		System.out.println("sub_category " + sub_category);
+//		System.out.println("bbsTitle " + bbsTitle);
+//		System.out.println("category " + category);
+//		System.out.println("sort " + sort);
+//		System.out.println("sub_category " + sub_category);
 		if (bbsTitle.equals("") && (sub_category == null || sub_category.equals("")) && (sort == null || sort.equals(""))) {
 			commuList = communicationDAO.getCommunicationList(category); // 전체 목록 보여주기
 		} else {
