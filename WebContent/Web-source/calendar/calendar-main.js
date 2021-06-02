@@ -96,7 +96,6 @@ function calendarMaker(target, date) {
           $(this).removeClass("select_day").addClass("select_day");
       });*/
   }
-  
   /* 일정관리와 관련된 부분 */
 	//각 숫자는 시험일정이 있는 날짜를 의미 (test 요소)
 	  const selectDate = document.querySelector(
@@ -132,20 +131,28 @@ function getScrapLicenseList(thisYear, thisMonth){
 				var result = parsed.result;
 				
 				for (var i = 0; i < result.length; i++) {
-					var licenseDate = result[i][3].value; //시험일정 (xxxx.xx.xx~xxxx.xx.xx)
+					var licenseDate = result[i][3].value; //시험일정 (xxxx.xx.xx~xxxx.xx.xx) 
+					var applyPeriod = result[i][6].value; //원서접수기간 (xxxx.xx.xx~xxxx.xx.xx)
 					// ~기준으로 자르기 
-					// 각각 date객체
+					//각각 date객체
 					var start_LicenseDate = parseDate(licenseDate.substr(0,10)); //시험기간시작 
 					var end_LicenseDate = parseDate(licenseDate.substr(11,21)); //시험기간 끝
+					var start_applyPeriod = parseDate(applyPeriod.substr(0,10)); //원서접수기간 시작
 					
-					// 현재 캘린더의 년,월과 가져온 데이터의 날짜가 같은지 판별
+					var end_applyPeriod = parseDate(applyPeriod.substr(11,21)); //원서접수기간 끝
+					//현재 캘린더의 년,월과 가져온 데이터의 날짜가 같은지 판별
 					if(start_LicenseDate != null && start_LicenseDate.getMonth() == thisMonth && start_LicenseDate.getFullYear() == thisYear){
-						
+						alert("~~");
 					}
-					if(end_LicenseDate != null && end_LicenseDate.getMonth() == thisMonth-1  && start_LicenseDate.getFullYear() == thisYear){
+					if(end_LicenseDate != null && end_LicenseDate.getMonth() == thisMonth  && start_LicenseDate.getFullYear() == thisYear){
 						alert("~~!");
 					}
-					
+					if(start_applyPeriod != null && start_applyPeriod.getMonth() == thisMonth  && start_LicenseDate.getFullYear() == thisYear){
+						alert("~~!!");
+					}
+					if(end_applyPeriod != null && end_applyPeriod.getMonth() == thisMonth  && start_LicenseDate.getFullYear() == thisYear){
+						alert("~~!!!");
+					}
 				}
 			}
 			
