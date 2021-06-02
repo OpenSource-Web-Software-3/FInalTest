@@ -76,7 +76,7 @@
                 <li class="writing">
                     <ul>
                         <li class="sub-title">작성한 게시글</li>
-                        <li class="commu"><a href="<%= absolutePath%>/my-page/scrapCommu.jsp">커뮤니티</a></li>
+                        <li class="commu"><a href="<%= absolutePath%>/my-page/user-writing-list.jsp">커뮤니티</a></li>
                     </ul>
                 </li>
                 <!-- 회원탈퇴 영역 -->
