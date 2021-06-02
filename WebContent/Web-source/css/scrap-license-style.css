@@ -1,0 +1,75 @@
+@charset "EUC-KR";
+
+.scrap-license-list .license-name {
+    width: 100%;
+    height: fit-content;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.scrap-license-list .list {
+    width: 100%;
+    height: 82%;
+    overflow-y: scroll;
+}
+
+.scrap-license-list .list::-webkit-scrollbar {
+    display: none;
+}
+
+.scrap-license-list .list .items {
+    max-width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; 
+    border-top: 1px solid var(--current-basic-font);
+}
+
+.scrap-license-list .list .items .url {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+}
+
+.scrap-license-list .list .items .text-area {
+    width: fit-cotent;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrap-license-list .list .text-area .date {
+    display: block;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.scrap-license-list .list .text-area .time {
+    display: block;
+    font-size: 15px;
+}
+
+.scrap-license-list .list .scrapBtn {
+    width: fit-content;
+    height: fit-content;
+    font-size: 20px;
+    color: var(--current-special-font);
+    background-color: #ffffff00;
+}
+
+.scrap-license-list .list .scrapBtn.active {
+    width: fit-content;
+    height: fit-content;
+    font-size: 20px;
+    color: var(--pastel-yellow);
+    background-color: #ffffff00;
+}
+
+.scrap-license-list .list .scrapBtn:hover {
+    background-color: #ffffff00
+}
