@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import licensescrap.LicensescrapDTO;
 import util.DBUser;
 
 public class LicenseDAO {
@@ -128,7 +129,7 @@ public class LicenseDAO {
 		return null;
 	}
 
-	// licenseName 에 해당하는 모든 데이러 가져오기
+	// licenseName 에 해당하는 모든 데이터 가져오기
 	public ArrayList<LicenseDTO> getLicenseList(String licenseName) {
 		ArrayList<LicenseDTO> list = new ArrayList<LicenseDTO>();
 
@@ -154,6 +155,17 @@ public class LicenseDAO {
 			e.printStackTrace();
 		}
 		return null; // 데이터가 없는 경우 or DB오류
+	}
+	
+	// scrap한 license에 해당하는 모든 데이터 가져오기 (USE scrapLicense.jsp)
+	public ArrayList<LicenseDTO> getLicenseList(ArrayList<LicensescrapDTO> licenseScrapList) {
+		ArrayList<LicenseDTO> list = new ArrayList<LicenseDTO>();
+		for (int i = 0; i < licenseScrapList.size(); i++) {
+			LicenseDTO license = new LicenseDTO();
+			license = getLicense(licenseScrapList.get(i).getLicenseID());
+			list.add(license);
+		}
+		return list; 
 	}
 	
 	// DB에 저장되어 있는 모든 자격증 이름을 그룹화하여 가져오기

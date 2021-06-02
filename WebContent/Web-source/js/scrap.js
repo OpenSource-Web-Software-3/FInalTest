@@ -1,10 +1,10 @@
-/*AJAX scrap*/
+/*AJAX Licesnse scrap*/
 var request = new XMLHttpRequest();
 $(document).ready(function() {
-
+	
 	$(".scrapBtn").click(function() {
-
 		var licenseID = $(this).val();
+
 		var active;
 		if ($(this).is(".active")) {
 			$(this).removeClass('active');
@@ -16,7 +16,7 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-			url: "licenseScrapAction.do",
+			url: getContextPath()+"/licenseScrapAction.do",
 			type: "POST",
 			data: {
 				licenseID: licenseID,
@@ -44,7 +44,7 @@ $(document).ready(function() {
 	});
 });
 
-
+/*AJAX commuinty scrap*/
 $(document).ready(function() {
 	$(".scrap").click(function() {
 		var writingID = $(this).val();
@@ -88,3 +88,10 @@ $(document).ready(function() {
 		});
 	});
 });
+
+
+function getContextPath(){
+    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+    var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+    return contextPath;
+}

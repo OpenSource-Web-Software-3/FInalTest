@@ -61,7 +61,7 @@ public class FrontController extends HttpServlet {
 			viewPage = "../commuListAction";
 		}
 		else if (com.contains("/licenseScrapAction.do")) { //자격증 스크랩 AJAX
-			viewPage = "../licenseScrapAction";
+			viewPage = "licenseScrapAction";
 		} 
 		else if (com.contains("/commuScrapAction.do")) { //커뮤니티 스크랩 AJAX
 			viewPage = "../../commuScrapAction";

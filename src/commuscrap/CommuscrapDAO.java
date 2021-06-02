@@ -30,7 +30,7 @@ public class CommuscrapDAO {
 
 	// 해당 아이디의 스크랩을 모두 가져오기
 	public ArrayList<CommuscrapDTO> getCommuscrapList(String ID) {
-		String SQL = "SELECT * FROM commuscrap WHERE ID = ?";
+		String SQL = "SELECT * FROM commuscrap WHERE ID = ? ORDER BY writingID DESC";
 		ArrayList<CommuscrapDTO> list = new ArrayList<CommuscrapDTO>();
 
 		try {
