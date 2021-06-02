@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import commuscrap.CommuscrapDTO;
 import util.DBUser;
 
 public class CommunicationDAO {
@@ -214,6 +215,17 @@ public class CommunicationDAO {
 			e.printStackTrace();
 		}
 		return null; // 데이터가 없는 경우 or DB오류
+	}
+	
+	// scrap한 commu글에 해당하는 모든 데이터 가져오기 (USE scrapCommu.jsp)
+	public ArrayList<CommunicationDTO> getCommunicationList(ArrayList<CommuscrapDTO> commuList) {
+		ArrayList<CommunicationDTO> list = new ArrayList<CommunicationDTO>();
+		for (int i = 0; i < commuList.size(); i++) {
+			CommunicationDTO commu = new CommunicationDTO();
+			commu = getCommunication(commuList.get(i).getWritingID());
+			list.add(commu);
+		}
+		return list;
 	}
 	
 	// Communication의 userID에 해당하는 모든 데이터 가져오기 (*USE user-writing-list.jsp)
