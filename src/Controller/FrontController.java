@@ -106,6 +106,9 @@ public class FrontController extends HttpServlet {
 		else if (com.contains("/myPage_changeEmailAction.do")) { //마이페이지 이메일 변경
 			viewPage = "../../myPage_changeEmailAction";
 		}
+		else if (com.contains("/Calendar_scrapLicenseListAction.do")) { //마이페이지 이메일 변경
+			viewPage = "../../Calendar_scrapLicenseListAction";
+		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response); // RequestDispatcher 현재 req와 res객체를 공유한다.
