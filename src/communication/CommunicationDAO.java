@@ -319,17 +319,22 @@ public class CommunicationDAO {
 		return -1; // DB오류
 	}
 
-	
-
-	//search AJAX
-	public ArrayList<CommunicationDTO> search(String bbsTitle, String category) {
-		String SQL = "SELECT * FROM communication WHERE title LIKE ? AND category = ?";
+	// search AJAX
+	public ArrayList<CommunicationDTO> search(String bbsTitle, String category, String sub_category, String sort) {
+		String SQL = "SELECT * FROM communication WHERE category = \""+category+"\"";
+		
+		if (!bbsTitle.equals("")) SQL += " AND title LIKE \"%"+bbsTitle+"%\"";
+		if (sub_category != null && !sub_category.equals("")) SQL += " AND sub_category = \""+sub_category+"\"";
+		if (sort != null && !sort.equals("")) SQL += " ORDER BY "+sort+"";
+		
+		System.out.println(SQL);
+			
+		
+//		String SQL = "SELECT * FROM communication WHERE title LIKE ? AND category = ?";
 		ArrayList<CommunicationDTO> list = new ArrayList<CommunicationDTO>();
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, "%" + bbsTitle + "%");
-			pstmt.setString(2, category);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CommunicationDTO communicationDTO = new CommunicationDTO();
@@ -337,7 +342,7 @@ public class CommunicationDAO {
 				communicationDTO.setCategory(rs.getString(2));
 				communicationDTO.setSub_category(rs.getString(3));
 				communicationDTO.setTitle(rs.getString(4));
-				communicationDTO.setID(rs.getString(5)); 
+				communicationDTO.setID(rs.getString(5));
 				communicationDTO.setNickName(rs.getString(6));
 				communicationDTO.setCommuDate(rs.getString(7));
 				communicationDTO.setContent(rs.getString(8));
@@ -354,7 +359,5 @@ public class CommunicationDAO {
 		return list;
 
 	}
-	
-	
-	
+
 }

@@ -25,22 +25,27 @@ public class searchTitleAction extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String bbsTitle = request.getParameter("bbsTitle");
 		String category = request.getParameter("category");
+		String sort = request.getParameter("sort");
+		String sub_category = request.getParameter("sub_category");
 
-		response.getWriter().write(getJSON(bbsTitle, category));
-
+		response.getWriter().write(getJSON(bbsTitle, category,sub_category,sort));
+		
 	}
 
-	public String getJSON(String bbsTitle, String category) {
+	public String getJSON(String bbsTitle, String category, String sub_category, String sort) {
 
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
 		CommunicationDAO communicationDAO = new CommunicationDAO();
 		ArrayList<CommunicationDTO> commuList = new ArrayList<CommunicationDTO>();
-
-		if (bbsTitle == null || bbsTitle.equals("") || category == null || category.equals("")) {
+		System.out.println("bbsTitle " + bbsTitle);
+		System.out.println("category " + category);
+		System.out.println("sort " + sort);
+		System.out.println("sub_category " + sub_category);
+		if (bbsTitle.equals("") && (sub_category == null || sub_category.equals("")) && (sort == null || sort.equals(""))) {
 			commuList = communicationDAO.getCommunicationList(category); // 전체 목록 보여주기
 		} else {
-			commuList = communicationDAO.search(bbsTitle, category);
+			commuList = communicationDAO.search(bbsTitle, category, sub_category, sort); //검색관련 리스트 보여주기
 		}
 
 		CommentDAO commentDao = new CommentDAO();

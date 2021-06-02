@@ -39,9 +39,9 @@
 	           <!-- 검색어, 정렬 기준 선택 -->
 	           <ul class="text">
 	               <li>
-	                   <!-- 정렬기준 -->
+	                   <!-- 정렬기준 -->  <!-- value 공백이어야 합니다 -->
 	                   <select name="sortStandard" id="sort-standard">
-	                       <option value="latest" class="default">정렬기준</option>
+	                       <option value="" class="default">정렬기준</option>
 	                       <option value="title">제목</option>
                            <option value="latest">최신</option>
                            <option value="user">작성자</option>
@@ -49,12 +49,13 @@
 	                   </select>
 	               </li>
 	               <li>
-                       <!-- 서브 카테고리 -->
+	                   
+                       <!-- 서브 카테고리 -->  <!-- value 공백이어야 합니다 -->
                        <select name="sub-category" id="sub-category">
-                           <option value="all" class="default">주제</option>
-                           <option value="title">자유</option>
-                           <option value="latest">시험 후기</option>
-                           <option value="user">공부</option>
+                           <option value="" class="default">주제</option>
+                           <option value="free">자유</option>
+                           <option value="review">시험 후기</option>
+                           <option value="study">공부</option>
                        </select>
                    </li>
 	               <li>
