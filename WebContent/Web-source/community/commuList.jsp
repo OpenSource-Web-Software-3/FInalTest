@@ -35,7 +35,7 @@
 	           <!-- 검색어, 정렬 기준 선택 -->
 	           <ul class="text">
 	               <li>
-	                   <!-- 각 option에 대한 value는 상의할 필요가 있음 -->
+	                   <!-- 정렬기준 -->
 	                   <select name="sortStandard" id="sort-standard">
 	                       <option value="" class="default">정렬기준</option>
 	                       <option value="title">제목</option>
@@ -44,6 +44,15 @@
                            <option value="scrapCount">인기순(스크랩)</option>	                       
 	                   </select>
 	               </li>
+	               <li>
+                       <!-- 서브 카테고리 -->
+                       <select name="something.." id="sub-category">
+                           <option value="" class="default">주제</option>
+                           <option value="title">자유</option>
+                           <option value="latest">시험 후기</option>
+                           <option value="user">공부</option>
+                       </select>
+                   </li>
 	               <li>
 	                   <input type="text" id="search" placeholder="검색어 입력"/>
 	               </li>

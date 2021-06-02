@@ -29,8 +29,9 @@
     margin-right: 10px;
 }
 
-.commu-list #sort-standard {
-    width: 150px;
+.commu-list #sort-standard,
+.commu-list #sub-category {
+    width: 120px;
     height: 32px;
     border: 1px solid var(--current-basic-font);
     background-color: #ffffff00;
