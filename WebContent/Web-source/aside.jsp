@@ -8,6 +8,14 @@
 	LicenseDAO licenseDao = new LicenseDAO();
 	ArrayList<String> licencseNameList = licenseDao.getLicenseNameList();	
 %>
+
+<%
+    String userID1 = null;
+    if(session.getAttribute("userID")!=null){
+    	userID1 = (String) session.getAttribute("userID");
+    }
+%>
+
 <aside class="left-aside">
     
     <!-- 시험일정, 커뮤니티, 스케줄러, 문의사항을 하나의 tag로 묶음 -->
@@ -50,9 +58,16 @@
     <!-- my page -->
     <div class="my-page">
         <!-- my page로 이동 -->
-        <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">
+        <%if(userID1 == null){ %>
+            <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">
+                <i class="fas fa-sign-in-alt"></i>
+                                         로그인
+            </a>
+        <%}else{ %>
+       <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">
             <i class="far fa-user-circle"></i>
             My page
         </a>
+        <%} %>
     </div>
 </aside>
