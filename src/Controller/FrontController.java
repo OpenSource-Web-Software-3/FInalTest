@@ -61,7 +61,7 @@ public class FrontController extends HttpServlet {
 			viewPage = "../commuListAction";
 		}
 		else if (com.contains("/licenseScrapAction.do")) { //자격증 스크랩 AJAX
-			viewPage = "../licenseScrapAction";
+			viewPage = "licenseScrapAction";
 		} 
 		else if (com.contains("/commuScrapAction.do")) { //커뮤니티 스크랩 AJAX
 			viewPage = "../../commuScrapAction";
@@ -77,6 +77,9 @@ public class FrontController extends HttpServlet {
 		} 
 		else if (com.contains("/commentWriteAction.do")) { // 커뮤 댓글 달기 
 			viewPage = "../commentWriteAction";
+		} 
+		else if (com.contains("/Community_groupingConditionAction.do")) { // 커뮤니티 분류기능 AJAX
+			viewPage = "./Community_groupingConditionAction";
 		} 
 		//QNA
 		else if (com.contains("/questionListAction.do")) { //QNA 글 보여주기

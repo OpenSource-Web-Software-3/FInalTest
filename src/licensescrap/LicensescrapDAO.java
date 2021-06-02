@@ -29,7 +29,7 @@ public class LicensescrapDAO {
 
 	// 해당 아이디의 스크랩을 모두 가져오기
 	public ArrayList<LicensescrapDTO> getLicensescrapList(String ID) {
-		String SQL = "SELECT * FROM licensescrap WHERE ID = ?";
+		String SQL = "SELECT * FROM licensescrap WHERE ID = ? ORDER BY licenseID ASC";
 		ArrayList<LicensescrapDTO> list = new ArrayList<LicensescrapDTO>();
 
 		try {
@@ -51,7 +51,7 @@ public class LicensescrapDAO {
 
 	// 해당하는 1개의 스크랩만 가져오기
 	public LicensescrapDTO getLicensescrap(String ID, int licenseID) {
-		String SQL = "SELECT * FROM licensescrap WHERE ID = ? AND licenseID = ?";
+		String SQL = "SELECT * FROM licensescrap WHERE ID = ? AND licenseID = ? ORDER BY licenseID ASC";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -74,7 +74,7 @@ public class LicensescrapDAO {
 
 	// 해당 아이디의 스크랩 개수를 모두 가져오기
 	public int getCount(String ID) {
-		String SQL = "SELECT COUNT(*) FROM licensescrap WHERE ID = ?";
+		String SQL = "SELECT COUNT(*) FROM licensescrap WHERE ID = ? ORDER BY licenseID ASC";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

@@ -5,8 +5,8 @@
 <% String absolutePath_aside = request.getContextPath()+"/Web-source"; %>
 
 <%
-	LicenseDAO licenseDao = new LicenseDAO();
-	ArrayList<String> licencseNameList = licenseDao.getLicenseNameList();	
+	LicenseDAO licenseDao1 = new LicenseDAO();
+	ArrayList<String> licencseNameList = licenseDao1.getLicenseNameList();	
 %>
 
 <%

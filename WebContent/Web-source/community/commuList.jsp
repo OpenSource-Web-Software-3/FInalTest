@@ -8,9 +8,13 @@
 <html>
 	<head>
 		<%@include file="../head-tags.jsp" %>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="<%= absolutePath_commu%>/js/communication.js" defer></script>
+		
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/commu-list-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/aside-style.css" />
+        
 		<title>커뮤니티 | licenseName</title>
 	</head>
 	<body>
@@ -35,7 +39,7 @@
 	           <!-- 검색어, 정렬 기준 선택 -->
 	           <ul class="text">
 	               <li>
-	                   <!-- 정렬기준 -->
+	                   <!-- 정렬기준 -->  <!-- value 공백이어야 합니다 -->
 	                   <select name="sortStandard" id="sort-standard">
 	                       <option value="" class="default">정렬기준</option>
 	                       <option value="title">제목</option>
@@ -45,12 +49,13 @@
 	                   </select>
 	               </li>
 	               <li>
-                       <!-- 서브 카테고리 -->
-                       <select name="something.." id="sub-category">
+	                   
+                       <!-- 서브 카테고리 -->  <!-- value 공백이어야 합니다 -->
+                       <select name="sub-category" id="sub-category">
                            <option value="" class="default">주제</option>
-                           <option value="title">자유</option>
-                           <option value="latest">시험 후기</option>
-                           <option value="user">공부</option>
+                           <option value="free">자유</option>
+                           <option value="review">시험 후기</option>
+                           <option value="study">공부</option>
                        </select>
                    </li>
 	               <li>
