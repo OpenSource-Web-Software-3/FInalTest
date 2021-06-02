@@ -216,6 +216,39 @@ public class CommunicationDAO {
 		return null; // 데이터가 없는 경우 or DB오류
 	}
 	
+	// Communication의 userID에 해당하는 모든 데이터 가져오기 (*USE user-writing-list.jsp)
+		public ArrayList<CommunicationDTO> getCommunicationList_userID(String userID) {
+			ArrayList<CommunicationDTO> list = new ArrayList<CommunicationDTO>();
+			
+			String SQL = "SELECT * FROM communication WHERE ID = ? AND available = 1 ORDER BY writingID DESC";
+			
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, userID);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					CommunicationDTO communicationDTO = new CommunicationDTO();
+					communicationDTO.setWritingID(rs.getInt(1));
+					communicationDTO.setCategory(rs.getString(2));
+					communicationDTO.setTitle(rs.getString(3));
+					communicationDTO.setID(rs.getString(4));
+					communicationDTO.setNickName(rs.getString(5));
+					communicationDTO.setCommuDate(rs.getString(6));
+					communicationDTO.setContent(rs.getString(7));
+					communicationDTO.setScrapCount(rs.getInt(8));
+					communicationDTO.setView(rs.getInt(9));
+					list.add(communicationDTO);
+				}
+				return list;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null; // 데이터가 없는 경우 or DB오류
+		}
+		
+	
+	
+	
 	//조회 수 증가 
 	public int increaseView(int writingID) {
 		String SQL = "UPDATE communication SET view = view+1 WHERE writingID = ?";
