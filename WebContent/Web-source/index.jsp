@@ -57,8 +57,8 @@
            <%if(userID == null){ %>
            <!-- 아이디 / 비밀번호 입력 (로그인을 하지 않았을 때 보여짐) - display: none or block으로 조정 -->
            <form class="login-form" method="POST" action="loginAction.do" style="display:block">
-               <input type="text" id="id" name="ID" placeholder="아이디"/>
-               <input type="password" id="password" name="password" placeholder="비밀번호"/>
+               <input type="text" id="id" name="ID" placeholder="  아이디"/>
+               <input type="password" id="password" name="password" placeholder="  비밀번호"/>
                <button type="submit" class="loginBtn">로그인</button>
                
                <div>
@@ -86,6 +86,18 @@
 <script>
 const modeChangeBtn = document.querySelector(".change-mode");
 
+if(localStorage.theme == "bright") {
+    $(".change-mode").removeClass('dark');
+    $(".change-mode").addClass('bright');
+    $(".change-mode").html("Dark Mode로 전환");
+    document.documentElement.style.setProperty('--current-btn-hover', 'var(--pastel-red)');
+}
+else {
+    $(".change-mode").removeClass('bright');
+    $(".change-mode").addClass('dark');
+    $(".change-mode").html("Bright Mode로 전환");  
+}
+
 $(".change-mode").click(function() {
     if($(this).is(".dark")) {
     	$(this).removeClass('dark');
@@ -95,8 +107,8 @@ $(".change-mode").click(function() {
         document.documentElement.style.setProperty('--current-aside', 'var(--bright-aside)');
         document.documentElement.style.setProperty('--current-basic-font', 'var(--bright-basic-font)');
         document.documentElement.style.setProperty('--current-btn', 'var(--pastel-yellow)');
-        document.documentElement.style.setProperty(' --current-btn-hover', 'var(--pastel-red)');
-        
+        document.documentElement.style.setProperty('--current-btn-hover', 'var(--pastel-red)');
+        $(this).html("Dark Mode로 전환");
         localStorage.setItem("theme","bright");
     }
     else if($(this).is(".bright")) {
@@ -108,8 +120,8 @@ $(".change-mode").click(function() {
         document.documentElement.style.setProperty('--current-aside', 'var(--dark-aside)');
         document.documentElement.style.setProperty('--current-basic-font', 'var(--dark-basic-font)');
         document.documentElement.style.setProperty('--current-btn', 'var(--pastel-skyblue)');
-        document.documentElement.style.setProperty(' --current-btn-hover', 'var(--pastel-blue)');
-        
+        document.documentElement.style.setProperty('--current-btn-hover', 'var(--pastel-blue)');
+        $(this).html("Bright Mode로 전환");
         localStorage.setItem("theme","dark");
     }
 });
