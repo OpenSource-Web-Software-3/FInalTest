@@ -37,7 +37,7 @@
 	               <li>
 	                   <!-- 정렬기준 -->
 	                   <select name="sortStandard" id="sort-standard">
-	                       <option value="" class="default">정렬기준</option>
+	                       <option value="latest" class="default">정렬기준</option>
 	                       <option value="title">제목</option>
                            <option value="latest">최신</option>
                            <option value="user">작성자</option>
@@ -46,8 +46,8 @@
 	               </li>
 	               <li>
                        <!-- 서브 카테고리 -->
-                       <select name="something.." id="sub-category">
-                           <option value="" class="default">주제</option>
+                       <select name="sub-category" id="sub-category">
+                           <option value="all" class="default">주제</option>
                            <option value="title">자유</option>
                            <option value="latest">시험 후기</option>
                            <option value="user">공부</option>

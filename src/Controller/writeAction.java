@@ -60,6 +60,8 @@ public class writeAction extends HttpServlet {
 		String title = (String) multipartRequest.getParameter("title");
 		String content = (String) multipartRequest.getParameter("content");
 		String category = (String) multipartRequest.getParameter("category");
+		// String sub_category = (String) multipartRequest.getParameter("sub_category");
+		//
 
 		if (category == null || category.equals("")) {
 			PrintWriter script = response.getWriter();
@@ -70,6 +72,7 @@ public class writeAction extends HttpServlet {
 			return;
 		} else {
 			if (title == null || content == null || title.equals("") || content.equals("")) {
+//				if (title == null || content == null || title.equals("") || content.equals("") || sub_category == null || sub_category.equals("")) {
 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -81,7 +84,7 @@ public class writeAction extends HttpServlet {
 				CommunicationDAO communicationDAO = new CommunicationDAO();
 				UserDAO userDao = new UserDAO();
 
-				int result = communicationDAO.write(category, title, userID, userDao.getUser(userID).getNickName(),
+				int result = communicationDAO.write(category, "", title, userID, userDao.getUser(userID).getNickName(),
 						content);
 
 				if (result == -1) {
@@ -139,7 +142,7 @@ public class writeAction extends HttpServlet {
 			File prevfile = new File(directory + fileList.get(i).getFileRealName()); // 실제 파일도 같이 삭제
 			prevfile.delete();
 		}
-		new ImageDAO().delete(bbsID,1); // 기존에 있던 사진을 먼저 삭제 한다
+		new ImageDAO().delete(bbsID, 1); // 기존에 있던 사진을 먼저 삭제 한다
 
 	}
 
