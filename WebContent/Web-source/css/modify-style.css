@@ -17,6 +17,21 @@
     margin-bottom: 40px;
 }
 
+.modify #sub-category {
+    width: 120px;
+    height: 32px;
+    border: 1px solid var(--current-basic-font);
+    background-color: #ffffff00;
+    padding: 5px 10px;
+    color: var(--current-basic-font);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.modify #sub-category:focus {
+    outline: none;
+}
+
 .modify .writing-part {
     width: 100%;
     height: fit-content;

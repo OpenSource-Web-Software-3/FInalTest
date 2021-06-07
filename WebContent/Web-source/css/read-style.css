@@ -186,9 +186,9 @@
 }
 
 .read .documents .user-doc > a {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .read .documents .user-doc > a > span {
@@ -200,9 +200,9 @@
 }
 
 .read .documents .user-doc > a > i {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .fa-download:before {
@@ -226,6 +226,7 @@
     background-color: var(--current-background);
     border: 1px solid var(--current-basic-font);
     font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
 }
 .read .type-comment #comment::-webkit-scrollbar {
     display: none;

@@ -113,13 +113,13 @@
 	                           <span class="count" id="scrapCount"><%=commu.getScrapCount() %></span>
 	                       </li>
 	                   </ul>
-	                   <!-- 해당 게시글을 쓴 사용자에게만 보여짐 -->
+	                   <!-- 해당 게시글을 쓴 사용자에게만 보여짐 : 로그인을 하지 않으면 error 발생-->
 	                   <%if(userID.equals(commu.getID())) {%>
 	                   <div class="btn-wrap">
 	                       <button class="modifyBtn" onclick="location.href='<%=absolutePath_read %>/community/modify.jsp?writingID=<%=writingID%>'">수정</button>
 	                       <button class="deleteBtn" onclick="location.href='<%=absolutePath_read %>/deleteAction.do?category=<%=category %>&writingID=<%=commu.getWritingID()%>'">삭제</button>
 	                   </div>
-	                   <%} %>
+	                   <%} %>	                      
 	               </div>
 	           </div>
 	           <!-- 게시글 내용 -->
@@ -174,7 +174,7 @@
            <!-- 댓글 작성 -->
            <form class="type-comment" method="POST" action="<%=absolutePath_read %>/commentWriteAction.do?category=<%=category%>&writingID=<%=writingID %>" >
                <!-- 나중에 수정할 부분이 있음 / 입력한 값이 없으면 알아서 경고 띄움(추가적인 조건 삽입 필요 X) -->
-               <textarea type="text" id="comment" name="content" placeholder="댓글을 작성해주세요." required="required">
+               <textarea type="text" id="comment" name="content" placeholder="댓글을 작성해주세요." required>
                </textarea>
                <button class="submit">
                    <i class="far fa-paper-plane"></i>
@@ -185,3 +185,11 @@
 	   <%@include file="../aside.jsp" %>
 	</body>
 </html>
+
+<script>
+const textarea = document.querySelector(".type-comment .comment");
+
+if(textarea.innerText == "") {
+	alert("")
+}
+</script>

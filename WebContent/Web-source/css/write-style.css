@@ -16,6 +16,21 @@
     margin-bottom: 40px;
 }
 
+.write #sub-category {
+    width: 120px;
+    height: 32px;
+    border: 1px solid var(--current-basic-font);
+    background-color: #ffffff00;
+    padding: 5px 10px;
+    color: var(--current-basic-font);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.write #sub-category:focus {
+	outline: none;
+}
+
 .write .writing-part {
 	width: 100%;
 	height: fit-content;
