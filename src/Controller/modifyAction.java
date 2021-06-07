@@ -64,6 +64,7 @@ public class modifyAction extends HttpServlet {
 		String title = (String) multipartRequest.getParameter("title");
 		String content = (String) multipartRequest.getParameter("content");
 		String category = (String) multipartRequest.getParameter("category");
+		String sub_category = (String) multipartRequest.getParameter("sub-category");
 
 		int writingID = 0;
 //		System.out.println(multipartRequest.getParameter("writingID") +" ?");
@@ -91,7 +92,8 @@ public class modifyAction extends HttpServlet {
 			deleteFileFunction(multipartRequest, fileDirectory); // 현재 파일 삭제
 			return;
 		} else {
-			if (title == null || content == null || title.equals("") || content.equals("")) {
+			System.out.println(sub_category);
+			if (title == null || content == null || title.equals("") || content.equals("") || sub_category == null || sub_category.equals("")) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력되지 않는 정보가 있습니다.')");
@@ -100,7 +102,7 @@ public class modifyAction extends HttpServlet {
 				deleteFileFunction(multipartRequest, fileDirectory); // 현재 파일 삭제
 				return;
 			} else {
-				int result = communicationDAO.update(writingID, title, content);
+				int result = communicationDAO.update(writingID, title, content, sub_category);
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");

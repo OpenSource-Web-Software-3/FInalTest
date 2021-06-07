@@ -61,15 +61,15 @@
        <section class="set-margin modify">
            <!-- 해당 페이지 title -->
            <div class="title">게시글 수정</div>
-           <!-- 서브 카테고리 선택 : 글을 작성했을 때, 설정했던 서브 카테고리를 보여줄 수 있도록 해주세요!-->
-           <select name="sub-category" id="sub-category">
-               <option value="" class="default">주제</option>
-               <option value="free">자유</option>
-               <option value="review">시험 후기</option>
-               <option value="study">공부</option>
-           </select>
            <!-- 실제로 글을 작성는 부분 -->
            <form class="writing-part" method="POST" action="<%= absolutePath %>/modifyAction.do?writingID=<%=writingID %>" enctype = "multipart/form-data">
+	           <!-- 서브 카테고리 선택 : 글을 작성했을 때, 설정했던 서브 카테고리를 보여줄 수 있도록 해주세요!-->
+	           <select name="sub-category" id="sub-category">
+	               <option value="" class="default">주제</option>
+	               <option value="free">자유</option>
+	               <option value="review">시험 후기</option>
+	               <option value="study">공부</option>
+	           </select>
                <input type="hidden" name="category" value="<%=commu.getCategory()%>"/>
                <!-- 제목 입력 : 수정하려는 글의 제목을 불러와서 수정 -->
                <input type="text" id="title" name="title" placeholder="제목" value="<%=commu.getTitle()%>"/>

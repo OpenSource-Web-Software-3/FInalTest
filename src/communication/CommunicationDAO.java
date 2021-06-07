@@ -103,13 +103,14 @@ public class CommunicationDAO {
 	}
 
 	// 글 수정
-	public int update(int writingID, String title, String content) {
-		String SQL = "UPDATE communication SET title = ?, content = ? WHERE writingID = ?";
+	public int update(int writingID, String title, String content, String sub_category) {
+		String SQL = "UPDATE communication SET title = ?, content = ?, sub_category = ? WHERE writingID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setInt(3, writingID);
+			pstmt.setString(3, sub_category);
+			pstmt.setInt(4, writingID);
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {

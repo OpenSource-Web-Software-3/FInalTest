@@ -30,16 +30,16 @@
 	   <section class="set-margin write">
 	       <!-- 해당 페이지 title -->
 	       <div class="title">게시글 작성</div>
-	       <!-- 서브 카테고리 선택 -->
-	       <select name="sub-category" id="sub-category">
-               <option value="" class="default">주제</option>
-               <option value="free">자유</option>
-               <option value="review">시험 후기</option>
-               <option value="study">공부</option>
-           </select>
 	       <!-- 실제로 글을 작성는 부분 -->
 	       <form class="writing-part" method="POST" action="<%= absolutePath_write %>/writeAction.do" enctype = "multipart/form-data">
 	 
+		       <!-- 서브 카테고리 선택 -->
+		       <select name="sub-category" id="sub-category">
+	               <option value="" class="default">주제</option>
+	               <option value="free">자유</option>
+	               <option value="review">시험 후기</option>
+	               <option value="study">공부</option>
+	           </select>
 			   <input type="hidden" name="category" value="<%=request.getParameter("category") %>"/>
 	           <!-- 제목 입력 -->
 	           <input type="text" id="title" name="title" placeholder="제목"/>
@@ -56,10 +56,6 @@
 	               <label for="">문서 첨부하기</label>
 	               <input type="file" id="document" name="document" />
 	           </div>
-	            <div class="file-area">
-                   <label for="">사진 첨부하기</label>
-                   <input type="file" id="file" name="file" />
-               </div>
 	       </form>
 	   </section>
 	   <!-- aside -->

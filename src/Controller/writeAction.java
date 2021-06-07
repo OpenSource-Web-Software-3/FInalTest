@@ -60,8 +60,7 @@ public class writeAction extends HttpServlet {
 		String title = (String) multipartRequest.getParameter("title");
 		String content = (String) multipartRequest.getParameter("content");
 		String category = (String) multipartRequest.getParameter("category");
-		// String sub_category = (String) multipartRequest.getParameter("sub_category");
-		//
+		 String sub_category = (String) multipartRequest.getParameter("sub-category");
 
 		if (category == null || category.equals("")) {
 			PrintWriter script = response.getWriter();
@@ -71,8 +70,7 @@ public class writeAction extends HttpServlet {
 			script.println("</script>");
 			return;
 		} else {
-			if (title == null || content == null || title.equals("") || content.equals("")) {
-//				if (title == null || content == null || title.equals("") || content.equals("") || sub_category == null || sub_category.equals("")) {
+				if (title == null || content == null || title.equals("") || content.equals("") || sub_category == null || sub_category.equals("")) {
 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -84,7 +82,7 @@ public class writeAction extends HttpServlet {
 				CommunicationDAO communicationDAO = new CommunicationDAO();
 				UserDAO userDao = new UserDAO();
 
-				int result = communicationDAO.write(category, "", title, userID, userDao.getUser(userID).getNickName(),
+				int result = communicationDAO.write(category, sub_category, title, userID, userDao.getUser(userID).getNickName(),
 						content);
 
 				if (result == -1) {
