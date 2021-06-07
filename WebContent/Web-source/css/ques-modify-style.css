@@ -1,6 +1,14 @@
 @charset "EUC-KR";
 @charset "EUC-KR";
 
+.ques-modify {
+	overflow-y: scroll;
+}
+
+.ques-modify::-webkit-scrollbar {	
+    display: none;
+}
+
 .ques-modify .title {
     width: 100%;
     height: fit-content;

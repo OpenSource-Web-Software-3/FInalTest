@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_write %>/css/ques-write-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_write %>/css/aside-style.css" />
+		<%@include file="../head-tags.jsp" %>
 		<title>문의사항 작성하기</title>
 	</head>
 	<body>
@@ -26,8 +26,6 @@
 			}
 			
 		%>
-	   <!-- aside -->
-	   <%@include file="../aside.jsp" %>
 	   <!-- 문의사항을 작성하는 영역 -->
 	   <section class="set-margin ques-write">
 	       <!-- 해당 페이지 title -->
@@ -54,5 +52,7 @@
 	           </div>
 	       </form>
 	   </section>
+	   <!-- aside -->
+	   <%@include file="../aside.jsp" %>
 	</body>
 </html>

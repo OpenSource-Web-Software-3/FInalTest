@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/scrap-commu-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/aside-style.css" />
+        <%@include file="../head-tags.jsp" %>
         <title>스크랩한 게시글 보기</title>
     </head>
      <%
@@ -35,8 +35,6 @@
     %>
     
     <body>        
-       <!-- aside -->
-       <%@include file="../aside.jsp" %>
        <!-- 게시글을 보여주는 영역 -->
        <section class="set-margin scrap-commu-list">
            <!-- 자격증 이름 -->
@@ -60,5 +58,7 @@
                <% } %>
            </ul> 
        </section>
+       <!-- aside -->
+       <%@include file="../aside.jsp" %>
     </body>
 </html>

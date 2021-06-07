@@ -7,10 +7,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath %>/css/mypage-style.css" />
         <link rel="stylesheet" href="<%= absolutePath %>/css/aside-style.css" />
+		<%@include file="../head-tags.jsp" %>
         <!-- js -->
         <script src="<%= absolutePath%>/js/popUp.js" defer></script>
 		<title>마이 페이지</title>
@@ -37,8 +37,6 @@
 		%>
 	
 	
-	   <!-- aside -->
-	   <%@include file="../aside.jsp" %>
 	   
 	   <!-- my page 영역 -->
 	   <section class="set-margin my-page">
@@ -85,6 +83,8 @@
                 </li>
             </ul>
 	   </section>
+	   <!-- aside -->
+	   <%@include file="../aside.jsp" %>
 	   <%@include file="./popUp.jsp" %>
 	</body>
 </html>

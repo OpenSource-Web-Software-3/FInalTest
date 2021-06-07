@@ -11,10 +11,10 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script type="text/javascript" src="<%=absolutePath_license %>/js/scrap.js" defer></script>
     
-        <%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_license %>/css/scrap-license-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_license %>/css/aside-style.css" />
+        <%@include file="../head-tags.jsp" %>
         <!-- 현재 사용자가 보고 있는 자격증 이름을 `licenseName`에 삽입하고 싶습니다! -->
         <title>스크랩한 시험일정 보기</title>
     </head>
@@ -39,8 +39,6 @@
     %>
      
     <body>        
-       <!-- aside-->
-       <%@include file= "../aside.jsp" %>
        <section class="set-margin scrap-license-list">
            <!-- 해당 자격증의 시험일정을 보여주는 부분 -->
            <div class="license-name">스크랩한 시험일정</div>
@@ -66,5 +64,7 @@
                <% } %>
            </ul>        
        </section>
+       <!-- aside-->
+       <%@include file= "../aside.jsp" %>
     </body>
 </html>

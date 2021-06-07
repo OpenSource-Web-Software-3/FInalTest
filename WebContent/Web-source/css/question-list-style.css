@@ -10,7 +10,7 @@
 
 .question .comment {
     display: block;
-    width: 100%;
+    width: 93%;
     height: fit-content;
     margin-left: 21px;
     margin-bottom: 20px;
@@ -116,8 +116,7 @@
 
 .question .items .writing-info div{
     display: flex;
-    flex-directon: row;
-    margin-right: 50px;
+    flex-direction: row;
     align-items: center;
 }
 

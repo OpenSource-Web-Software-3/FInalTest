@@ -7,10 +7,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	   <%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath %>/css/ques-modify-style.css" />
         <link rel="stylesheet" href="<%= absolutePath%>/css/aside-style.css" />
+	   <%@include file="../head-tags.jsp" %>
 		<title>글 수정하기</title>
 	</head>
 	<body>
@@ -57,7 +57,6 @@
 			
 		%>
 	
-       <%@include file="../aside.jsp" %>
        <!-- 문의사항을 작성하는 영역 -->
        <section class="set-margin ques-modify">
            <!-- 해당 페이지 title -->
@@ -84,5 +83,6 @@
                </div>
            </form>
        </section>
+       <%@include file="../aside.jsp" %>
 	</body>
 </html>

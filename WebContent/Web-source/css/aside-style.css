@@ -8,6 +8,11 @@
     justify-content: space-between;
     padding: 50px 30px;
     background-color: var(--current-aside);
+    overflow-y: scroll;
+}
+
+.left-aside::-webkit-scrollbar {
+    display: none;
 }
 
 .left-aside .menu .project-title {
@@ -40,4 +45,67 @@
 .left-aside .my-page {
     width: 100%;
     font-size: 20px;
+}
+
+.login-pop {
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: #332e2e90;
+    left: 0px;
+    top: 0px;
+}
+
+.login-pop section {
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+    background-color:var(--current-aside);
+}
+
+.login-pop .login-pop-title {
+    width: 100%;
+    height: fit-content;
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+    margin-bottom: 25px;
+}
+
+.login-pop .login-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-pop .login-form input {
+    width: 87%;
+    height: fit-content;
+    padding: 10px 19px;
+    margin-bottom: 30px;
+}
+
+.login-pop .login-form .loginBtn {
+    width: 100%;
+    height: fit-content;
+    padding: 7px 0px;
+    margin-bottom: 12px;
+}
+
+.login-pop .login-form > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.login-pop .register,
+.login-pop .find {
+    color: var(--current-special-font);
 }

@@ -15,7 +15,7 @@
     	userID1 = (String) session.getAttribute("userID");
     }
 %>
-
+<div class="dark-background"></div>
 <aside class="left-aside">
     
     <!-- 시험일정, 커뮤니티, 스케줄러, 문의사항을 하나의 tag로 묶음 -->
@@ -59,10 +59,11 @@
     <div class="my-page">
         <!-- my page로 이동 -->
         <%if(userID1 == null){ %>
-            <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">
+            <a href="#" class="login-btn" onclick="createLoginPop()">
                 <i class="fas fa-sign-in-alt"></i>
                                          로그인
             </a>
+            <%@ include file="./user-info/login-pop.jsp" %>
         <%}else{ %>
        <a href="<%=absolutePath_aside%>/my-page/myPage.jsp">
             <i class="far fa-user-circle"></i>
@@ -70,4 +71,27 @@
         </a>
         <%} %>
     </div>
+    
 </aside>
+
+<div class="aside-hamburger-bar">
+    <i class="fas fa-bars"></i>
+        메뉴 보기        
+</div>
+<script>
+function createLoginPop() {
+	const loginPop = document.querySelector('.my-page .login-pop');
+	loginPop.style.display = "flex";
+}
+
+$(".aside-hamburger-bar").click(function() {
+    if($(".left-aside").css("display") == "none") {
+           $(".left-aside").css("display", "flex");
+           $(".dark-background").css("display", "flex");  
+    }
+    else if ($(".left-aside").css("display") == "flex") {
+        $(".left-aside").css("display", "none");
+        $(".dark-background").css("display", "none");  
+    }
+});
+</script>

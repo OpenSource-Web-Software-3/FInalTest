@@ -16,6 +16,36 @@
     			userID = (String) session.getAttribute("userID");
     		}
     	%>
+    	<div class="dark-background"></div>
+    	<aside class="login">
+            <!-- LINS -->
+           <div class="title">LINS</div>
+           <%if(userID == null){ %>
+           <!-- 아이디 / 비밀번호 입력 (로그인을 하지 않았을 때 보여짐) - display: none or block으로 조정 -->
+           <form class="login-form" method="POST" action="loginAction.do" style="display:block">
+               <input type="text" id="id" name="ID" placeholder="  아이디"/>
+               <input type="password" id="password" name="password" placeholder="  비밀번호"/>
+               <button type="submit" class="loginBtn">로그인</button>
+               
+               <div>
+                   <!-- 회원가입 페이지로 이동 -->
+                   <a href="<%=url1%>/user-info/register.jsp" class="register">회원가입</a>
+                   <!-- 찾기 페이지로 이동 -->
+                   <a href="<%=url1%>/user-info/find.jsp" class="find">ID/password 찾기</a>
+               </div>
+           </form>
+           <%}else{ %>
+           <!-- 로그아웃 (로그인을 한 후에 보여짐) - display: none or block으로 조정 -->
+           <form class="logout-form" method="POST" action="logoutAction.do" style="display:block">
+                <span class="comment"><%=userID %></span>
+                <ul class="menu">
+                    <li class="my-page"><a href="<%=url1%>/my-page/myPage.jsp">내 정보</a></li>
+                    <li class="logout"><button type="submit">로그아웃</button></li>
+                </ul>
+           </form>
+           <%} %>
+           <button class="change-mode dark">Bright Mode로 전환</button>
+        </aside>
         <!-- 4가지 서비스를 보여주는 부분 -->
         <section class="main">
             <!-- LINS 환영 멘트 -->
@@ -51,35 +81,10 @@
            </ul>
         </section>
         <!-- 로그인 부분 -->
-        <aside class="login">
-            <!-- LINS -->
-           <div class="title">LINS</div>
-           <%if(userID == null){ %>
-           <!-- 아이디 / 비밀번호 입력 (로그인을 하지 않았을 때 보여짐) - display: none or block으로 조정 -->
-           <form class="login-form" method="POST" action="loginAction.do" style="display:block">
-               <input type="text" id="id" name="ID" placeholder="  아이디"/>
-               <input type="password" id="password" name="password" placeholder="  비밀번호"/>
-               <button type="submit" class="loginBtn">로그인</button>
-               
-               <div>
-		           <!-- 회원가입 페이지로 이동 -->
-		           <a href="<%=url1%>/user-info/register.jsp" class="register">회원가입</a>
-		           <!-- 찾기 페이지로 이동 -->
-		           <a href="<%=url1%>/user-info/find.jsp" class="find">ID/password 찾기</a>
-               </div>
-           </form>
-           <%}else{ %>
-           <!-- 로그아웃 (로그인을 한 후에 보여짐) - display: none or block으로 조정 -->
-           <form class="logout-form" method="POST" action="logoutAction.do" style="display:block">
-                <span class="comment"><%=userID %></span>
-                <ul class="menu">
-                    <li class="my-page"><a href="<%=url1%>/my-page/myPage.jsp">내 정보</a></li>
-                    <li class="logout"><button type="submit">로그아웃</button></li>
-                </ul>
-           </form>
-           <%} %>
-           <button class="change-mode dark">Bright Mode로 전환</button>
-        </aside>
+        
+        <div class="login-bar">
+                        로그인 메뉴 보기<i class="fas fa-bars"></i>        
+        </div>
 	</body>
 </html>
 
@@ -108,6 +113,7 @@ $(".change-mode").click(function() {
         document.documentElement.style.setProperty('--current-basic-font', 'var(--bright-basic-font)');
         document.documentElement.style.setProperty('--current-btn', 'var(--pastel-yellow)');
         document.documentElement.style.setProperty('--current-btn-hover', 'var(--pastel-red)');
+        document.documentElement.style.setProperty('--current-aside-2', 'var(--bright-aside-2)');
         $(this).html("Dark Mode로 전환");
         localStorage.setItem("theme","bright");
     }
@@ -121,8 +127,20 @@ $(".change-mode").click(function() {
         document.documentElement.style.setProperty('--current-basic-font', 'var(--dark-basic-font)');
         document.documentElement.style.setProperty('--current-btn', 'var(--pastel-skyblue)');
         document.documentElement.style.setProperty('--current-btn-hover', 'var(--pastel-blue)');
+        document.documentElement.style.setProperty('--current-aside-2', 'var(--dark-aside-2)');
         $(this).html("Bright Mode로 전환");
         localStorage.setItem("theme","dark");
     }
+});
+
+$(".login-bar").click(function() {
+	if($(".login").css("display") == "none") {
+		   $(".login").css("display", "flex");	
+		   $(".dark-background").css("display", "flex"); 
+	}
+	else if ($(".login").css("display") == "flex") {
+		$(".login").css("display", "none");
+		$(".dark-background").css("display", "none"); 
+	}
 });
 </script>

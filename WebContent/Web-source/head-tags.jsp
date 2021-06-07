@@ -12,3 +12,4 @@
     <link rel="stylesheet" href="<%=projectAbsolutePath%>/css/main-style.css" />
     <!-- js -->
     <script src="<%=projectAbsolutePath%>/js/mode-change.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>

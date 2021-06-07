@@ -109,9 +109,13 @@
 
 .commu-list .items .writing-info div{
     display: flex;
-    flex-directon: row;
-    margin-right: 50px;
+    flex-direction: row;
+    /* margin-right: 50px; */
     align-items: center;
+}
+
+.commu-list .items .view {
+    margin-right: 34px;
 }
 
 .commu-list .items .writing-info div span {

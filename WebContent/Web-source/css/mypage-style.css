@@ -1,5 +1,13 @@
 @charset "EUC-KR";
 
+.my-page {
+	overflow-y: scroll;
+}
+
+.my-page::-webkit-scrollbar {
+	display: none;
+}
+
 .my-page .title {
     width: 100%;
     height: fit-content;

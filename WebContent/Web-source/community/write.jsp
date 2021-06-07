@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_write %>/css/write-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_write %>/css/aside-style.css" />
+		<%@include file="../head-tags.jsp" %>
 		<title>글 작성하기</title>
 	</head>
 	<body>
@@ -26,8 +26,6 @@
 			}
 			
 		%>
-	   <!-- aside -->
-	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글을 작성하는 영역 -->
 	   <section class="set-margin write">
 	       <!-- 해당 페이지 title -->
@@ -56,5 +54,7 @@
 	           </div>
 	       </form>
 	   </section>
+	   <!-- aside -->
+	   <%@include file="../aside.jsp" %>
 	</body>
 </html>

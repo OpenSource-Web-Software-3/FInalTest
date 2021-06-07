@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_ques %>/css/question-list-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_ques %>/css/aside-style.css" />
+		<%@include file="../head-tags.jsp" %>
 		<title>문의사항</title>
 	</head>
 	<body>
@@ -26,8 +26,6 @@
 			QnacommentDAO qnaCommentDao = new QnacommentDAO();
 		%>
 	
-	   <!-- aside -->
-	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글을 보여주는 영역 -->
 	   <section class="set-margin question">
 	       <div class="title">문의사항</div>
@@ -66,7 +64,7 @@
                    </a>
                    <!-- comment 횟수 -->
                    <div class="writing-info">
-                       <div class="comment">
+                       <div class="commentCount">
                            <i class="far fa-comment-dots"></i>
                            <span class="count"><%=qnaCommentDao.getAllComment(qnaList.get(i).getQID()) %></span>
                        </div>
@@ -75,5 +73,7 @@
                <% } %>
            </ul> 
 	   </section>
+	   <!-- aside -->
+	   <%@include file="../aside.jsp" %>
 	</body>
 </html>

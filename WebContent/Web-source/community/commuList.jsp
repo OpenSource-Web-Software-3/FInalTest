@@ -7,13 +7,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@include file="../head-tags.jsp" %>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="<%= absolutePath_commu%>/js/communication.js" defer></script>
 		
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/commu-list-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_commu %>/css/aside-style.css" />
+		<%@include file="../head-tags.jsp" %>
         
 		<title>커뮤니티 | licenseName</title>
 	</head>
@@ -28,8 +28,6 @@
 			
 		%>
 		
-	   <!-- aside -->
-	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글을 보여주는 영역 -->
 	   <section class="set-margin commu-list">
 	       <!-- 자격증 이름 -->
@@ -90,5 +88,8 @@
                <% } %>
            </ul> 
 	   </section>
+	   
+       <!-- aside -->
+       <%@include file="../aside.jsp" %>
 	</body>
 </html>

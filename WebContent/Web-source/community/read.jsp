@@ -15,10 +15,10 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="<%=absolutePath_read %>/js/scrap.js" defer></script>
 	
-		<%@include file="../head-tags.jsp" %>
         <!-- css -->
         <link rel="stylesheet" href="<%= absolutePath_read %>/css/read-style.css" />
         <link rel="stylesheet" href="<%= absolutePath_read %>/css/aside-style.css" />
+		<%@include file="../head-tags.jsp" %>
 		<title>게시글 제목</title>
 	</head>
 	<body>
@@ -78,8 +78,6 @@
 		});
 		</script>
 		
-	   <!-- aside -->
-	   <%@include file="../aside.jsp" %>
 	   <!-- 게시글 내용 영역 -->
 	   <section class="set-margin read">
 	       <div class="test">
@@ -183,5 +181,7 @@
                </button>
            </form>
 	   </section>
+	   <!-- aside -->
+	   <%@include file="../aside.jsp" %>
 	</body>
 </html>

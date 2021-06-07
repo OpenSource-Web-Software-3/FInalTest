@@ -10,18 +10,21 @@
     --dark-special-font : #E5E5E5;
     --dark-background : #6B829D;
     --dark-aside : rgba(56, 91, 111, 0.54);
+    --dark-aside-2 : rgb(79 109 132);
     --dark-basic-font : #FFFFFF;
     
     /* Bright Mode일 때, 사용할 색상 */
-    --bright-special-font : #9D9D9D;
+    --bright-special-font : #8f7171;
     --bright-background : #FFF7F0;
     --bright-aside : rgba(255, 188, 174, 0.54);
+    --bright-aside-2 : rgb(255 215 204);
     --bright-basic-font : #424242;
     
     /* 현재 Mode에 대한 색상 저장 */
     --current-special-font: var(--dark-special-font);
     --current-background: var(--dark-background);
     --current-aside: var(--dark-aside);
+    --current-aside-2: var(--dark-aside-2);
     --current-basic-font: var(--dark-basic-font);
     --current-btn: var(--pastel-skyblue);
     --current-btn-hover: var(--pastel-blue);
@@ -34,12 +37,14 @@ html, body {
     height: 100%;
     margin: 0px;
     padding: 0px;
+    display: flex;
     background-color: var(--current-background);
     display: flex;
-    flex-direction: row;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 300;
     color: var(--current-basic-font);
+    overflow-y: hidden;
+    flex-direction: row-reverse;
 }
 
 /* 전페이지 공통 적용 속성*/
@@ -82,7 +87,8 @@ button:hover {
 }
 
 .set-margin {
-    width: 80%;
+    width: 100%;
+    position: relative;
     max-height: 100%;
     padding: 100px 100px 50px 100px;
     font-weight: 300;
@@ -148,12 +154,17 @@ button:hover {
 
 .login {
     width: 17%;
-    max-height: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 50px;
     background-color: var(--current-aside);
+    overflow-y: scroll;
+}
+
+.login::-webkit-scrollbar {
+    display: none;
 }
 
 .login .title {
@@ -229,4 +240,175 @@ button:hover {
     font-size: 20px;
     border: 1px solid var(--current-basic-font);
     padding: 5px 10px;
+}
+
+.login-bar,
+.aside-hamburger-bar {
+    display: none;
+}
+
+.dark-background {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left:0px;
+    top: 0px;
+    background-color: #332e2e90;
+}
+
+@media screen and (max-width: 1300px ) {
+    .login .login-form > div {
+       display: flex;
+       flex-direction: column;
+    }
+    
+    .left-aside {
+        display: flex;
+        width: 310px;
+    }
+}
+
+@media screen and (max-width: 957px ) {
+    .login {
+        width: 245px;
+        height: 100%;
+        display: none;
+        position: fixed;
+        right: 0px;
+        top:0px;
+        background-color: var(--current-aside-2);
+    }
+    
+    .login-bar,
+    .aside-hamburger-bar {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    
+    .login-bar i::before
+     {
+        font-size: 17px;
+        margin-left: 10px;
+    }
+    
+    .aside-hamburger-bar i {
+        font-size: 17px;
+        margin-right: 10px;
+    } 
+    
+    .main {
+        width: 100%;
+    }
+    
+    .aside-hamburger-bar {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .left-aside {
+        display: none;
+        background-color: var(--current-aside-2);
+        position: fixed;
+        left: 0px;
+        height: 91%;
+        width: 185px;
+    }
+}
+
+@media screen and (max-width: 730px ) {
+    .main .service-list .menu {
+       width: 85%;
+    }
+    
+    .set-margin {
+        width: 100%;
+        padding: 100px 45px 50px 45px;
+    }
+}
+
+@media screen and (max-width: 620px ) {
+    .commu-list ul.text{
+       display: flex;
+       
+    }
+    
+    .commu-list .input-wrap {
+        flex-wrap: wrap;
+        position: relative;
+    }
+    
+    .commu-list .input-wrap .text {
+        flex-wrap: wrap;
+    }
+    
+    .commu-list #search {
+        margin-top: 11px;
+    }
+    
+    .commu-list .writeBtn {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+    }
+}
+
+@media screen and (max-width: 500px ) {
+    .question .input-wrap {
+       flex-wrap: wrap;
+    }
+    
+    .question .writeBtn {
+       margin-top: 10px;
+       margin-left: 20px;
+    }
+}
+
+@media screen and (max-height: 880px ) {
+    .commu-list .list {
+        height: 67%;
+    }
+    
+    .scrap-license-list .list,
+    .scrap-commu-list .list {
+        height: 73%;
+    }
+    
+    .set-margin.scrap-license-list,
+    .set-margin.scrap-commu-list {
+        padding: 49px 45px 50px 45px;
+    }
+}
+
+
+@media screen and (max-height: 800px ) {
+    .left-aside {
+    height: 91%;
+    }
+    
+    .login {
+        height: 87%;
+    }
+    
+    .login .title {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-height: 620px ) {
+    .left-aside {
+        height: 83%;
+    }
+    
+    .scrap-license-list .list,
+    .scrap-commu-list .list {
+        height: 55%;
+    }
 }

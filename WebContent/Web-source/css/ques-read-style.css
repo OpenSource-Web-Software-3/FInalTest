@@ -126,10 +126,9 @@
 }
 
 .question-read .type-comment {
-    width: 72%;
+    width: 101%;
     height: fit-content;
-    position: fixed;
-    bottom: 45px;
+    position: relative;
 }
 
 .question-read .type-comment #content {
